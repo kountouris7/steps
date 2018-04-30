@@ -40,6 +40,17 @@ $factory->define(App\Group::class, function ($faker) {
         },
         'date_time_stamps' => Carbon::now()->format('Y-m-d H:i:s'),
         'max_capacity'=>$faker->randomDigit
-
     ];
 });
+$factory->define(App\GroupUser::class, function ($faker) {
+    return [
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'group_id' => function () {
+            return factory('App\Group')->create()->id;
+                }
+        ];
+});
+
+

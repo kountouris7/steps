@@ -20,7 +20,7 @@ class GroupTest extends TestCase
     }
 
     /** @test */
-        public function an_authenticated_user_may_book_any_group()
+        function an_authenticated_user_may_book_any_group()
     {
         $this->signIn();
         $group = create('App\Group');
@@ -30,7 +30,7 @@ class GroupTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_may_only_book_a_group_once()
+        function an_authenticated_user_may_only_book_a_group_once()
     {
         $this->signIn();
         $group = create('App\Group');
@@ -43,9 +43,4 @@ class GroupTest extends TestCase
         $this->assertCount(1, $group->bookings);
     }
 
-    /** @test */
-    public function an_authenticated_user_may_only_book_one_group_per_day()
-    {
-
-    }
 }

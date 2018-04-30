@@ -27,10 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function group()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(Group::class);
+        return 'name';
     }
+
+   // public function group()
+   // {
+       // return $this->belongsTo(Group::class);
+    //}
 
     public function groupUsers()
     {
