@@ -10,7 +10,7 @@ trait Booked
 
     public function bookings()
     {
-        return $this->hasMany(Group_user::class, 'group_id');
+        return $this->hasMany(GroupUser::class, 'group_id');
     }
 
 

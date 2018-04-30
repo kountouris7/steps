@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use App\Group_user;
+use App\GroupUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,25 +35,25 @@ class GroupUserController extends Controller
     }
 
 
-    public function show(Group_user $group_user)
+    public function show()
+    {
+
+    }
+
+
+    public function edit()
     {
         //
     }
 
 
-    public function edit(Group_user $group_user)
+    public function update()
     {
         //
     }
 
 
-    public function update(Request $request, Group_user $group_user)
-    {
-        //
-    }
-
-
-    public function destroy(Group_user $group_user)
+    public function destroy()
     {
         //
     }

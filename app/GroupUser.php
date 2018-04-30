@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group_user extends Model
+class GroupUser extends Model
 {
 
     /**
@@ -14,6 +14,9 @@ class Group_user extends Model
      */
     protected $guarded = [];
 
-
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }

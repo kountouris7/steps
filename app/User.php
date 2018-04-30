@@ -32,13 +32,13 @@ class User extends Authenticatable
         return $this->belongsTo(Group::class);
     }
 
-    public function group_users()
+    public function groupUsers()
     {
         /**
          * Fetch all booking that were created by the user.
          *
          * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
-        return $this->hasMany(Group_user::class)->latest();
+        return $this->hasMany(GroupUser::class)->latest();
     }
 }

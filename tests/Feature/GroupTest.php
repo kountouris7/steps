@@ -42,4 +42,10 @@ class GroupTest extends TestCase
         }
         $this->assertCount(1, $group->bookings);
     }
+
+    /** @test */
+    public function an_authenticated_user_may_only_book_one_group_per_day()
+    {
+
+    }
 }

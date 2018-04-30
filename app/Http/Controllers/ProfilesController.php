@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GroupUser;
 use App\User;
 
 class ProfilesController extends Controller
@@ -16,7 +17,7 @@ class ProfilesController extends Controller
     {
         return view('profiles.show', [
             'profileUser' => $user,
-            'bookings' => $user->group_users()->paginate(2)
+            'groupUsers' => $user->groupUsers()->paginate(10),
         ]);
     }
 }
