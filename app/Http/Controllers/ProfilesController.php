@@ -15,9 +15,14 @@ class ProfilesController extends Controller
      */
     public function show(User $user)
     {
+
+        $groupusers = GroupUser::with('lessons')->orderBy('group_id')->get();
+
+        //dd($groupusers);
         return view('profiles.show', [
             'profileUser' => $user,
-            'groupUsers' => $user->groupUsers()->paginate(10),
-        ]);
+            'groupUsers' => $user->groupUsers()->paginate(10)
+        ] ,compact('groupusers'));
+
     }
 }

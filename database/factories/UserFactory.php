@@ -15,6 +15,8 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Carbon\Carbon;
+use App\User;
+use Tests\TestCase;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -24,8 +26,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'type' => 'default'
     ];
 });
+
+$factory->state(App\User::class, 'admin', [
+    'type' => User::DEFAULT_TYPE
+]);
 
 $factory->define(App\Lesson::class, function ($faker) {
     return [
@@ -38,9 +45,10 @@ $factory->define(App\Group::class, function ($faker) {
         'lesson_id' => function () {
             return factory('App\Lesson')->create()->id;
         },
-        'date_time_stamps' => Carbon::now()->format('Y-m-d H:i:s'),
+        'day_time' => $startDate = Carbon::createFromTimestamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp()),
         'max_capacity'=>$faker->randomDigit
     ];
+
 });
 $factory->define(App\GroupUser::class, function ($faker) {
     return [
@@ -49,8 +57,10 @@ $factory->define(App\GroupUser::class, function ($faker) {
         },
         'group_id' => function () {
             return factory('App\Group')->create()->id;
-                }
-        ];
+                },
+        'groupDay_time' => $startDate = Carbon::createFromTimestamp($faker->dateTimeBetween('-30 days', '+30 days')
+                                                                     ->getTimestamp())
+    ];
 });
 
 

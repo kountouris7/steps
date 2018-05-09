@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Group;
-use Illuminate\Http\Request;
-
+use App\GroupUser;
+use App\Http\Requests\BookGroupRequest;
 
 class GroupController extends Controller
 {
@@ -16,13 +15,20 @@ class GroupController extends Controller
 
     public function show()
    {
-       $groups = Group::get();
+       $groups = Group::with('lesson')->orderBy('lesson_id')->get();
+
        return view('show', compact('groups'));
    }
 
-   public function store(Request $request)
-   {
 
+   public function store(Group $group, BookGroupRequest $request)
+   {
+       $group->book();
+
+       return back();
    }
 
+    public function destroy()
+    {
+    }
 }

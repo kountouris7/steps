@@ -43,4 +43,30 @@ class GroupTest extends TestCase
         $this->assertCount(1, $group->bookings);
     }
 
+    /** @test */
+    function unauthorized_users_may_not_delete_groups()
+    {
+        $this->withExceptionHandling();
+        $groupuser = create('App\GroupUser');
+        $this->delete(route('groupuser.destroy', [$groupuser->group_id]))->assertRedirect('/login');
+
+        $this->signIn();
+        $this->delete(route('groupuser.destroy', [$groupuser->group_id]))->assertStatus(403);
+    }
+
+    /** @test */
+    function authorized_users_can_delete_bookings()
+    {
+        $this->signIn();
+
+        $groupuser = create('App\GroupUser', ['user_id' => auth()->id()]);
+
+        $response = $this->json('DELETE', $groupuser->path());
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseMissing('group_users', ['user_id' => $groupuser->user_id]);
+
+    }
+
 }

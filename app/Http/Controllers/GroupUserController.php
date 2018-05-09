@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\GroupUser;
+use App\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class GroupUserController extends Controller
 {
@@ -22,15 +25,12 @@ class GroupUserController extends Controller
 
     public function create()
     {
-        //
+
     }
 
 
-    public function store(Group $group)
+    public function store()
     {
-        $group->book();
-
-        return back();
 
     }
 
@@ -49,12 +49,29 @@ class GroupUserController extends Controller
 
     public function update()
     {
-        //
+
     }
 
 
-    public function destroy()
+    public function destroy(Request $request,$groupuser, User $user)
     {
-        //
+        $groupuser = GroupUser::whereGroupId($groupuser)
+                          ->whereUserId(auth()->id())
+                          ->first();
+
+        $today = Carbon::today()->now()->toDateTimeString();
+
+      if( $groupuser->group->day_time > $today) {
+
+            $this->authorize('update', $groupuser);
+
+            $groupuser->delete();
+      }
+
+        if (request()->wantsJson()) {
+            return response()->json(['message' => 'success'], 200);
+        }
+
+        return redirect(route('profiles', $groupuser->creator));
     }
 }

@@ -8,8 +8,12 @@ class Group extends Model
 {
     use Booked;
 
+    protected $guarded = [];
 
-    protected $with = ['bookings'];
+    public function path()
+    {
+        return "/booking/{$this->id}";
+    }
     /**
      * A Group has an owner.
      *
@@ -19,4 +23,10 @@ class Group extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
 }

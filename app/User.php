@@ -9,13 +9,16 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default'; //instead of hard-coding the type values into our factory we used class constants
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type',
     ];
 
     /**
@@ -27,15 +30,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getRouteKeyName()
+    public function isAdmin()
     {
-        return 'name';
+        return $this->type === self::ADMIN_TYPE;
     }
-
-   // public function group()
-   // {
-       // return $this->belongsTo(Group::class);
-    //}
 
     public function groupUsers()
     {

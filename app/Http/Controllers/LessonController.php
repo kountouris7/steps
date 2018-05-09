@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Support\ServiceProvider;
 
 class LessonController extends Controller
 {
+    public function __construct()
+{
+    //
+}
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +53,7 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        //
+       //
     }
 
     /**

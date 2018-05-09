@@ -29,9 +29,12 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('profile', Auth::user()) }}">My Profile</a>
-                            </li>
+
+                               <li><a href="{{ route('profiles', Auth::user()) }}">My Profile</a></li>
+                                @if(Auth::user()->isAdmin())
+                                   <li><a href="{{ route('admin') }}">Admin Panel</a></li>
+                                @endif
+
 
                             <li>
                                 <a href="{{ route('logout') }}"
