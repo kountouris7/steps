@@ -26,7 +26,6 @@ class GroupTest extends TestCase
         $group = create('App\Group');
         $this->post('booking/' . $group->id);
         $this->assertCount(1, $group->bookings);
-        // bookings what is it ?is it the method bookings() in booked trait?? ///
     }
 
     /** @test */
@@ -44,18 +43,7 @@ class GroupTest extends TestCase
     }
 
     /** @test */
-    function unauthorized_users_may_not_delete_groups()
-    {
-        $this->withExceptionHandling();
-        $groupuser = create('App\GroupUser');
-        $this->delete(route('groupuser.destroy', [$groupuser->group_id]))->assertRedirect('/login');
-
-        $this->signIn();
-        $this->delete(route('groupuser.destroy', [$groupuser->group_id]))->assertStatus(403);
-    }
-
-    /** @test */
-    function authorized_users_can_delete_bookings()
+    function authorized_users_only_can_delete_bookings()
     {
         $this->signIn();
 

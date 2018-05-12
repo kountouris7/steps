@@ -11,18 +11,22 @@ class ProfilesController extends Controller
      * Show the user's profile.
      *
      * @param  User $user
+     *
      * @return \Response
      */
     public function show(User $user)
     {
+        $user->load('groups.lesson');
 
-        $groupusers = GroupUser::with('lessons')->orderBy('group_id')->get();
+//        $groupusers = GroupUser::with('lesson')
+//                               ->where('user_id', '=', $user->id)
+//                               ->orderBy('group_id')
+//                               ->get();
 
-        //dd($groupusers);
+
         return view('profiles.show', [
-            'profileUser' => $user,
-            'groupUsers' => $user->groupUsers()->paginate(10)
-        ] ,compact('groupusers'));
+            'user' => $user,
+        ]);
 
     }
 }

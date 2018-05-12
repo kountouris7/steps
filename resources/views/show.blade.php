@@ -10,7 +10,7 @@
             <div class="book-lesson-title">
                 <h3>
 
-                    {{$group->lesson->name}} <br>
+                    {{optional($group->lesson)->name ?? $group->id}} <br>
                     starting on: {{date('D M Y H:i', strtotime($group->day_time))}}
 
                 </h3>

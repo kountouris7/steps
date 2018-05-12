@@ -10,18 +10,16 @@ class Group extends Model
 
     protected $guarded = [];
 
+
+
     public function path()
     {
         return "/booking/{$this->id}";
     }
-    /**
-     * A Group has an owner.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+
     public function owner()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(User::class, 'group_users');
     }
 
     public function lesson()

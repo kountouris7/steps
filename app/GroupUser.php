@@ -26,9 +26,9 @@ class GroupUser extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function lessons()
+    public function lesson()
     {
-        return $this->belongsTo(Lesson::class, 'group_id');
+        return $this->belongsTo(Lesson::class);
     }
 
     public function group()

@@ -31,7 +31,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->state(App\User::class, 'admin', [
-    'type' => User::DEFAULT_TYPE
+    'type' => User::ADMIN_TYPE
 ]);
 
 $factory->define(App\Lesson::class, function ($faker) {

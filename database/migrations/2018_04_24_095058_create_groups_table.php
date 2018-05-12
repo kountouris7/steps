@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateGroupsTable extends Migration
 {
@@ -19,6 +19,12 @@ class CreateGroupsTable extends Migration
             $table->dateTime('day_time');
             $table->string('max_capacity');
             $table->timestamps();
+
+            $table->foreign('lesson_id')
+                  ->references('id')
+                  ->on('lessons')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 
