@@ -1,3 +1,5 @@
+@extends('administrator.layouts.app')
+@section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="level">
@@ -26,3 +28,5 @@
         </form>
     </div>
 </div>
+   @endsection
+

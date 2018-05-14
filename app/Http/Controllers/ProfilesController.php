@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\GroupUser;
 use App\User;
 
 class ProfilesController extends Controller

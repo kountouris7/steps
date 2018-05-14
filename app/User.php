@@ -35,16 +35,6 @@ class User extends Authenticatable
         return $this->type === self::ADMIN_TYPE;
     }
 
-    public function groupUsers()
-    {
-        /**
-         * Fetch all booking that were created by the user.
-         *
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
-         */
-        return $this->hasMany(GroupUser::class)->latest();
-    }
-
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_users');

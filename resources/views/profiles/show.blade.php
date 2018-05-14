@@ -28,13 +28,13 @@
                             {{$group->lesson->name}} On {{date('D M Y H:i', strtotime($group->day_time))}}
 
                         </div>
-                        @can('update', $group)
+
                             <form action="{{route('groupuser.destroy', [$group->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-link">Delete Booking</button>
                             </form>
-                        @endcan
+
                     </div>
                 @endforeach
             </div>

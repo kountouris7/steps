@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('administrator.layouts.app')
 @section('content')
 
     @include('partials.errors')

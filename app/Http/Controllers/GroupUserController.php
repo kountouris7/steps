@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use App\GroupUser;
-use App\User;
-use Dotenv\Validator;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 
 class GroupUserController extends Controller
@@ -53,25 +50,23 @@ class GroupUserController extends Controller
     }
 
 
-    public function destroy(Request $request,$groupuser, User $user)
+    public function destroy(Request $request, $group)
     {
-        $groupuser = GroupUser::whereGroupId($groupuser)
-                          ->whereUserId(auth()->id())
-                          ->first();
+        $group = Group::findOrFail($group);
 
         $today = Carbon::today()->now()->toDateTimeString();
 
-      if( $groupuser->group->day_time > $today) {
+        if ($group->day_time > $today) {
 
-            $this->authorize('update', $groupuser);
+            $this->authorize('update', $group);
 
-            $groupuser->delete();
-      }
+            auth()->user()->groups()->detach($group->id);
+        }
 
         if (request()->wantsJson()) {
             return response()->json(['message' => 'success'], 200);
         }
 
-        return redirect(route('profiles', $groupuser->creator));
+        return redirect(route('profiles', auth()->id()));
     }
 }

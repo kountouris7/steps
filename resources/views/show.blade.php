@@ -11,7 +11,7 @@
                 <h3>
 
                     {{optional($group->lesson)->name ?? $group->id}} <br>
-                    starting on: {{date('D M Y H:i', strtotime($group->day_time))}}
+                    Starting on: {{date('D M Y H:i', strtotime($group->day_time))}}
 
                 </h3>
             </div>

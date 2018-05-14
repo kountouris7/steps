@@ -1,10 +1,7 @@
-@extends('layouts.app')
+@extends('administrator.layouts.app')
 @section('content')
-
-    @include('partials.errors')
-
     <div class="book-lesson">
-            <div class="col-sm-8 blog-main">
+            <div class="col-sm-4 blog-main">
                 <div class="create-lesson-title">
                    <h1>Create Lesson</h1>
                 </div>

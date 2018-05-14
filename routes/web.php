@@ -9,7 +9,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show');
 Route::post('/booking/{group}', 'GroupController@store')->name('store');
-Route::delete('/booking/{group}', 'GroupUserController@destroy')->name('groupuser.destroy');
+Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('groupuser.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 
 Route::group(['middleware' => 'is_admin'], function () {
