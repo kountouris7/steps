@@ -3,6 +3,8 @@
 
     @include('partials.errors')
     @foreach($lessons as $lesson)
+        <div style="width:800px; margin:0 auto;">
+
 
         <div class="book-lesson">
             <div class="col-sm-8 blog-main">
@@ -12,6 +14,7 @@
                     </h3>
                 </div>
             </div>
+        </div>
         </div>
 
     @endforeach

@@ -31,7 +31,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <a href="{{route('create.lesson')}}">Share</a>
+                            <a href="{{route('create.lesson')}}">Add New Lesson</a>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <a href="{{route('show.lesson')}}">View Lessons</a>
                         </a>
                     </li>
                 </ul>

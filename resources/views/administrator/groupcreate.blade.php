@@ -1,5 +1,7 @@
 @extends('administrator.layouts.app')
 @section('content')
+    <div style="width:800px; margin:0 auto;">
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="level">
@@ -12,13 +14,13 @@
 
             <div class="form-group">
                 <label for="title">Date:</label>
-                <input type="datetime-local" class="form-control" id="day_time" name="day_time"
+                <input type="datetime-local" class="form-control" id="day_time" name="day_time" style="width: 250px"
                        min="{{Carbon\Carbon::now()->toDateString()}}" required>
             </div>
 
             <div class="form-group">
                 <label for="max_capacity">Maximum Capacity:</label>
-                <textarea name="max_capacity" id="max_capacity" class="form-control" rows="2">  </textarea>
+                <textarea name="max_capacity" id="max_capacity" class="form-control"  style="width: 100px; height: 40px">  </textarea>
             </div>
 
             <div class="form-group">
@@ -28,5 +30,7 @@
         </form>
     </div>
 </div>
+    </div>
+    </div>
    @endsection
 
