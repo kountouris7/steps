@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    use Booked;
-
     protected $guarded = [];
 
 
@@ -17,14 +15,41 @@ class Group extends Model
         return "/booking/{$this->id}";
     }
 
-    public function owner()
-    {
-        return $this->belongsToMany(User::class, 'group_users');
-    }
-
     public function lesson()
     {
         return $this->belongsTo(Lesson::class);
+    }
+
+    public function book()
+    {
+        $attributes = [
+            'user_id'       => auth()->id(),
+        ];
+        if ( ! $this->clients()->where($attributes)->exists()) {
+            $this->clients()->attach(auth()->id());
+        }
+    }
+
+    public function clients()
+    {
+        return $this->belongsToMany(User::class, 'group_users')
+                    ->withTimestamps();
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(GroupUser::class, 'group_id');
+    }
+
+    public function isBooked()
+    {
+        return ! ! $this->bookings->where('user_id', auth()->id())->count();
+    }
+
+
+    public function getBookingsCountAttribute()
+    {
+        return $this->bookings->count();
     }
 
 }

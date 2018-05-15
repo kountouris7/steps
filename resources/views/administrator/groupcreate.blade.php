@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
-                <button type="submit" class="btn btn-primary">Publish</button>
+                <button type="submit" class="btn btn-primary">Publish Group</button>
             </div>
         </form>
     </div>

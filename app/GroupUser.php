@@ -15,7 +15,7 @@ class GroupUser extends Model
      */
     protected $guarded = [];
 
-    protected $fillable =['user_id', 'group_id', 'groupDay_time'];
+    protected $fillable =['user_id', 'group_id'];
 
     public function path()
     {

@@ -17,10 +17,9 @@ class CreateGroupUsersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('group_id');
-            $table->dateTime('groupDay_time');
             $table->timestamps();
 
-            $table->unique(['user_id', 'groupDay_time']);
+            $table->unique(['user_id', 'group_id']);
         });
     }
 

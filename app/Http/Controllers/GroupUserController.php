@@ -56,7 +56,7 @@ class GroupUserController extends Controller
 
         $today = Carbon::today()->now()->toDateTimeString();
 
-        if ($group->day_time > $today) {
+        if ($today< $group->day_time) {
 
             $this->authorize('update', $group);
 
