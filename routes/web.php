@@ -7,9 +7,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/groups', 'GroupController@index')->name('show');
-Route::post('/booking/{group}', 'GroupController@store')->name('store');
-Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('groupuser.destroy');
+Route::get('/groups', 'GroupController@index')->name('show.groups');
+Route::post('/booking/{group}', 'GroupController@store')->name('book.group');
+Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('group.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 
 Route::group(['middleware' => 'is_admin'], function () {
@@ -20,7 +20,17 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
 });
+//
+//$groups=Group::with('clients')->has('clients')->get()->mapWithKeys(function ($group) {
+//    return [
+//        $group->id => $group->clients->count(),
+//    ];
+//});
+//
+//dd($groups->all());
 
+//$g = GroupUser::selectRaw('sum(user_id) as userCount')->groupBy('group_id')->get();
 
+    //dd($g->toArray());
 
 

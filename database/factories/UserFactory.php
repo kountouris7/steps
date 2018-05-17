@@ -36,7 +36,8 @@ $factory->state(App\User::class, 'admin', [
 
 $factory->define(App\Lesson::class, function ($faker) {
     return [
-        'name'=>$faker->sentence
+        'name'=>$faker->sentence,
+        'body'=>$faker->sentence
     ];
 });
 
@@ -46,7 +47,8 @@ $factory->define(App\Group::class, function ($faker) {
             return factory('App\Lesson')->create()->id;
         },
         'day_time' => $startDate = Carbon::createFromTimestamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp()),
-        'max_capacity'=>$faker->randomDigit
+        'max_capacity'=>$faker->randomDigit,
+        'level'=>$faker->word
     ];
 
 });

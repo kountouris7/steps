@@ -3,20 +3,23 @@
 
     @include('partials.errors')
 
-@foreach($groups as $group)
+    @foreach($groups as $group)
 
-    <div class="book-lesson">
-        <div class="col-sm-8 blog-main">
-            <div class="book-lesson-title">
-                <h3>
+        <div class="book-lesson">
+            <div class="col-sm-8 blog-main">
 
-                    {{optional($group->lesson)->name ?? $group->id}} <br>
-                    Starting on: {{date('D M Y H:i', strtotime($group->day_time))}}
+                <div class="book-lesson-title">
+                    <h3>
+                        <hr>
+                        {{optional($group->lesson)->name ?? $group->id}} <br>
+                        Description: {{$group->lesson->body}} <br>
+                        Starting on: {{date('D M Y H:i', strtotime($group->day_time))}}<br>
+                        Level:{{$group->level->level}}
+                        <hr>
+                    </h3>
+                </div>
 
-                </h3>
-            </div>
-
-            <form method="POST" action="/booking/{{$group->id}}">
+                <form method="POST" action="{{route('book.group',[$group->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <input type="hidden" name="group_id" value="{{$group->id}}">
@@ -29,9 +32,9 @@
                         </button>
                     </div>
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
-@endforeach
+    @endforeach
 @endsection

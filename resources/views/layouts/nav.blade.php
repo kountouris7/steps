@@ -12,7 +12,7 @@
 
             <div class="navbar-nav">
                     <a class="p-2 text-lg-center" href="{{route('home')}}">Home</a>
-                    <a class="p-2 text-lg-center" href="{{route('show')}}">Classes</a>
+                    <a class="p-2 text-lg-center" href="{{route('show.groups')}}">Classes</a>
             </div>
 
             <!-- Right Side Of Navbar -->

@@ -22,7 +22,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <a href="{{route('show')}}">View as Client</a>
+                            <a href="{{route('show.groups')}}">View as Client</a>
                         </a>
                     </li>
                 </ul>
