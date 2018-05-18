@@ -29,7 +29,7 @@
 
                         </div>
 
-                            <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                            <form action="{{route('book.destroy', [$group->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-link">Delete Booking</button>

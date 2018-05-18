@@ -1,6 +1,9 @@
 @extends('administrator.layouts.app')
 @section('content')
     <div style="width:800px; margin:0 auto;">
+
+        @include('partials.errors')
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="level">
@@ -42,6 +45,7 @@
                             <button type="submit" class="btn btn-primary">Publish Group</button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

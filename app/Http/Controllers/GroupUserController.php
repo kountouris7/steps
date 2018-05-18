@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Policies\GroupUserPolicy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,7 @@ class GroupUserController extends Controller
 
         $today = Carbon::today()->now()->toDateTimeString();
 
-        if ($today< $group->day_time) {
+        if ($today < $group->day_time) {
 
             $this->authorize('update', $group);
 
