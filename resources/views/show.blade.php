@@ -34,12 +34,15 @@
                     </div>
                 </form>
 
-                <form action="{{route('group.destroy', [$group->id])}}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-link">Delete Booking</button>
-                </form>
+                @can ('before', $group)
+                    <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-link">Delete Group</button>
+                    </form>
+                @endcan
             </div>
         </div>
+
     @endforeach
 @endsection

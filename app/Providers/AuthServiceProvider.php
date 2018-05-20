@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Group;
+use App\Policies\DeleteGroupPolicy;
 use App\Policies\GroupUserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
