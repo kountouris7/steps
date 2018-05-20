@@ -30,7 +30,14 @@
                                 {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}>
                             {{ $group->capacity() - $group->attendance() }} of: {{$group->max_capacity}} {{'available'}}
                         </button>
+
                     </div>
+                </form>
+
+                <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-link">Delete Booking</button>
                 </form>
             </div>
         </div>

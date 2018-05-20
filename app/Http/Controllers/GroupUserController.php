@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use App\Policies\GroupUserPolicy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -50,8 +49,14 @@ class GroupUserController extends Controller
 
     }
 
-
-    public function destroy(Request $request, $group)
+    /**
+     * @param Request $request
+     * @param $group
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroy(Request $request,  $group)
     {
         $group = Group::findOrFail($group);
 

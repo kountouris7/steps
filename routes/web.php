@@ -19,7 +19,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/show/lessons', 'AdminController@lessonshow')->name('show.lesson');
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
-    //Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
+    Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
 });
 //
 //$groups=Group::with('clients')->has('clients')->get()->mapWithKeys(function ($group) {
