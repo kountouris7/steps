@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $guarded = [];
-    protected $fillable =[];
+    protected $fillable = [];
 
 
     public function path()
@@ -27,9 +27,7 @@ class Group extends Model
 
     public function book()
     {
-        $attributes = [
-            'user_id' => auth()->id(),
-        ];
+        $attributes = ['user_id' => auth()->id()];
         if ( ! $this->clients()->where($attributes)->exists()) {
             $this->clients()->attach(auth()->id());
         }
@@ -54,6 +52,16 @@ class Group extends Model
     public function getBookingsCountAttribute()
     {
         return $this->bookings->count();
+    }
+
+    public function attendance()
+    {
+        return $this->clients()->count();
+    }
+
+    public function capacity()
+    {
+        return $this->max_capacity;
     }
 
 }

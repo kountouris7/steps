@@ -36,9 +36,7 @@ class LessonController extends Controller
 
     public function show(Lesson $lesson)
     {
-        $lessons=Lesson::latest()->get();
 
-        return view('administrator.group',compact('lessons'));
     }
 
 

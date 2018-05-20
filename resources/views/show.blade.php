@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-
-    @include('partials.errors')
-
+    @if (session('status'))
+        <div class="alert alert-warning">
+            {{ session('status') }}
+        </div>
+    @endif
     @foreach($groups as $group)
-
         <div class="book-lesson">
             <div class="col-sm-8 blog-main">
-
                 <div class="book-lesson-title">
                     <h3>
                         <hr>
@@ -27,14 +27,12 @@
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
 
                         <button type="submit" class="btn btn-default"{{ $group->isBooked() ? 'disabled' : '' }}
-                                {{ $group->isBooked()}}>
-                            {{ $group->bookings_count }} {{ str_plural('Booking', $group->bookings_count) }}
+                                {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}>
+                            {{ $group->capacity() - $group->attendance() }} of: {{$group->max_capacity}} {{'available'}}
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
-
     @endforeach
 @endsection

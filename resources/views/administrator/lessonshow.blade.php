@@ -1,8 +1,7 @@
 @extends('administrator.layouts.app')
 @section('content')
-
+    @include('partials.errors')
     <div style="width:800px; margin:0 auto;">
-        @include('partials.errors')
         @foreach($lessons as $lesson)
             <div class="book-lesson">
                 <div class="col-sm-8 blog-main">
@@ -13,7 +12,9 @@
                     </div>
                 </div>
             </div>
+
+        @endforeach
     </div>
 
-    @endforeach
+
 @endsection
