@@ -17,7 +17,7 @@ class GroupController extends Controller
     {
         $groups = Group::with([
             'lesson',
-            'level',
+            'level'
         ])->latest()->get();
 
         return view('show', compact('groups'));
