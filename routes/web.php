@@ -22,9 +22,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
     Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
-    Route::get('/payments', 'AdminController@payments')->name('create.payment');
-    Route::post('/payments', 'AdminController@storepayments')->name('store.payment');
-    Route::get('/show/users', 'AdminController@showusers')->name('show.users');
 
 });
 //
