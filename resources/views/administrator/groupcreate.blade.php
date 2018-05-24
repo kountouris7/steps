@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
-    <div style="width:800px; margin:0 auto;">
+
 
         @include('partials.errors')
 

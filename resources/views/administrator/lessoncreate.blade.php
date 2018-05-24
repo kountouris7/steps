@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
-    <div style="width:800px; margin:0 auto;">
+
 
         <div class="form-group">
             <h3>Create Lesson</h3>
@@ -22,5 +22,5 @@
                 <button type="submit" class="btn btn-primary">Save Lesson</button>
             </div>
         </form>
-    </div>
+
 @endsection

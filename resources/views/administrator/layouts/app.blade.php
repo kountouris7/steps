@@ -20,7 +20,9 @@
 
 <body>
 @include('administrator.layouts.nav')
+<div style="width:800px; margin:0 auto;">
 @yield('content')
+</div>
 @include('administrator.layouts.footer')
 </body>
 </html>

@@ -24,8 +24,9 @@
     <div id="app">
 
         @include('layouts.nav')
+        <div style="width:800px; margin:0 auto;">
         @yield('content')
-
+        </div>
     </div>
 
 </body>

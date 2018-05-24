@@ -13,7 +13,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        return view('clients');
+        return view('administrator.clients');
     }
 
     public function import(Request $request)
@@ -35,8 +35,11 @@ class ClientController extends Controller
                     foreach ($data as $key => $value) {
                         $insert[] = [
                             'name'  => $value->name,
-                            'email' => $value->email,
-                            'phone' => $value->phone,
+                            'surname' => $value->surname,
+                            'package_week' => $value->package_week,
+                            'amount' => $value->amount,
+                            'discount' => $value->discount,
+                            'price' => $value->price
                         ];
                     }
 
