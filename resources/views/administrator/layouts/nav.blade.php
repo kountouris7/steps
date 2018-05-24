@@ -22,12 +22,6 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <a href="{{route('create.payment')}}">Payments</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
                             <a href="{{route('show.groups')}}">View as Client</a>
                         </a>
                     </li>

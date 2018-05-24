@@ -1,7 +1,6 @@
 <?php
 
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,7 +21,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
     Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
-
+    Route::get('/excel', 'ClientController@index')->name('upload.excel');
+    Route::post('/import', 'ClientController@import')->name('import.excel');
 });
 //
 //$groups=Group::with('clients')->has('clients')->get()->mapWithKeys(function ($group) {
@@ -35,6 +35,6 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 //$g = GroupUser::selectRaw('sum(user_id) as userCount')->groupBy('group_id')->get();
 
-    //dd($g->toArray());
+//dd($g->toArray());
 
 

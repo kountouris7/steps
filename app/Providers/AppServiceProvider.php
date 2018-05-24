@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Group;
-use App\Lesson;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,11 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //$groups =  Group::with('lesson')->get();
-        //View::share ('groups', $groups);
-
-        //$lessons =  Lesson::with('group')->get();
-        //View::share ('lessons', $lessons);
+        Schema::defaultStringLength(191);
 
     }
 
