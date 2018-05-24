@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
     @if (session('status'))
         <div class="alert alert-warning">
             {{ session('status') }}
         </div>
     @endif
     @foreach($groups as $group)
+
         <div class="book-lesson">
             <div class="col-sm-8 blog-main">
                 <div class="book-lesson-title">
@@ -43,6 +45,6 @@
                 @endcan
             </div>
         </div>
-
+        
     @endforeach
 @endsection
