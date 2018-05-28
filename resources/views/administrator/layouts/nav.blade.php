@@ -28,6 +28,12 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
+                            <a href="{{route('show.subscribers')}}">Subscriptions</a>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
                             <a href="{{route('show.groups')}}">View as Client</a>
                         </a>
                     </li>
