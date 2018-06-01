@@ -11,18 +11,20 @@
             <th>AMOUNT</th>
             <th>DISCOUNT</th>
             <th>PRICE</th>
+            <th>MONTH</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($subscribers as $sub)
+        @foreach($subscribers as $subscriber)
             <tr>
-                <td>{{$sub->id}}</td>
-                <td>{{$sub->name}} </td>
-                <td>{{$sub->surname}}</td>
-                <td>{{$sub->package_week}}</td>
-                <td>{{$sub->amount}}</td>
-                <td>{{$sub->discount}}</td>
-                <td>{{$sub->price}}</td>
+                <td>{{$subscriber->id}}</td>
+                <td>{{$subscriber->name}} </td>
+                <td>{{$subscriber->surname}}</td>
+                <td>{{$subscriber->package_week}}</td>
+                <td>{{$subscriber->amount}}</td>
+                <td>{{$subscriber->discount}}</td>
+                <td>{{$subscriber->price}}</td>
+                <td>{{$subscriber->month->month}}</td>
 
             </tr>
         @endforeach

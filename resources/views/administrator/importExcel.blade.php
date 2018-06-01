@@ -1,7 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
 
-
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="level">
@@ -36,20 +35,34 @@
                     </div>
                 @endif
 
-                    <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+                        <label for="level">Choose Month:</label>
+                        <select name="month" id="month" class="form-group" required>
+                            <option value="">Choose One...</option>
+
+                            @foreach ($months as $month)
+                                <option value="{{$month->id}}" {{ old('month_id') == $month->id ? 'selected' : '' }}>
+                                    {{$month->month}}
+                                </option>
+                            @endforeach
+                        </select>
+
 
                         <div class="form-group">
-                        Choose your xls/csv File :
-                        <input type="file" name="file" class="form-control">
-                        <input type="submit" class="btn btn-primary" style="margin-top: 3%">
+                            Choose your xls/csv File :
+                            <input type="file" name="file" class="form-control">
+                            <input type="hidden" name="month_id" value="{{$month->id}}">
+                            <input type="submit" class="btn btn-primary" style="margin-top: 3%">
                         </div>
-                    </form>
-                </div>
-
-
+                </form>
             </div>
+
+
         </div>
+    </div>
     </div>
 
 @endsection

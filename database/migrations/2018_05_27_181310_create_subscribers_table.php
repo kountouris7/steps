@@ -21,6 +21,7 @@ class CreateSubscribersTable extends Migration
             $table->string('amount')->nullable();
             $table->string('discount')->nullable();
             $table->string('price')->nullable();
+            $table->unsignedInteger('month_id');
             $table->timestamps();
 
         });

@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscriber extends Model
 {
-    protected $fillable = ['name', 'surname', 'package_week', 'amount', 'discount', 'price'];
+    protected $fillable = ['name', 'surname', 'package_week', 'amount', 'discount', 'price','month_id'];
 
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function month()
+    {
+        return $this->belongsTo(Month::class);
     }
 
     /**

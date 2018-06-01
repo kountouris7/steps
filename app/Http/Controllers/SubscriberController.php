@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Month;
 use App\Subscriber;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,19 +14,29 @@ class SubscriberController extends Controller
 {
     public function index()
     {
-        return view('administrator.importExcel');
+        $months = Month::get();
+
+        return view('administrator.importExcel', compact('months'));
     }
 
-    public function import(Request $request, Subscriber $subscriber)
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function import(Request $request)
     {
         //validate the xls file
         $this->validate($request, [
             'file' => 'required',
         ]);
 
+
         if ($request->hasFile('file')) {
             $extension = File::extension($request->file->getClientOriginalName());
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
+
+                $subscribers = Subscriber::all();
 
                 $path = $request->file->getRealPath();
                 $data = Excel::load($path, function ($reader) {
@@ -35,73 +45,49 @@ class SubscriberController extends Controller
                 if ( ! empty($data) && $data->count()) {
 
                     foreach ($data as $key => $value) {
-                        $insert[] = [
-                            'name'         => $value->name,
-                            'surname'      => $value->surname,
-                            'package_week' => $value->package_week,
-                            'amount'       => $value->amount,
-                            'discount'     => $value->discount,
-                            'price'        => $value->price,
-                        ];
-                    }
 
-                    if ( ! empty($insert)) {
+                        $insertData = Subscriber::create(
+                            [
+                                'name'         => $value->name,
+                                'surname'      => $value->surname,
+                                'package_week' => $value->package_week,
+                                'amount'       => $value->amount,
+                                'discount'     => $value->discount,
+                                'price'        => $value->price,
+                                'month_id'     => request('month_id'),
+                            ]);
 
-                            foreach ($data as $key => $value) {
-                                $insertData =  DB::table('subscribers')->updateOrInsert(
-                                //$insertData = Subscriber::updateOrCreate(
-                                    [
-                                        'name'         => $request->get('name'),
-                                        'surname'      => $request->get('surname'),
-                                        'package_week' => $request->get('package_week'),
-                                        'amount'       => $request->get('amount'),
-                                        'discount'     => $request->get('discount'),
-                                        'price'        => $request->get('price'),
-                                    ],
-                                    [
-                                        'name'         => $value->name,
-                                        'surname'      => $value->surname,
-                                        'package_week' => $value->package_week,
-                                        'amount'       => $value->amount,
-                                        'discount'     => $value->discount,
-                                        'price'        => $value->price,
-                                    ]
-                              );
-
-
-                                if ($insertData) {
-                                    Session::flash('success', 'Your Data has successfully imported');
-                                } else {
-                                    Session::flash('error', 'Error inserting the data..');
-
-                                    return back();
-                                }
-
-
-                                return back();
-
-                            }
-                        }
-                    }
-                    else {
-                            Session::flash('error',
-                                'File is a ' . $extension . ' file.!! Please upload a valid xls/csv file..!!');
+                        if ($insertData) {
+                            Session::flash('success', 'Your Data has successfully imported');
+                        } else {
+                            Session::flash('error', 'Error inserting the data..');
 
                             return back();
                         }
                     }
+
                 }
+
+                return back();
+
             }
 
 
+        } else {
+            Session::flash('error',
+                'File is a ' . $extension . ' file.!! Please upload a valid xls/csv file..!!');
 
-                public function showSubscribers()
-                {
-                    $subscribers = Subscriber::get();
+            return back();
+        }
+    }
 
-                    return view('administrator.subscribers', compact('subscribers'));
-                }
 
+    public function showSubscribers()
+    {
+        $subscribers = Subscriber::with(['month'])->latest()->get();
+
+        return view('administrator.subscribers', compact('subscribers'));
+    }
 
 
 }
