@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImportSubscribersRequest;
 use App\Month;
 use App\Subscriber;
+use App\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -41,6 +42,7 @@ class SubscriberController extends Controller
                                 'price'        => $value->price,
                                 'month_id'     => request('month_id'),
                             ]);
+
 
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');

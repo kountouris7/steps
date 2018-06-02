@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type',
+        'name', 'email', 'password', 'type','subscription_id'
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function subscriber()
     {
-        return $this->hasOne(Subscriber::class);
+        return $this->belongsTo(Subscriber::class);
     }
 
 }
