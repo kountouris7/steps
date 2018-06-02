@@ -24,6 +24,10 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');
+    Route::get('invite', 'InviteController@invite')->name('invite');
+    Route::post('invite', 'InviteController@process')->name('process');
+// {token} is a required parameter that will be exposed to us in the controller method
+    Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 });
 //
 //$groups=Group::with('clients')->has('clients')->get()->mapWithKeys(function ($group) {
