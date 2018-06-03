@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Invite;
 use App\Mail\InviteCreated;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 
 class InviteController extends Controller
@@ -16,10 +13,10 @@ class InviteController extends Controller
 
     public function invite()
     {
+        //$invite = Invite::first();
         // show the user a form with an email field to invite a new user
         return view('administrator.invite');
     }
-
 
 
     public function process(Request $request)
@@ -47,14 +44,6 @@ class InviteController extends Controller
             ->back();
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
 
     public function accept(Request $request, $token)
     {
@@ -62,26 +51,35 @@ class InviteController extends Controller
 
         // here we'll look up the user by the token sent provided in the URL
         // Look up the invite
+
         if ( ! $invite = Invite::where('token', $token)->first()) {
             //if the invite doesn't exist do something more graceful than this
             abort(404);
         }
 
-        // create the user with the details from the invite
-        $user = User::create(
-            [
-                'email' => $invite->email,
-                'name'  => request('name'),
-                'password' => request('password'),
-                'type' => User::DEFAULT_TYPE,
-            ]);
 
+        // User::create(
+        //     [
+        //         'email'    => $invite->email,
+        //         //'name'     => request('name'),
+        //         //'password' => request('password'),
+        //         'type'     => User::DEFAULT_TYPE,
+        //     ]);
+
+
+        //$invite->delete();
         // delete the invite so it can't be used again
-        $invite->delete();
 
 
         // here you would probably log the user in and show them the dashboard, but we'll just prove it worked
 
-        return 'Good job! Invite accepted!';
+        return redirect(route('register.form'));
     }
+
+    public function inviteDelete()
+    {
+        $invite = Invite::where('token', $token)->first();
+        $invite->delete();
+    }
+
 }

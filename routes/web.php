@@ -1,17 +1,20 @@
 <?php
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\RegisterController;
 
 Auth::routes();
-
+Route::get('/register', 'RegisterController@index')->name('register.form');
+Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
+// {token} is a required parameter that will be exposed to us in the controller method
+Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+Route::get('delete-invite/{token}', 'InviteController@inviteDelete')->name('invite.delete');
+
+
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
@@ -26,8 +29,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');
     Route::get('invite', 'InviteController@invite')->name('invite');
     Route::post('invite', 'InviteController@process')->name('process');
-// {token} is a required parameter that will be exposed to us in the controller method
-    Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+
+
 });
 //
 //$groups=Group::with('clients')->has('clients')->get()->mapWithKeys(function ($group) {
