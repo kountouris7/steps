@@ -34,6 +34,12 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
+                            <a href="{{route('invite')}}">Invite Clients</a>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
                             <a href="{{route('show.groups')}}">View as Client</a>
                         </a>
                     </li>

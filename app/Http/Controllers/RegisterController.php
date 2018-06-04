@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Invite;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -35,6 +35,8 @@ class RegisterController extends Controller
             'type'     => User::DEFAULT_TYPE,
         ]);
 
-        return redirect('home');
+        Invite::where('token', '=', request('token'))->delete(); //deletes invitation(with token) after registration
+
+        return redirect(route('home'));
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\RegisterController;
-
 Auth::routes();
 Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
@@ -12,7 +10,7 @@ Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.de
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
-Route::get('delete-invite/{token}', 'InviteController@inviteDelete')->name('invite.delete');
+
 
 
 
