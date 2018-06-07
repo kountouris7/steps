@@ -23,7 +23,7 @@ class InviteController extends Controller
             'email' => $request->get('email'),
             'token' => $token,
         ]);
-        Mail::to($request->get('email'))->send(new InviteCreated($invite)); // send the email
+        Mail::to($request->get('email'))->send(new InviteCreated($invite));
 
         return redirect()
             ->back();
@@ -34,19 +34,16 @@ class InviteController extends Controller
      */
     protected function tokenCreate(): string
     {
-        // validate the incoming request data
         do {
             $token = str_random();
-        } while (Invite::where('token', $token)->first()); //check if the token already exists and if it does, try again
+        } while (Invite::where('token', $token)->first());
 
         return $token;
     }
 
-    public function accept(Request $request, $token)  // look up the user by the token sent provided in the URL
+    public function accept(Request $request, $token)
     {
-        // Look up the invite
         if ( ! $invite = Invite::where('token', $token)->first()) {
-            //if the invite doesn't exist do something more graceful than this
             abort(404);
         }
 
@@ -56,12 +53,16 @@ class InviteController extends Controller
     public function sendMultiple(Request $request)
     {
         $invitations = Subscriber::get();
+
         foreach ($invitations as $invitation) {
-            $token  = $this->tokenCreate();
+
+            $token = $this->tokenCreate();
+
             $invite = Invite::create([
                 'email' => $invitation->email,
                 'token' => $token,
             ]);
+
             Mail::to($invitation->email)->send(new InviteCreated($invite));
         }
 
