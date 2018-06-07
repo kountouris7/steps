@@ -14,4 +14,9 @@ class Invite extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function subscriber()
+    {
+        return $this->belongsTo(Subscriber::class);
+    }
 }

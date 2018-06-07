@@ -17,6 +17,7 @@ class CreateSubscribersTable extends Migration
             $table->increments('id');
             $table->string('name', 30)->nullable();
             $table->string('surname', 30)->nullable();
+            $table->string('email')->unique();
             $table->string('package_week')->nullable();
             $table->string('amount')->nullable();
             $table->string('discount')->nullable();

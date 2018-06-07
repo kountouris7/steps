@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Subscriber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ImportSubscribersRequest extends FormRequest
@@ -14,10 +13,11 @@ class ImportSubscribersRequest extends FormRequest
      */
     public function authorize()
     {
-     if (auth()->user()->isAdmin()){
-         return true;
-     }
-     return false;
+        if (auth()->user()->isAdmin()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -31,13 +31,14 @@ class ImportSubscribersRequest extends FormRequest
 
         return [
 
-        'name'=> 'nullable|max:30',
-        'surname'=> 'nullable|max:30',
-        'package_week'=> 'nullable',
-        'amount'=> 'nullable',
-        'discount'=> 'nullable',
-        'price'=> 'nullable',
-        'file'=>'required',
+            'name'         => 'nullable|max:30',
+            'surname'      => 'nullable|max:30',
+            'email'        => 'unique',
+            'package_week' => 'nullable',
+            'amount'       => 'nullable',
+            'discount'     => 'nullable',
+            'price'        => 'nullable',
+            'file'         => 'required',
 
         ];
     }

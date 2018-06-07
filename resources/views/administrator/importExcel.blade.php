@@ -57,6 +57,7 @@
                             <input type="hidden" name="month_id" value="{{$month->id}}">
                             <input type="submit" class="btn btn-primary" style="margin-top: 3%">
                         </div>
+                    </div>
                 </form>
             </div>
 

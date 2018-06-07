@@ -1,6 +1,8 @@
 <?php
 
+
 Auth::routes();
+Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -25,8 +27,10 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');
+    Route::get('/subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
     Route::get('invite', 'InviteController@invite')->name('invite');
     Route::post('invite', 'InviteController@process')->name('process');
+    Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
 
 
 });
