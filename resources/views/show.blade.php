@@ -8,10 +8,12 @@
     @endif
     @foreach($groups as $group)
         <div class="col-md-4">
-            <h2>{{optional($group->lesson)->name ?? $group->id}}</h2>
-            <p>Description: {{$group->lesson->body}} </p>
-            <p>Starting on: {{date('D M Y H:i', strtotime($group->day_time))}}</p>
-            <p>Level:{{$group->level->level}}</p>
+            <br>
+            <h3>{{optional($group->lesson)->name ?? $group->id}}</h3>
+            <h4>Starting on:<br>
+                {{date('D M Y H:i', strtotime($group->day_time))}} </h4>
+            <p><strong>Description: </strong>{{$group->lesson->body}} </p>
+            <p><strong>Level:</strong> {{$group->level->level}}</p>
 
             <form method="POST" action="{{route('book.group',[$group->id])}}">
                 {{csrf_field()}}

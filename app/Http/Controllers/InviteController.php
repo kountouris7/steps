@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Mail;
 
 class InviteController extends Controller
 {
-    public function invite()
-    {
-        return view('administrator.invite');
-    }
+   // public function invite()
+   // {
+   //     return view('administrator.invite');
+   // }
 
     public function process(Request $request)  // process the form submission and send the invite by email
     {
