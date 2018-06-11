@@ -11,10 +11,4 @@
         {{ csrf_field() }}
         <button type="submit" name="email" value="{{$subscriber->email}}">Send invitation</button>
     </form>
-<br>
-    <form action="" method="POST">
-        {{ csrf_field() }}
-        <button type="submit" name="email" value="{{$subscriber->email}}">Send email</button>
-    </form>
-
 @endsection

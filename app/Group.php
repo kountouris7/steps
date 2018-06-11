@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $guarded = [];
-    protected $fillable = [];
-
 
     public function path()
     {

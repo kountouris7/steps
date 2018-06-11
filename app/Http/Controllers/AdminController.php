@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Lesson;
 use App\Level;
-use App\Payment;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -71,10 +69,11 @@ class AdminController extends Controller
         return view('administrator.groupcreate', compact('lesson', 'levels'));
     }
 
-    public function groupstore(Request $request, Group $group)
+    public function groupstore(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'max_capacity' => 'required|integer|between:1,8',
+            'level_id'     => 'required|exists:levels,id',
         ]);
 
         if ($validator->fails()) {
@@ -82,12 +81,14 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
         $group = Group::create([
             'day_time'     => request('day_time'),
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
             'lesson_id'    => request('lesson_id'),
         ]);
+        dd($group);
 
         return redirect(route('show.groups'));
     }

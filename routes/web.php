@@ -28,9 +28,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');
     Route::get('/subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
-    //Route::get('invite', 'InviteController@invite')->name('invite');
     Route::post('invite', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
+    Route::get('create.email', 'EmailController@createEmail')->name('create.email');
+    Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
+
 
 
 });

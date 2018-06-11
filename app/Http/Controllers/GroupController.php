@@ -18,7 +18,6 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->latest()->get();
-
         return view('show', compact('groups'));
 
     }
