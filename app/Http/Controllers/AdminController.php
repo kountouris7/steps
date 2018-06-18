@@ -88,7 +88,6 @@ class AdminController extends Controller
             'level_id'     => request('level_id'),
             'lesson_id'    => request('lesson_id'),
         ]);
-        dd($group);
 
         return redirect(route('show.groups'));
     }

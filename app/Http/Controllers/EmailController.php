@@ -24,6 +24,8 @@ class EmailController extends Controller
         ]);
 
         Mail::to($request->get('email'))->send(new SendEmail($email));
+        return redirect()
+            ->back();
     }
 
 

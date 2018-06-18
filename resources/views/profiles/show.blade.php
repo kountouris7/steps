@@ -2,42 +2,35 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="page-header">
-                    <h1>
-                        {{ $user->name }}
-                    </h1>
-                </div>
 
-                @foreach ($user->groups as $group)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="level">
-                               <span class="flex">
-                                   <hr>
-                                    <span>{{ $group->created_at->diffForHumans() }}</span><br>
-                                  <h4>{{ $user->name }}</h4>
-                                  <h5>booked:</h5>
-                               </span>
+        <h1>{{ $user->name }} </h1>
 
-                            </div>
-                        </div>
-                        <div class="panel-body">
+        @foreach ($user->groups as $group)
 
-                            {{$group->lesson->name}} On {{date('D M Y H:i', strtotime($group->day_time))}}
+            <div class="col-md-5">
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">folder</i>
+                        {{ $group->created_at->diffForHumans() }}:<br>
+                        You have booked: {{$group->lesson->name}}<br>
+                        On {{date('D M Y H:i', strtotime($group->day_time))}}
+                        <hr>
 
-                        </div>
 
-                            <form action="{{route('book.destroy', [$group->id])}}" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-link">Delete Booking</button>
-                            </form>
+                        <form action="{{route('book.destroy', [$group->id])}}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="waves-effect waves-light btn-small">Delete Booking</button>
 
-                    </div>
-                @endforeach
+                        </form>
+
+                    </li>
+
+                </ul>
             </div>
+        @endforeach
+        <div class="col-md-5">
+        <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
         </div>
     </div>
 
