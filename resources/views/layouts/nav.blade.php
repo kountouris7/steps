@@ -3,7 +3,7 @@
         <a class="brand-logo" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}</a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" class="right">
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.groups')}}">Classes</a></li>
 

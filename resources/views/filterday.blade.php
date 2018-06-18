@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
+
     @if (session('status'))
         <div class="alert alert-warning">
             {{ session('status') }}
         </div>
     @endif
-    @include('filterdays')
 
     @foreach($groups as $group)
         <div class="container">
@@ -49,4 +49,5 @@
             </div>
         </div>
     @endforeach
+
 @endsection

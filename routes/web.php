@@ -7,13 +7,20 @@ Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show.groups');
+
 Route::post('/booking/{group}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/groups/monday', 'GroupController@monday')->name('monday.groups');
+    Route::get('/groups/tuesday', 'GroupController@tuesday')->name('tuesday.groups');
+    Route::get('/groups/wednesday', 'GroupController@wednesday')->name('wednesday.groups');
+    Route::get('/groups/thursday', 'GroupController@thursday')->name('thursday.groups');
+    Route::get('/groups/friday', 'GroupController@friday')->name('friday.groups');
+});
 
 
 Route::group(['middleware' => 'is_admin'], function () {
@@ -32,8 +39,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
-
-
 
 });
 //
