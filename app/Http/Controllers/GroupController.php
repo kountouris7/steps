@@ -20,10 +20,21 @@ class GroupController extends Controller
         $groups = Group::with([
             'lesson',
             'level',
-        ])->where('day_time', '>=' , $today )->orderBy('day_time')->get();
+        ])->where('day_time', '>=', $today)->orderBy('day_time')->get();
 
         return view('show', compact('groups'));
 
+    }
+
+    public function store(Group $group, BookGroupRequest $request)
+    {
+
+        if ($group->attendance() >= $group->capacity()) {
+            return back()->with('status', 'Sorry this group is fully booked');
+        }
+        $group->book();
+
+        return back();
     }
 
     public function monday()
@@ -34,8 +45,8 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->whereRaw('WEEKDAY(groups.day_time) = 0')
-          ->where('day_time', '>=' , $today )
-          ->orderBy('day_time')->get();
+                       ->where('day_time', '>=', $today)
+                       ->orderBy('day_time')->get();
 
         return view('filterday', compact('groups'));
     }
@@ -48,7 +59,7 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->whereRaw('WEEKDAY(groups.day_time) = 1')
-                       ->where('day_time', '>=' , $today )
+                       ->where('day_time', '>=', $today)
                        ->orderBy('day_time')->get();
 
         return view('filterday', compact('groups'));
@@ -62,7 +73,7 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->whereRaw('WEEKDAY(groups.day_time) = 2')
-                       ->where('day_time', '>=' , $today )
+                       ->where('day_time', '>=', $today)
                        ->orderBy('day_time')->get();
 
         return view('filterday', compact('groups'));
@@ -76,7 +87,7 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->whereRaw('WEEKDAY(groups.day_time) = 3')
-                       ->where('day_time', '>=' , $today )
+                       ->where('day_time', '>=', $today)
                        ->orderBy('day_time')->get();
 
         return view('filterday', compact('groups'));
@@ -90,20 +101,9 @@ class GroupController extends Controller
             'lesson',
             'level',
         ])->whereRaw('WEEKDAY(groups.day_time) = 4')
-                       ->where('day_time', '>=' , $today )
+                       ->where('day_time', '>=', $today)
                        ->orderBy('day_time')->get();
 
         return view('filterday', compact('groups'));
-    }
-
-    public function store(Group $group, BookGroupRequest $request)
-    {
-
-        if ($group->attendance() >= $group->capacity()) {
-            return back()->with('status', 'Sorry this group is fully booked');
-        }
-        $group->book();
-
-        return back();
     }
 }

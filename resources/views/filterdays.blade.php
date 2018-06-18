@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper black">
 
-        <ul id="nav-mobile" class="center-block">
+        <ul id="nav-mobile" class="center-align">
             <li><a href="{{route('monday.groups')}}">Monday</a></li>
             <li><a href="{{route('tuesday.groups')}}">Tuesday</a></li>
             <li><a href="{{route('wednesday.groups')}}">Wednesday</a></li>
