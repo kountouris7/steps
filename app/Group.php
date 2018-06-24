@@ -2,11 +2,20 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
     protected $guarded = [];
+
+    public function scopeDayFilter($query, $day)
+    {
+        $today = $this->today();
+        return $query->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+                     ->where('day_time', '>=', $today)
+                     ->orderBy('day_time');
+    }
 
     public function path()
     {
@@ -61,5 +70,16 @@ class Group extends Model
     {
         return $this->max_capacity;
     }
+
+    /**
+     * @return string
+     */
+    public function today(): string
+    {
+        $today = Carbon::today()->now()->toDateTimeString();
+
+        return $today;
+    }
+
 
 }

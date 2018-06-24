@@ -6,9 +6,9 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="container">
+        @foreach($groups as $group)
 
-    @foreach($groups as $group)
-        <div class="container">
             <div class="col-md-5">
                 <ul class="collection">
                     <li class="collection-item avatar">
@@ -42,12 +42,18 @@
                     <form action="{{route('group.destroy', [$group->id])}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group</button>
+                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group
+                        </button>
                     </form>
                 @endcan
 
             </div>
-        </div>
-    @endforeach
 
+        @endforeach
+        <br>
+        <div class="col-md-5">
+            <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">All Classes</a>
+            </button>
+        </div>
+    </div>
 @endsection
