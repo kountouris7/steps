@@ -1,14 +1,15 @@
 @extends('layouts.app')
 @section('content')
+    @include('filterdays')
 
     @if (session('status'))
         <div class="alert alert-warning">
             {{ session('status') }}
         </div>
     @endif
+
     <div class="container">
         @foreach($groups as $group)
-
             <div class="col-md-5">
                 <ul class="collection">
                     <li class="collection-item avatar">

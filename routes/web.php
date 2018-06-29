@@ -31,6 +31,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
     Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
+    Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');

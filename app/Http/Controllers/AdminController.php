@@ -107,5 +107,23 @@ class AdminController extends Controller
         return back()->with('status', 'Group has been deleted');
     }
 
+    public function levelcreate(Request $request)
+
+    {   $validator = Validator::make($request->all(), [
+        'level'     => 'required|unique:levels,level',
+    ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $level = Level::create([
+            'level' => request('level')
+        ]);
+
+        return back()->with('status', 'Level has been saved');
+    }
+
 
 }

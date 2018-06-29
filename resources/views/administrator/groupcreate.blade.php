@@ -40,6 +40,7 @@
                         @endforeach
                     </select>
 
+
                     <div class="form-group">
                         <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                         <input type="hidden" name="level_id" value="{{$level->id}}">
@@ -50,5 +51,21 @@
             </form>
         </div>
     </div>
+
+    <form method="POST" action="{{route('create.level')}}">
+        {{csrf_field()}}
+    <div class="form-group">
+        <label for="level">Create New Level:</label>
+        <textarea name="level" id="level" class="form-control"
+                  style="width: 100px; height: 40px">  </textarea>
+        <br>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save New Level</button>
+        </div>
+
+    </div>
+    </form>
+
 @endsection
 
