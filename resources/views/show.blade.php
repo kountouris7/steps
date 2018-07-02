@@ -7,9 +7,10 @@
     @endif
     @include('filterdays')
 
-    @foreach($groups as $group)
+    @forelse($groups as $group)
         <div class="container">
-            <div class="col-md-5">
+            <div class="row">
+                <div class="col s6">
                 <ul class="collection">
                     <li class="collection-item avatar">
                         <i class="material-icons circle">folder</i>
@@ -37,16 +38,24 @@
                         </form>
                     </li>
                 </ul>
+                </div>
 
+            </div>
                 @can ('before', $group)
                     <form action="{{route('group.destroy', [$group->id])}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group</button>
+                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group
+                        </button>
                     </form>
                 @endcan
-
-            </div>
         </div>
-    @endforeach
+
+    @empty
+        <div class="center-align">
+            <h3>There are no group results at this time.</h3>
+        </div>
+
+    @endforelse
+
 @endsection

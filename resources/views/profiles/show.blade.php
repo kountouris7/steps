@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
 
-        <h1>{{ $user->name }} </h1>
+        <h4>{{ $user->name }} <br> Profile </h4>
 
-        @foreach ($user->groups as $group)
+        @forelse ($user->groups as $group)
 
-            <div class="col-md-5">
+            <div class="row">
                 <ul class="collection">
                     <li class="collection-item avatar">
                         <i class="material-icons circle">folder</i>
@@ -28,7 +28,13 @@
 
                 </ul>
             </div>
-        @endforeach
+
+            @empty
+                <div class="center-align">
+                    <h3>You have no bookings...</h3>
+                </div>
+
+            @endforelse
         <div class="col-md-5">
         <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
         </div>

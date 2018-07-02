@@ -8,9 +8,12 @@
         </div>
     @endif
 
-    <div class="container">
-        @foreach($groups as $group)
-            <div class="col-md-5">
+
+        @forelse($groups as $group)
+            <div class="container">
+
+                <div class="row">
+                    <div class="col s6">
                 <ul class="collection">
                     <li class="collection-item avatar">
                         <i class="material-icons circle">folder</i>
@@ -39,22 +42,27 @@
                     </li>
                 </ul>
 
-                @can ('before', $group)
-                    <form action="{{route('group.destroy', [$group->id])}}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group
-                        </button>
-                    </form>
-                @endcan
+                        @can ('before', $group)
+                            <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group
+                                </button>
+                            </form>
+                        @endcan
 
             </div>
+            @empty
+                <div class="center-align">
+                    <h4>There are no groups on this day yet...</h4>
+                </div>
 
-        @endforeach
-        <br>
-        <div class="col-md-5">
-            <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">All Classes</a>
-            </button>
-        </div>
-    </div>
+            @endforelse
+
+            </div>
+                <div class="col-md-5">
+                    <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">All Classes</a>
+                    </button>
+                </div>
+            </div>
 @endsection
