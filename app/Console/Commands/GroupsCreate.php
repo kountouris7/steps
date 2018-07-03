@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Group;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class GroupsCreate extends Command
 {
@@ -39,10 +38,7 @@ class GroupsCreate extends Command
      */
     public function handle()
     {
-        //$groups = Group::get();
-        $groups= DB::table('groups')->find(1);
-        $newGroups = $groups->replicate();
-        $newGroups->save();
-
+        $groups    = Group::first();
+        $newGroups = $groups->replicate()->save();
     }
 }
