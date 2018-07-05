@@ -83,7 +83,8 @@ class AdminController extends Controller
         }
 
         $group = Group::create([
-            'day_time'     => request('day_time'),
+            'day'          => request('day'),
+            'time'         => request('time'),
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
             'lesson_id'    => request('lesson_id'),
@@ -108,10 +109,10 @@ class AdminController extends Controller
     }
 
     public function levelcreate(Request $request)
-
-    {   $validator = Validator::make($request->all(), [
-        'level'     => 'required|unique:levels,level',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'level' => 'required|unique:levels,level',
+        ]);
 
         if ($validator->fails()) {
             return back()
@@ -119,7 +120,7 @@ class AdminController extends Controller
                 ->withInput();
         }
         $level = Level::create([
-            'level' => request('level')
+            'level' => request('level'),
         ]);
 
         return back()->with('status', 'Level has been saved');

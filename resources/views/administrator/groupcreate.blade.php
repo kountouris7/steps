@@ -16,10 +16,18 @@
 
                 <div class="form-group">
                     <label for="title">Date:</label>
-                    <label for="day_time">
-                    </label><input type="datetime-local" class="form-control" id="day_time" name="day_time"
+                    <label for="day">
+                    </label><input type="date" class="form-control" id="day" name="day"
                                    style="width: 250px"
                                    min="{{Carbon\Carbon::now()->toDateString()}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Time:</label>
+                    <label for="time">
+                    </label><input type="time" class="form-control" id="time" name="time"
+                                   style="width: 250px"
+                    "{{Carbon\Carbon::now()->toTimeString()}}" required>
                 </div>
 
                 <div class="form-group">

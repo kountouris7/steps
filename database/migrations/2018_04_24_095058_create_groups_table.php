@@ -16,7 +16,8 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('lesson_id');
-            $table->dateTime('day_time');
+            $table->date('day');
+            $table->time('time');
             $table->integer('max_capacity');
             $table->unsignedInteger('level_id');
             $table->timestamps();

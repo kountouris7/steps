@@ -15,7 +15,8 @@
                     <li class="collection-item avatar">
                         <i class="material-icons circle">folder</i>
                         <span class="title">{{optional($group->lesson)->name ?? $group->id}}</span>
-                        <p> {{date('D M Y H:i', strtotime($group->day_time))}} <br>
+                        <p> {{date('D M Y', strtotime($group->day))}} <br>
+                           at {{$group->time}}<br>
                             Level: {{$group->level->level}}
                         </p>
 

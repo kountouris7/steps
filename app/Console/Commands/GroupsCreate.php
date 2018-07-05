@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Group;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class GroupsCreate extends Command
@@ -38,7 +39,13 @@ class GroupsCreate extends Command
      */
     public function handle()
     {
-        $groups    = Group::first();
-        $newGroups = $groups->replicate()->save();
+        $today  = Carbon::today()->now()->toDateString();
+        $groups = Group::with('lesson')->where('day', '=', $today)->get();
+        foreach ($groups as $group){
+            $newGroups = $group->replicate();
+           // $newGroups->day = $today;
+            $newGroups->save();
+        }
+
     }
 }

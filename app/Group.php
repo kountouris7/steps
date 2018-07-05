@@ -12,9 +12,9 @@ class Group extends Model
     public function scopeDayFilter($query, $day)
     {
         $today = $this->today();
-        return $query->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                     ->where('day_time', '>=', $today)
-                     ->orderBy('day_time');
+        return $query->whereRaw("WEEKDAY(groups.day) =" . $day)
+                     ->where('day', '>=', $today)
+                     ->orderBy('day');
     }
 
     public function path()
@@ -76,7 +76,7 @@ class Group extends Model
      */
     public function today(): string
     {
-        $today = Carbon::today()->now()->toDateTimeString();
+        $today = Carbon::today()->now()->toDateString();
 
         return $today;
     }

@@ -15,8 +15,8 @@ class GroupController extends Controller
     public function index(Group $group)
     {
         $today  = $group->today();
-        $groups = Group::where('day_time', '>=', $today)
-                       ->orderBy('day_time')
+        $groups = Group::where('day', '>=', $today)
+                       ->orderBy('day')
                        ->get();
 
         return view('show', compact('groups'));
