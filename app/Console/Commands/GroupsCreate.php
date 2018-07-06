@@ -39,8 +39,8 @@ class GroupsCreate extends Command
      */
     public function handle()
     {
-        $today  = Carbon::today()->now()->toDateString();
-        $groups = Group::with('lesson')->where('day', '=', $today)->get();
+        $lastWeek  = Carbon::today()->now()->subWeek()->toDateString();
+        $groups = Group::with('lesson')->where('day', '>', $lastWeek)->get();
         foreach ($groups as $group){
             $newGroups = $group->replicate();
            // $newGroups->day = $today;
