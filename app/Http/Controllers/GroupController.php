@@ -24,20 +24,24 @@ class GroupController extends Controller
 
     public function store(Group $group, BookGroupRequest $request)
     {
+        // if ($group->attendance() >= $group->capacity()) {
+        //    return back()->with('status', 'Sorry this group is fully booked');
+       // }
 
-        if ($group->attendance() >= $group->capacity()) {
-            return back()->with('status', 'Sorry this group is fully booked');
-        }
-        $group->book();
+        $group->clients()
+              ->attach($group->id,
+                  $user = [
+                      'user_id' => request('user_id'),
+                  ]);
 
         return back();
     }
 
-    public function DaysFilter($day)
+    public function daysFilter($day)
     {
         $groups = Group::DayFilter($day)->get();
 
-        return view('filterday', compact('groups'));
+        return view('show', compact('groups'));
     }
 
 }

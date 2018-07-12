@@ -13,7 +13,7 @@
                         <i class="material-icons circle">folder</i>
                         {{ $group->created_at->diffForHumans() }}:<br>
                         You have booked: {{$group->lesson->name}}<br>
-                        On {{date('D M Y H:i', strtotime($group->day_time))}}
+                        On {{date('D M Y', strtotime($group->day))}}
                         <hr>
 
 
@@ -35,6 +35,7 @@
                 </div>
 
             @endforelse
+
         <div class="col-md-5">
         <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
         </div>

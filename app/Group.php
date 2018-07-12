@@ -32,12 +32,12 @@ class Group extends Model
         return $this->belongsTo(Level::class);
     }
 
-    public function book()
+    public function book() //this is ignored
     {
-        $attributes = ['user_id' => auth()->id()];
-        if ( ! $this->clients()->where($attributes)->exists()) {
-            $this->clients()->attach(auth()->id());
-        }
+       //$attributes = ['user_id' => auth()->id()];
+       //if ( ! $this->clients()->where($attributes)->exists()) {
+       //    $this->clients()->attach(auth()->id());
+       //}
     }
 
     public function clients()

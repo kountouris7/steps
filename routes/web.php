@@ -15,11 +15,11 @@ Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/groups/{day}/monday', 'GroupController@DaysFilter')->name('monday.groups');
-    Route::get('/groups/{day}/tuesday', 'GroupController@DaysFilter')->name('tuesday.groups');
-    Route::get('/groups/{day}/wednesday', 'GroupController@DaysFilter')->name('wednesday.groups');
-    Route::get('/groups/{day}/thursday', 'GroupController@DaysFilter')->name('thursday.groups');
-    Route::get('/groups/{day}/friday', 'GroupController@DaysFilter')->name('friday.groups');
+    Route::get('/groups/{day}/monday', 'GroupController@daysFilter')->name('monday.groups');
+    Route::get('/groups/{day}/tuesday', 'GroupController@daysFilter')->name('tuesday.groups');
+    Route::get('/groups/{day}/wednesday', 'GroupController@daysFilter')->name('wednesday.groups');
+    Route::get('/groups/{day}/thursday', 'GroupController@daysFilter')->name('thursday.groups');
+    Route::get('/groups/{day}/friday', 'GroupController@daysFilter')->name('friday.groups');
 });
 
 
