@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,10 +16,11 @@ class BookGroupRequest extends FormRequest
     public function authorize()
     {
         $exists = auth()->user()->groups()->where('group_id', '=', optional($this->route('group'))->id)
-                           ->where('user_id', auth()->id())
-                           ->first();
+                        ->where('user_id', auth()->id())
+                        ->first();
 
-        return !$exists;
+        return ! $exists;
+
     }
 
     /**
@@ -28,7 +28,9 @@ class BookGroupRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules() //this double checks that users cant book same group twice.
+        // First security is in the view (button disable)
+
     {
         return [
             'user_id' => Rule::unique('group_users', 'user_id')
@@ -39,11 +41,13 @@ class BookGroupRequest extends FormRequest
     }
 
     /**
+     *
      * Get the error messages for the defined validation rules.
      *
      * @return array
      */
-    public function messages()
+    public function messages(
+    ) //* error?? if button disable is  off the message doesnt display. im gettin unauthorized howevr
     {
         return [
             'user_id.unique' => 'You already have a group booked at this time.',

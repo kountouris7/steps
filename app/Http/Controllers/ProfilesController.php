@@ -6,26 +6,23 @@ use App\User;
 
 class ProfilesController extends Controller
 {
-    /**
-     * Show the user's profile.
-     *
-     * @param  User $user
-     *
-     * @return \Response
-     */
+
     public function show(User $user)
     {
-        $user->load('groups.lesson');
+        $groups = $user->groups()
+                       ->where('day', '>' , today())
+                       ->get(); //doesn't show past bookings
 
-//        $groupusers = GroupUser::with('lesson')
-//                               ->where('user_id', '=', $user->id)
-//                               ->orderBy('group_id')
-//                               ->get();
+        return view('profiles.show', compact('user', 'groups'));
 
+    }
 
-        return view('profiles.show', [
-            'user' => $user,
-        ]);
+    public function showPastBookings(User $user)
+    {
+        $groups = $user->groups()
+                       ->where('day', '<' , today())
+                       ->get();
 
+        return view('profiles.past_bookings', compact('user', 'groups'));
     }
 }

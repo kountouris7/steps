@@ -15,6 +15,7 @@
                     <i class="material-icons circle">folder</i>
                     <span class="title">{{optional($group->lesson)->name ?? $group->id}}</span>
                     <p> {{date('D M Y', strtotime($group->day))}} <br>
+                       Starts @ {{$group->time}}<br>
                         Level: {{$group->level->level}}
                     </p>
 

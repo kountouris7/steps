@@ -26,6 +26,6 @@ class HomeController extends Controller
 
     public function cover()
     {
-        return view('welcome');
+        return view('cover');
     }
 }

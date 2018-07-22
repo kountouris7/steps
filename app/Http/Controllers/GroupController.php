@@ -24,17 +24,26 @@ class GroupController extends Controller
 
     public function store(Group $group, BookGroupRequest $request)
     {
-        // if ($group->attendance() >= $group->capacity()) {
-        //    return back()->with('status', 'Sorry this group is fully booked');
-       // }
+         if ($group->attendance() >= $group->capacity()) {
+            return back()->with('status', 'Sorry this group is fully booked');
+         }
+
+        $userGroupsOnTheSameDate = auth()->user()->groups()
+                                                 ->where('day', $group->day)
+                                                 ->exists();
+        if ($userGroupsOnTheSameDate == 1){
+            return back()->with('status', 'You already booked a class on this day');
+        }
 
         $group->clients()
-              ->attach($group->id,
-                  $user = [
-                      'user_id' => request('user_id'),
-                  ]);
+                  ->attach($group->id,
+                      $user = [
+                          'user_id' => request('user_id'),
+                      ]);
 
-        return back();
+            return back();
+
+
     }
 
     public function daysFilter($day)

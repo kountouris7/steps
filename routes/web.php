@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 Auth::routes();
 Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
@@ -11,6 +13,7 @@ Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
+Route::get('profiles/{user}/past.bookings', 'ProfilesController@showPastBookings')->name('past.bookings');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 

@@ -60,12 +60,8 @@ class GroupUserController extends Controller
     {
         $group = Group::findOrFail($group);
 
-        $today = Carbon::today()->now()->toDateString();
-
-        if ($today < $group->day) {
             $this->authorize('update', $group);
             auth()->user()->groups()->detach($group->id);
-        }
 
         if (request()->wantsJson()) {
             return response()->json(['message' => 'success'], 200);

@@ -71,6 +71,11 @@ class Group extends Model
         return $this->max_capacity;
     }
 
+    public function sameDayBooked()
+    {
+        return $this->clients()->where('created_at', '=' . $this->day);
+    }
+
     /**
      * @return string
      */

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h4>{{ $user->name }} <br> Profile </h4>
+        <h4>{{ $user->name }} <br> Past Bookings </h4>
 
         @forelse ($groups as $group)
 
@@ -21,7 +21,7 @@
                         <form action="{{route('book.destroy', [$group->id])}}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="waves-effect waves-light btn-small">Delete Booking</button>
+                            <button type="submit" class="waves-effect waves-light btn-small">Delete</button>
 
                         </form>
 
@@ -30,20 +30,17 @@
                 </ul>
             </div>
 
-            @empty
-                <div class="center-align">
-                    <h3>You have no bookings...</h3>
-                </div>
+        @empty
+            <div class="center-align">
+                <h3>You have no bookings...</h3>
+            </div>
 
-            @endforelse
+        @endforelse
 
         <div class="col-md-5">
-        <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
+            <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
         </div>
-<br>
-        <div class="col-md-5">
-            <button class="waves-effect waves-light btn-small white"><a href="{{route('past.bookings', [$user->id])}}">Bookings History</a></button>
-        </div>
+
     </div>
 
 @endsection
