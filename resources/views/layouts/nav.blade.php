@@ -12,10 +12,8 @@
                 <li><a href="{{ route('register.user') }}">Register</a></li>
             @else
             <!-- Dropdown Trigger -->
-
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>{{ Auth::user()->name }}</a>
-
-                <!-- Dropdown Structure -->
+                <a class='dropdown-trigger btn' href='#!' data-target='dropdown1'>{{ Auth::user()->name }}</a>
+            <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="{{ route('profiles', Auth::user()) }}">My Profile</a></li>
                     <li><a href="{{ route('logout') }}"
@@ -34,6 +32,8 @@
                           style="display: none;">
                         {{ csrf_field() }}
                     </form>
+
+
 
                 </ul>
             @endif

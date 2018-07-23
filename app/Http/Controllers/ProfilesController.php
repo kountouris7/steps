@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Group;
+use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {

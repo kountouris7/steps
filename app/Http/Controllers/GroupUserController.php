@@ -9,46 +9,6 @@ use Illuminate\Http\Request;
 
 class GroupUserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-
-    }
-
-
-    public function store()
-    {
-
-    }
-
-
-    public function show()
-    {
-
-    }
-
-
-    public function edit()
-    {
-        //
-    }
-
-
-    public function update()
-    {
-
-    }
-
     /**
      * @param Request $request
      * @param $group
@@ -67,6 +27,6 @@ class GroupUserController extends Controller
             return response()->json(['message' => 'success'], 200);
         }
 
-        return redirect(route('profiles', auth()->id()));
+        return back();
     }
 }
