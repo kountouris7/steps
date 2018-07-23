@@ -1,68 +1,22 @@
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('admin')}}">Dashboard</a>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('create.lesson')}}">Add New Lesson</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('show.lesson')}}">View Lessons</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('upload.excel')}}">Upload File</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('show.subscribers')}}">Clients</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('create.email')}}">Send Email</a>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <a href="{{route('show.groups')}}">View as Client</a>
-                        </a>
-                    </li>
-
-
-                </ul>
+<ul id="slide-out" class="sidenav sidenav-fixed">
+    <li><div class="user-view">
+            <div class="background">
+                <img src="images/office.jpg">
             </div>
-        </nav>
-    </div>
-</div>
+            <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+    <li><a href="{{route('admin')}}">Dashboard</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="{{route('create.lesson')}}">Add New Lesson</a></li>
+    <li><a href="{{route('show.lesson')}}">View Lessons</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="{{route('upload.excel')}}">Upload File</a></li>
+    <li><a href="{{route('show.subscribers')}}">Clients</a></li>
+    <li><a href="{{route('create.email')}}">Send Email</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="{{route('show.groups')}}">View as Client</a></li>
 
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-0 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-            </button>
-        </div>
-    </div>
-</main>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>

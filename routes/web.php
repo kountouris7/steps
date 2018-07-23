@@ -35,6 +35,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
     Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
     Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
+    Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribers')->name('show.subscribers');
@@ -44,7 +45,14 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
 
+    Route::get('/see.attendances/{day}/monday', 'AdminController@daysFilter')->name('monday.attendances');
+    Route::get('/see.attendances/{day}/tuesday', 'AdminController@daysFilter')->name('tuesday.attendances');
+    Route::get('/see.attendances/{day}/wednesday', 'AdminController@daysFilter')->name('wednesday.attendances');
+    Route::get('/see.attendances/{day}/thursday', 'AdminController@daysFilter')->name('thursday.attendances');
+    Route::get('/see.attendances/{day}/friday', 'AdminController@daysFilter')->name('friday.attendances');
+
 });
+
 
 
 

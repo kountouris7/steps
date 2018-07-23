@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\GroupUser;
 use App\Lesson;
 use App\Level;
 use Illuminate\Http\Request;
@@ -124,6 +125,20 @@ class AdminController extends Controller
         ]);
 
         return back()->with('status', 'Level has been saved');
+    }
+
+    public function seeAttendances()
+    {
+        $attendances=GroupUser::get();
+
+        return view('administrator.seeAttendances', compact('attendances'));
+    }
+
+    public function daysFilter($day)
+    {
+        $attendances = Group::where('day', '=', $day)->get();
+
+        return view('administrator.seeAttendances', compact('attendances'));
     }
 
 

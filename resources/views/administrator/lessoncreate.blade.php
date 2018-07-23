@@ -1,26 +1,29 @@
 @extends('administrator.layouts.app')
 @section('content')
-
-
-        <div class="form-group">
-            <h3>Create Lesson</h3>
-        </div>
+    <div class="row">
+        <h3>Create Lesson</h3>
 
         <form method="POST" action="{{route('save.lesson')}}">
             {{csrf_field()}}
-            <div class="form-group">
-                <label for="name">Lesson Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{old ('name')}}" required>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="name" type="text" class="validate" name="name" required>
+                    <label for="name">Lesson Name</label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="body">Description:</label>
-                <textarea name="body" id="body" class="form-control" rows="8" required> {{old ('body')}} </textarea>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="body" type="text" class="validate" name="body" required></textarea>
+                    <label for="body">Description</label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Save Lesson</button>
-            </div>
+            <button class="btn waves-effect waves-light" type="submit">Save
+                <i class="material-icons right">save</i>
+            </button>
+
         </form>
-
+    </div>
 @endsection
