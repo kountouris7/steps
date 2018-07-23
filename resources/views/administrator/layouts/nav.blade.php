@@ -8,6 +8,7 @@
             <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
         </div></li>
     <li><a href="{{route('admin')}}">Dashboard</a></li>
+    <li><a href="{{route('see.attendances')}}">Check attendances </a></li>
     <li><div class="divider"></div></li>
     <li><a href="{{route('create.lesson')}}">Add New Lesson</a></li>
     <li><a href="{{route('show.lesson')}}">View Lessons</a></li>
