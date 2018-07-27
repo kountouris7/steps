@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use App\GroupUser;
 use App\Lesson;
 use App\Level;
 use Illuminate\Http\Request;
@@ -129,14 +128,15 @@ class AdminController extends Controller
 
     public function seeAttendances()
     {
-        $attendances=GroupUser::get();
-
+        $attendances = Group::has('clients')->where('day', '>=', today())->get(); // Querying Relationship Existence
         return view('administrator.seeAttendances', compact('attendances'));
     }
 
-    public function daysFilter($day)
+    public function attendanceByDay($day)
     {
-        $attendances = Group::where('day', '=', $day)->get();
+        $attendances = Group::with('clients')
+                            ->whereRaw("WEEKDAY(groups.day) =" . $day)
+                            ->where('day', '>=', today())->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
     }

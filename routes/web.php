@@ -45,11 +45,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
 
-    Route::get('/see.attendances/{day}/monday', 'AdminController@daysFilter')->name('monday.attendances');
-    Route::get('/see.attendances/{day}/tuesday', 'AdminController@daysFilter')->name('tuesday.attendances');
-    Route::get('/see.attendances/{day}/wednesday', 'AdminController@daysFilter')->name('wednesday.attendances');
-    Route::get('/see.attendances/{day}/thursday', 'AdminController@daysFilter')->name('thursday.attendances');
-    Route::get('/see.attendances/{day}/friday', 'AdminController@daysFilter')->name('friday.attendances');
+    Route::get('/see.attendances/{day}/monday', 'AdminController@attendanceByDay')->name('monday.attendances');
+    Route::get('/see.attendances/{day}/tuesday', 'AdminController@attendanceByDay')->name('tuesday.attendances');
+    Route::get('/see.attendances/{day}/wednesday', 'AdminController@attendanceByDay')->name('wednesday.attendances');
+    Route::get('/see.attendances/{day}/thursday', 'AdminController@attendanceByDay')->name('thursday.attendances');
+    Route::get('/see.attendances/{day}/friday', 'AdminController@attendanceByDay')->name('friday.attendances');
 
 });
 

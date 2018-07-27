@@ -3,23 +3,30 @@
     @include('administrator.layouts.navAttendances')
     @include('partials.errors')
 
-@foreach($attendances as $attendance)
-    <ul class="collection">
-        <li class="collection-item avatar">
-            <img src="images/yuna.jpg" alt="" class="circle">
-            <span class="title">{{$attendance->group->lesson->name}}</span>
-            <p>{{$attendance->creator->name}} <br>
-                {{$attendance->group->day}} @
-                {{$attendance->group->time}}
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-    </ul>
+    @forelse($attendances as $attendance)
 
+        @foreach($attendance->clients as $attendant) {{--That's because $attendance->clients is a collection--}}
 
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="images/yuna.jpg" alt="" class="circle">
+                    <span class="title"><strong>{{$attendant->name}}</strong></span>
+                    <p>
+                        {{$attendance->lesson->name}}<br>
+                        {{$attendance->day}}
+                        {{$attendance->time}}
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            </ul>
 
+        @endforeach
 
+    @empty
+        <div class="center-align">
+            <h4>There are no bookings on this day yet...</h4>
+        </div>
 
-    @endforeach
+    @endforelse
 
-    @endsection
+@endsection

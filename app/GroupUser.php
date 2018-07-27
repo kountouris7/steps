@@ -21,7 +21,7 @@ class GroupUser extends Model
     {
         return "/booking/{$this->group_id}";
     }
-    public function creator()
+    public function client()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
