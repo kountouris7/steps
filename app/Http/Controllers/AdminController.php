@@ -83,14 +83,19 @@ class AdminController extends Controller
         }
 
         $group = Group::create([
-            'day'          => request('day'),
-            'time'         => request('time'),
+            'lesson_id'    => request('lesson_id'),
+            'day_time'     => request('day_time'),
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
-            'lesson_id'    => request('lesson_id'),
+
         ]);
 
         return redirect(route('show.groups'));
+    }
+
+    public function updategroup()
+    {
+
     }
 
     /**
@@ -128,15 +133,18 @@ class AdminController extends Controller
 
     public function seeAttendances()
     {
-        $attendances = Group::has('clients')->where('day', '>=', today())->get(); // Querying Relationship Existence
+        $attendances = Group::has('clients')// Querying Relationship Existence
+                            ->where('day_time', '>=', today()->nowWithSameTz())
+                            ->get();
+
         return view('administrator.seeAttendances', compact('attendances'));
     }
 
     public function attendanceByDay($day)
     {
         $attendances = Group::with('clients')
-                            ->whereRaw("WEEKDAY(groups.day) =" . $day)
-                            ->where('day', '>=', today())->get();
+                            ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+                            ->where('day_time', '>=', today())->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
     }

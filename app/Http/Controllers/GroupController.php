@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
+use Carbon\Carbon;
 
 class GroupController extends Controller
 {
@@ -14,10 +15,10 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::whereDate('day', '>=', today())
-                       ->orderBy('day')
-                       ->get();
 
+        $groups = Group::with('level')->where('day_time', '>=', today()->nowWithSameTz())
+                       ->orderBy('day_time')
+                       ->get();
         return view('show', compact('groups'));
     }
 
@@ -28,7 +29,7 @@ class GroupController extends Controller
         }
 
         $userGroupsOnTheSameDate = auth()->user()->groups()
-                                         ->where('day', $group->day)
+                                         ->where('day_time', $group->day_time)
                                          ->exists();
         if ($userGroupsOnTheSameDate == 1) {
             return back()->with('status', 'You already booked a class on this day');
@@ -40,7 +41,7 @@ class GroupController extends Controller
                       'user_id' => request('user_id'),
                   ]);
 
-        return back();
+        return back()->with('status', 'Group booked');
     }
 
     public function daysFilter($day)

@@ -4,7 +4,7 @@
 
     @include('partials.errors')
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
         <div class="panel-heading">
             <div class="level">
                 <h3 class="flex">
@@ -15,19 +15,10 @@
                 {{csrf_field()}}
 
                 <div class="form-group">
-                    <label for="title">Date:</label>
-                    <label for="day">
-                    </label><input type="date" class="form-control" id="day" name="day"
+                    <label for="day_time">Date & Time:</label>
+                    <input type="datetime-local" class="form-control" id="day_time" name="day_time"
                                    style="width: 250px"
-                                   min="{{Carbon\Carbon::now()->toDateString()}}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="title">Time:</label>
-                    <label for="time">
-                    </label><input type="time" class="form-control" id="time" name="time"
-                                   style="width: 250px"
-                    "{{Carbon\Carbon::now()->toTimeString()}}" required>
+                                   min="{{Carbon\Carbon::now()->toDateTimeString()}}" required>
                 </div>
 
                 <div class="form-group">
@@ -38,7 +29,7 @@
 
                 <div class="form-group">
                     <label for="level">Choose Level:</label>
-                    <select name="level" id="level" class="form-group" required>
+                    <select name="level_id" id="level_id" class="form-group" required>
                         <option value="">Choose One...</option>
 
                         @foreach ($levels as $lvl => $level)
@@ -51,28 +42,27 @@
 
                     <div class="form-group">
                         <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
-                        <input type="hidden" name="level_id" value="{{$level->id}}">
+                        <input type="hidden" name="level" value="{{$level->id}}">
                         <button type="submit" class="btn btn-primary">Publish Group</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
 
     <form method="POST" action="{{route('create.level')}}">
         {{csrf_field()}}
-    <div class="form-group">
-        <label for="level">Create New Level:</label>
-        <textarea name="level" id="level" class="form-control"
-                  style="width: 100px; height: 40px">  </textarea>
-        <br>
-
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Save New Level</button>
-        </div>
+            <label for="level">Create New Level:</label>
+            <textarea name="level" id="level" class="form-control"
+                      style="width: 100px; height: 40px">  </textarea>
+            <br>
 
-    </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save New Level</button>
+            </div>
+
+        </div>
     </form>
 
 @endsection

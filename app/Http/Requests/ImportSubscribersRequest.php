@@ -28,6 +28,7 @@ class ImportSubscribersRequest extends FormRequest
     public function rules()
     {
 
+        $month_id = request('month_id');
 
         return [
 

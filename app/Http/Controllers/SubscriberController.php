@@ -40,7 +40,7 @@ class SubscriberController extends Controller
                                 'amount'       => $value->amount,
                                 'discount'     => $value->discount,
                                 'price'        => $value->price,
-                                'month_id'     => request('month_id'),
+                                'month_id'     => request('month'),
                             ]);
 
 

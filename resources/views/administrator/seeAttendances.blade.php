@@ -13,8 +13,7 @@
                     <span class="title"><strong>{{$attendant->name}}</strong></span>
                     <p>
                         {{$attendance->lesson->name}}<br>
-                        {{$attendance->day}}
-                        {{$attendance->time}}
+                        {{$attendance->day_time}}
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
