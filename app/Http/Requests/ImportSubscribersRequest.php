@@ -28,18 +28,18 @@ class ImportSubscribersRequest extends FormRequest
     public function rules()
     {
 
-        $month_id = request('month_id');
 
         return [
 
             'name'         => 'nullable|max:30',
             'surname'      => 'nullable|max:30',
-            'email'        => 'unique',
+            'email'        => 'nullable',
             'package_week' => 'nullable',
             'amount'       => 'nullable',
             'discount'     => 'nullable',
             'price'        => 'nullable',
             'file'         => 'required',
+            'month'        => 'required',
 
         ];
     }

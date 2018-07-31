@@ -15,7 +15,7 @@ class Subscriber extends Model
             'amount',
             'discount',
             'price',
-            'month_id',
+            'month',
         ];
 
     /**
@@ -43,11 +43,6 @@ class Subscriber extends Model
     public function users()
     {
         return $this->hasMany(User::class);
-    }
-
-    public function month()
-    {
-        return $this->belongsTo(Month::class);
     }
 
     public function invitations()
