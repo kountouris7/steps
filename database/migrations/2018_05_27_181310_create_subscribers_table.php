@@ -22,7 +22,7 @@ class CreateSubscribersTable extends Migration
             $table->string('amount')->nullable();
             $table->string('discount')->nullable();
             $table->string('price')->nullable();
-            $table->string('month');
+            $table->string('month')->nullable();
             $table->timestamps();
         });
     }

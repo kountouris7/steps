@@ -39,7 +39,7 @@ class ImportSubscribersRequest extends FormRequest
             'discount'     => 'nullable',
             'price'        => 'nullable',
             'file'         => 'required',
-            'month'        => 'required',
+            'month'        => 'nullable',
 
         ];
     }

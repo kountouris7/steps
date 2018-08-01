@@ -28,7 +28,7 @@
                 <td>{{$subscriber->amount}}</td>
                 <td>{{$subscriber->discount}}</td>
                 <td>{{$subscriber->price}}</td>
-                <td>{{Carbon\Carbon::parse($subscriber->month)}}</td>
+                <td>{{$subscriber->month}}</td>
 
             </tr>
         @endforeach
