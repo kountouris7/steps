@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportSubscribersRequest;
 use App\Subscriber;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -68,15 +69,19 @@ class SubscriberController extends Controller
     }
 
 
-    public function showSubscribers()
+    public function showSubscribersCurrentMonth()
     {
-        $subscribers = Subscriber::get();
+        //date('m') = currentMonth//
+        $subscribers  = Subscriber::whereRaw("MONTH(subscribers.created_at) =" . date('m'))
+                          ->get();
+
         return view('administrator.subscribers', compact('subscribers'));
     }
 
     public function subscriberProfile($id)
     {
         $subscriber = Subscriber::findOrFail($id);
+
         return view('administrator.subscribersProfile', compact('subscriber'));
     }
 
