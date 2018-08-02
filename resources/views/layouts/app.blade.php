@@ -24,6 +24,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <!-- this is for dropdown btn -->
 <script>$(".dropdown-trigger").dropdown();</script>
+
+<script>  $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });</script>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 

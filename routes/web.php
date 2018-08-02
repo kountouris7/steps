@@ -18,11 +18,8 @@ Route::get('profiles/{user}/past.bookings', 'ProfilesController@showPastBookings
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/groups/{day}/monday', 'GroupController@daysFilter')->name('monday.groups');
-    Route::get('/groups/{day}/tuesday', 'GroupController@daysFilter')->name('tuesday.groups');
-    Route::get('/groups/{day}/wednesday', 'GroupController@daysFilter')->name('wednesday.groups');
-    Route::get('/groups/{day}/thursday', 'GroupController@daysFilter')->name('thursday.groups');
-    Route::get('/groups/{day}/friday', 'GroupController@daysFilter')->name('friday.groups');
+    Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
+
 });
 
 
@@ -38,18 +35,15 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
+    Route::get('/show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
     Route::get('/show/subscribers', 'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('/subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
     Route::post('invite', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
-
-    Route::get('/see.attendances/{day}/monday', 'AdminController@attendanceByDay')->name('monday.attendances');
-    Route::get('/see.attendances/{day}/tuesday', 'AdminController@attendanceByDay')->name('tuesday.attendances');
-    Route::get('/see.attendances/{day}/wednesday', 'AdminController@attendanceByDay')->name('wednesday.attendances');
-    Route::get('/see.attendances/{day}/thursday', 'AdminController@attendanceByDay')->name('thursday.attendances');
-    Route::get('/see.attendances/{day}/friday', 'AdminController@attendanceByDay')->name('friday.attendances');
+    Route::get('/see.attendances/{day}', 'AdminController@attendanceByDay')->name('attendance.by.day');
+    Route::get('/see.subscribers/{month}', 'SubscriberController@showSubscribersByMonth')->name('subscriber.byMonth');
 
 });
 

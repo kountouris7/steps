@@ -13,7 +13,7 @@
                     <span class="title"><strong>{{$attendant->name}}</strong></span>
                     <p>
                         {{$attendance->lesson->name}}<br>
-                        {{$attendance->day_time}}
+                        {{Carbon\Carbon::parse($attendance->day_time)->format('D d F Y,  h:m')}}
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>

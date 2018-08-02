@@ -1,7 +1,7 @@
 @extends('administrator.layouts.app')
 @section('content')
-    @include('administrator.invite')
     @include('administrator.layouts.tableView')
+
     <table>
         <thead>
         <tr>
@@ -17,11 +17,13 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($subscribers as $subscriber)
 
+       @include('administrator.layouts.navSubscribersByMonth')
+
+        @foreach($subscribers as $subscriber)
             <tr>
                 <td>{{$subscriber->id}}</td>
-                <td><a href="{{ route('subscriber.profile', [$subscriber->id]) }}">{{$subscriber->name}}</a> </td>
+                <td><a href="{{ route('subscriber.profile', [$subscriber->id]) }}">{{$subscriber->name}}</a></td>
                 <td>{{$subscriber->surname}}</td>
                 <td>{{$subscriber->email}}</td>
                 <td>{{$subscriber->package_week}}</td>
@@ -34,4 +36,7 @@
         @endforeach
         </tbody>
     </table>
+        @include('administrator.invite')
+
+
 @endsection

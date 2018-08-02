@@ -46,7 +46,6 @@ class SubscriberController extends Controller
                                 'month'        => $value->month,
                             ]);
 
-//dd($insertData);
                         if ($insertData) {
                             Session::flash('success', 'Your Data has successfully imported');
                         } else {
@@ -72,16 +71,30 @@ class SubscriberController extends Controller
     public function showSubscribersCurrentMonth()
     {
         //date('m') = currentMonth//
-        $subscribers  = Subscriber::whereRaw("MONTH(subscribers.created_at) =" . date('m'))
-                          ->get();
+        $subscribers = Subscriber::whereRaw("MONTH(subscribers.created_at) =" . date('m'))
+                                 ->orWhereRaw("MONTH(subscribers.month) =" . date('m'))
+                                 ->get();
 
+        return view('administrator.subscribers', compact('subscribers'));
+    }
+
+    public function showAllSubscribers()
+    {
+        $subscribers=Subscriber::get();
+        return view('administrator.subscribers', compact('subscribers'));
+    }
+
+    public function showSubscribersByMonth($month)
+    {
+        $subscribers = DB::table('subscribers')
+                         ->whereMonth('month', $month)
+                         ->get();
         return view('administrator.subscribers', compact('subscribers'));
     }
 
     public function subscriberProfile($id)
     {
         $subscriber = Subscriber::findOrFail($id);
-
         return view('administrator.subscribersProfile', compact('subscriber'));
     }
 
