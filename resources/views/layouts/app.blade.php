@@ -28,6 +28,10 @@
 <script>  $(document).ready(function(){
         $('.collapsible').collapsible();
     });</script>
+
+<script> $(document).ready(function(){
+        $('.parallax').parallax();
+    });</script>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
