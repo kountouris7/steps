@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
+use Carbon\Carbon;
 
 class GroupController extends Controller
 {
@@ -29,6 +30,7 @@ class GroupController extends Controller
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
+
 //this check if user has booked 2 groups on the same date..need to move this to a form request //
 
         $bookingSameDays = User::with('groups')->get();
@@ -37,7 +39,9 @@ class GroupController extends Controller
 
             foreach ($bookingSameDay->groups as $newBooking) {
 
-                if ($newBooking->day_time == $group->day_time) {
+                if (Carbon::parse($newBooking->day_time)
+                          ->format('D F Y') == Carbon::parse($group->day_time)
+                                                     ->format('D F Y')) {
                     return back()->with('status', 'You already booked a class on this day');
                 }
             }

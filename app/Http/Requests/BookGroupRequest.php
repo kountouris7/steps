@@ -38,6 +38,7 @@ class BookGroupRequest extends FormRequest
                                  return $query->where('group_id', request('id'));
                              }),
         ];
+
     }
 
     /**
