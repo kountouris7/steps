@@ -29,14 +29,15 @@ class GroupController extends Controller
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
+//this check if user has booked 2 groups on the same date..need to move this to a form request //
 
-        $userGroupsOnTheSameDates = User::with('groups')->get();
+        $bookingSameDays = User::with('groups')->get();
 
-        foreach ($userGroupsOnTheSameDates as $userGroupsOnTheSameDate) {
+        foreach ($bookingSameDays as $bookingSameDay) {
 
-            foreach ($userGroupsOnTheSameDate->groups as $q) {
+            foreach ($bookingSameDay->groups as $newBooking) {
 
-                if ($q->day_time == $group->day_time) {
+                if ($newBooking->day_time == $group->day_time) {
                     return back()->with('status', 'You already booked a class on this day');
                 }
             }
