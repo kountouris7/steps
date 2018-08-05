@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
-use Carbon\Carbon;
+use App\User;
 
 class GroupController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,6 +20,7 @@ class GroupController extends Controller
         $groups = Group::with('level')->where('day_time', '>=', today()->nowWithSameTz())
                        ->orderBy('day_time')
                        ->get();
+
         return view('show', compact('groups'));
     }
 
@@ -28,11 +30,16 @@ class GroupController extends Controller
             return back()->with('status', 'Sorry this group is fully booked');
         }
 
-        $userGroupsOnTheSameDate = auth()->user()->groups()
-                                         ->where('day_time', $group->day_time)
-                                         ->exists();
-        if ($userGroupsOnTheSameDate == 1) {
-            return back()->with('status', 'You already booked a class on this day');
+        $userGroupsOnTheSameDates = User::with('groups')->get();
+
+        foreach ($userGroupsOnTheSameDates as $userGroupsOnTheSameDate) {
+
+            foreach ($userGroupsOnTheSameDate->groups as $q) {
+
+                if ($q->day_time == $group->day_time) {
+                    return back()->with('status', 'You already booked a class on this day');
+                }
+            }
         }
 
         $group->clients()

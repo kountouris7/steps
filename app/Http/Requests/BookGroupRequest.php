@@ -46,8 +46,7 @@ class BookGroupRequest extends FormRequest
      *
      * @return array
      */
-    public function messages(
-    ) //* error?? if button disable is  off the message doesnt display. im gettin unauthorized howevr
+    public function messages() //* error?? if button disable is  off the message doesnt display. im gettin unauthorized howevr
     {
         return [
             'user_id.unique' => 'You already have a group booked at this time.',

@@ -32,6 +32,11 @@
 <script> $(document).ready(function(){
         $('.parallax').parallax();
     });</script>
+
+<script> $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });</script>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 

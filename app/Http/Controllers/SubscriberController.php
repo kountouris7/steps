@@ -84,11 +84,12 @@ class SubscriberController extends Controller
         return view('administrator.subscribers', compact('subscribers'));
     }
 
+    //What is month? A string? A carbon object?
     public function showSubscribersByMonth($month)
     {
-        $subscribers = DB::table('subscribers')
-                         ->whereMonth('month', $month)
+        $subscribers = Subscriber::whereMonth('month', $month)
                          ->get();
+
         return view('administrator.subscribers', compact('subscribers'));
     }
 

@@ -18,6 +18,8 @@ class Subscriber extends Model
             'month',
         ];
 
+    protected $dates = ['month'];
+
     /**
      * Create or update a record matching the attributes, and fill it with values.
      *
