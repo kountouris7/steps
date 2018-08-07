@@ -6,6 +6,7 @@ use App\Group;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {

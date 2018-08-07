@@ -38,6 +38,10 @@
         fullWidth: true,
         indicators: true
     });</script>
+
+<script>  $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });</script>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 

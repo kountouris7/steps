@@ -1,23 +1,13 @@
-<nav>
+<nav class="nav-extended">
+
     <div class="nav-wrapper grey darken-2">
         <a class="brand-logo" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{route('home')}}">Home</a></li>
-            <!-- Dropdown Trigger -->
-            <li><a class='dropdown-trigger' data-target='dropdown2'>Classes<i class="material-icons right">arrow_drop_down</i></a>
-            </li>
-            <!-- Dropdown Structure -->
-            <ul id='dropdown2' class='dropdown-content text-center'>
-                <li><a href="{{route('show.groups')}}">All Classes</a></li>
-                <li><a href="{{route('groups.by.day', [0])}}">Monday</a></li>
-                <li><a href="{{route('groups.by.day', [1])}}">Tuesday</a></li>
-                <li><a href="{{route('groups.by.day', [2])}}">Wednesday</a></li>
-                <li><a href="{{route('groups.by.day', [3])}}">Thursday</a></li>
-                <li><a href="{{route('groups.by.day', [4])}}">Friday</a></li>
-            </ul>
-
+            <li><a href="{{route('show.groups')}}">Classes</a></li>
 
             @if (Auth::guest())
                 <li><a href="{{ route('login') }}">Login</a></li>
@@ -45,10 +35,11 @@
                           style="display: none;">
                         {{ csrf_field() }}
                     </form>
-
-
                 </ul>
             @endif
+
         </ul>
     </div>
 </nav>
+
+
