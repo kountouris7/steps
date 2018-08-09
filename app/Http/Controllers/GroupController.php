@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
-use App\User;
+use App\Subscriber;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -26,25 +25,24 @@ class GroupController extends Controller
         return view('show', compact('groups'));
     }
 
-    public function store(Group $group, BookGroupRequest $request)
+    public function store(Group $group, Subscriber $subscriber, BookGroupRequest $request)
     {
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
 
-//this check if user has booked 2 groups on the same date..need to move this to a form request //
+        $bookingSameDays = auth()->user()->groups()->get();
 
-        $bookingSameDays = User::with('groups')->get();
+        if ($bookingSameDays->count() >= 3) {
+            return back()->with('status', 'Sorry, you have reached your limit for this week');
+        }
 
         foreach ($bookingSameDays as $bookingSameDay) {
 
-            foreach ($bookingSameDay->groups as $newBooking) {
-
-                if (Carbon::parse($newBooking->day_time)
-                          ->format('D F Y') == Carbon::parse($group->day_time)
-                                                     ->format('D F Y')) {
-                    return back()->with('status', 'You already booked a class on this day');
-                }
+            if (Carbon::parse($bookingSameDay->day_time)
+                      ->format('d F Y') == Carbon::parse($group->day_time)
+                                                 ->format('d F Y')) {
+                return back()->with('status', 'You already booked a class on this day');
             }
         }
 
