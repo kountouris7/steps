@@ -9,9 +9,7 @@
 
     <div class="container">
         <div class="row">
-
             @forelse($groups as $group)
-
                 <form method="POST" action="{{route('book.group',[$group->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -20,34 +18,30 @@
 
                         <div class="col s12 m4 l6 ">
 
-                            <div class="card">
-                                <div class="card-content">
-                                   <p class="title col s12 center-align">
+                            <ul class="collapsible popover-body">
+                                <li>
+                                    <div class="collapsible-header">
+                                        <span class="title col s12 center-align">
                                             {{optional($group->lesson)->name ?? $group->id}}<br>
-                                       {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}<br>
-                                        </p>
-                                </div>
+                                            {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}<br>
+                                            Level: {{$group->level->level}}
+                                        </span>
+                                    </div>
 
-                                <div class="card-tabs">
-                                    <ul class="tabs tabs-fixed-width">
-                                        <li class="tab"><a href="#test4">Description</a></li>
-                                        <li class="tab"><a class="active" href="#test5">Level</a></li>
-                                        <li class="tab"><a href="#test6">{{ $group->capacity() - $group->attendance() }}
-                                                of: {{$group->max_capacity}} {{'available'}}</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-content grey lighten-4">
-                                    <div id="test4">{{optional($group->lesson)->body ?? $group->id}}</div>
-                                    <div id="test5">{{$group->level->level}}</div>
-                                    <div id="test6" class="center-align">
+                                    <div class="center-align">
                                         <button type="submit"
                                                 class="waves-effect waves-ripple pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{'Book Now'}}
+                                                {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}>
+                                            {{ $group->capacity() - $group->attendance() }}
+                                            of: {{$group->max_capacity}} {{'available'}}
                                         </button>
                                     </div>
-                                </div>
-                            </div>
+
+                                    <div class="collapsible-body center-align">
+                                        <span>{{optional($group->lesson)->body ?? $group->id}}</span>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </form>
@@ -71,4 +65,3 @@
     </div>
 
 @endsection
-
