@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class, 'group_users');
     }
 
-    public function subscriber()
+    public function subscription()
     {
-        return $this->belongsTo(Subscriber::class);
+        return $this->hasOne(Subscriber::class, 'id');
     }
 
     public function invite()

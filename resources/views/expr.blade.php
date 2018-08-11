@@ -17,7 +17,6 @@
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
 
                         <div class="col s12 m4 l6 ">
-
                             <ul class="collapsible popover-body">
                                 <li>
                                     <div class="collapsible-header">
@@ -30,7 +29,7 @@
 
                                     <div class="center-align">
                                         <button type="submit"
-                                                class="waves-effect waves-ripple pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
+                                                class="waves-effect waves-strong btn pink accent-2"{{ $group->isBooked() ? 'disabled' : '' }}
                                                 {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}>
                                             {{ $group->capacity() - $group->attendance() }}
                                             of: {{$group->max_capacity}} {{'available'}}
@@ -50,8 +49,7 @@
                     <form action="{{route('group.destroy', [$group->id])}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="waves-effect waves-light btn-outline-secondary">Delete Group
-                        </button>
+                        <button type="submit" class="btn-outline-secondary">Delete Group</button>
                     </form>
                 @endcan
 

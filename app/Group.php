@@ -9,7 +9,7 @@ class Group extends Model
 {
     protected $guarded = [];
 
-    protected $dates = ['day_time'];
+    //protected $dates = ['day_time'];
 
     public function scopeDayFilter($query, $day)
     {

@@ -61,7 +61,7 @@ class AdminController extends Controller
         return view('administrator.lessonshow', compact('lessons'));
     }
 
-    public function groupcreate($id)
+    public function groupcreate($id) //view
     {
         $lesson = Lesson::findOrFail($id);
         $levels = Level::get();
@@ -91,11 +91,6 @@ class AdminController extends Controller
         ]);
 
         return redirect(route('show.groups'));
-    }
-
-    public function updategroup()
-    {
-
     }
 
     /**

@@ -33,7 +33,7 @@ class SubscriberController extends Controller
                             [
                                 'name'    => $value->name,
                                 'surname' => $value->surname,
-                                //'email'        => $value->email,
+
                             ],
                             [
                                 'name'         => $value->name,

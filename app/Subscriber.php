@@ -42,11 +42,6 @@ class Subscriber extends Model
         return 'slug';
     }
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
-
     public function invitations()
     {
         return $this->hasMany(Invite::class);

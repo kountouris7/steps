@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
-use App\Subscriber;
 use Carbon\Carbon;
 
 class GroupController extends Controller
@@ -25,20 +24,23 @@ class GroupController extends Controller
         return view('show', compact('groups'));
     }
 
-    public function store(Group $group, Subscriber $subscriber, BookGroupRequest $request)
+    public function store(Group $group, BookGroupRequest $request)
     {
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
 
-        $bookingSameDays = auth()->user()->groups()->get();
+        $userSubscriptions = auth()->user()->subscription()->get();
+        $bookingSameDays   = auth()->user()->groups()->get();
 
-        if ($bookingSameDays->count() >= 3) {
+        dd($userSubscriptions);
+
+        if ($bookingSameDays->count() >= 5) {
             return back()->with('status', 'Sorry, you have reached your limit for this week');
         }
 
-        foreach ($bookingSameDays as $bookingSameDay) {
 
+        foreach ($bookingSameDays as $bookingSameDay) {
             if (Carbon::parse($bookingSameDay->day_time)
                       ->format('d F Y') == Carbon::parse($group->day_time)
                                                  ->format('d F Y')) {

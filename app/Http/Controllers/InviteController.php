@@ -11,22 +11,29 @@ use Illuminate\Support\Facades\Mail;
 
 class InviteController extends Controller
 {
-   // public function invite()
-   // {
-   //     return view('administrator.invite');
-   // }
+    // public function invite()
+    // {
+    //     return view('administrator.invite');
+    // }
 
     public function process(Request $request)  // process the form submission and send the invite by email
     {
-        $token  = $this->tokenCreate();
-        $invite = Invite::create([
-            'email' => $request->get('email'),
-            'token' => $token,
-        ]);
-        Mail::to($request->get('email'))->send(new InviteCreated($invite));
+        $this->inviteUser($request->get('email'));
 
         return redirect()
             ->back();
+    }
+
+    private function inviteUser($email)
+    {
+        $token  = $this->tokenCreate();
+        $invite = Invite::create([
+            'email' => $email,
+            'token' => $token,
+        ]);
+        Mail::to($email)->send(new InviteCreated($invite));
+
+        return $invite;
     }
 
     /**
@@ -36,7 +43,7 @@ class InviteController extends Controller
     {
         do {
             $token = str_random();
-        } while (Invite::where('token', $token)->first());
+        } while (Invite::where('token', $token)->exists());
 
         return $token;
     }
@@ -47,24 +54,22 @@ class InviteController extends Controller
             abort(404);
         }
 
+
         return redirect(route('register.form'));
     }
 
     public function sendMultiple(Request $request)
     {
-        $invitations = Subscriber::get();
+        $subscribers = Subscriber::get()
+                                 ->each(function ($subscriber) {
+                                     $this->inviteUser($subscriber->email);
+                                 });
 
-        foreach ($invitations as $invitation) {
-
-            $token = $this->tokenCreate();
-
-            $invite = Invite::create([
-                'email' => $invitation->email,
-                'token' => $token,
-            ]);
-
-            Mail::to($invitation->email)->send(new InviteCreated($invite));
-        }
+//        foreach ($subscribers as $subscriber) {
+//            $invite = $this->inviteUser($subscriber->email);
+////            $subscriber->token = $invite->token;
+////            $subscriber->save();
+//        }
 
         return redirect()
             ->back();

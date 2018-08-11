@@ -62,7 +62,7 @@
     This is your activation code: <strong>{{$invite->token}}</strong>
 </p>
 
-<a href="{{ route('accept', $invite->token) }}">Click here</a> to login!
+<a href="{{ route('accept', [$invite->token]) }}">Click here</a> to login!
 </body>
 </html>
 

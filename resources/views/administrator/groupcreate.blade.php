@@ -20,17 +20,17 @@
                                    style="width: 250px"
                                    min="{{Carbon\Carbon::now()->toDateTimeString()}}" required>
                 </div>
-
+                <br>
                 <div class="form-group">
                     <label for="max_capacity">Maximum Capacity:</label>
                     <textarea name="max_capacity" id="max_capacity" class="form-control"
                               style="width: 100px; height: 40px">  </textarea>
                 </div>
-
+                <br>
                 <div class="form-group">
                     <label for="level">Choose Level:</label>
                     <select name="level_id" id="level_id" class="form-group" required>
-                        <option value="">Choose One...</option>
+                        <option value=""></option>
 
                         @foreach ($levels as $lvl => $level)
                             <option value="{{$level->id}}" {{old('level_id') == $level->id ? 'selected' : '' }}>
@@ -52,11 +52,12 @@
 
     <form method="POST" action="{{route('create.level')}}">
         {{csrf_field()}}
+        <br>
         <div class="form-group">
             <label for="level">Create New Level:</label>
             <textarea name="level" id="level" class="form-control"
                       style="width: 100px; height: 40px">  </textarea>
-            <br>
+            <hr>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Save New Level</button>

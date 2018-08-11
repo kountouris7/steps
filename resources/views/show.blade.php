@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 @section('content')
     @include('filterdays')
@@ -22,25 +24,25 @@
 
                             <div class="card">
                                 <div class="card-content">
-                                   <p class="title col s12 center-align">
-                                            {{optional($group->lesson)->name ?? $group->id}}<br>
-                                       {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}<br>
-                                        </p>
+                                    <p class="title col s12 center-align">
+                                        {{optional($group->lesson)->name ?? $group->id}}<br>
+                                        {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}<br>
+                                    </p>
                                 </div>
 
                                 <div class="card-tabs">
                                     <ul class="tabs tabs-fixed-width">
-                                        <li class="tab"><a href="#test4">Description</a></li>
-                                        <li class="tab"><a class="active" href="#test5">Level</a></li>
-                                        <li class="tab"><a href="#test6">{{ $group->capacity() - $group->attendance() }}
+                                        <li class="tab"><a class="active" href="#test-desc-{{$group->id}}">Description</a></li>
+                                        <li class="tab"><a class="active" href="#test-level-{{$group->id}}">Level</a></li>
+                                        <li class="tab"><a class="active" href="#test-avail{{$group->id}}">{{ $group->capacity() - $group->attendance() }}
                                                 of: {{$group->max_capacity}} {{'available'}}</a></li>
                                     </ul>
                                 </div>
 
                                 <div class="card-content grey lighten-4">
-                                    <div id="test4">{{optional($group->lesson)->body ?? $group->id}}</div>
-                                    <div id="test5">{{$group->level->level}}</div>
-                                    <div id="test6" class="center-align">
+                                    <div id="test-desc-{{$group->id}}">{{optional($group->lesson)->body ?? $group->id}}</div>
+                                    <div id="test-level-{{$group->id}}">{{$group->level->level}}</div>
+                                    <div id="test-avail{{$group->id}}" class="center-align">
                                         <button type="submit"
                                                 class="waves-effect waves-ripple pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                 {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{'Book Now'}}
@@ -71,4 +73,3 @@
     </div>
 
 @endsection
-
