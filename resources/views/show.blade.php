@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 @section('content')
     @include('filterdays')
@@ -32,22 +30,18 @@
 
                                 <div class="card-tabs">
                                     <ul class="tabs tabs-fixed-width">
-                                        <li class="tab"><a class="active" href="#test-desc-{{$group->id}}">Description</a></li>
                                         <li class="tab"><a class="active" href="#test-level-{{$group->id}}">Level</a></li>
-                                        <li class="tab"><a class="active" href="#test-avail{{$group->id}}">{{ $group->capacity() - $group->attendance() }}
-                                                of: {{$group->max_capacity}} {{'available'}}</a></li>
+                                        <li class="tab"><a class="active" href="#test-desc-{{$group->id}}">Description</a></li>
+                                        <li class="tab"><button type="submit"
+                                                                class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
+                                                    {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->attendance() }}
+                                                of: {{$group->max_capacity}} {{'available'}}
+                                            </button></li>
                                     </ul>
                                 </div>
-
-                                <div class="card-content grey lighten-4">
+                                <div class="card-content grey lighten-4 center-align">
                                     <div id="test-desc-{{$group->id}}">{{optional($group->lesson)->body ?? $group->id}}</div>
                                     <div id="test-level-{{$group->id}}">{{$group->level->level}}</div>
-                                    <div id="test-avail{{$group->id}}" class="center-align">
-                                        <button type="submit"
-                                                class="waves-effect waves-ripple pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{'Book Now'}}
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -33,9 +33,7 @@ class GroupController extends Controller
         $userSubscriptions = auth()->user()->subscription()->get();
         $bookingSameDays   = auth()->user()->groups()->get();
 
-        dd($userSubscriptions);
-
-        if ($bookingSameDays->count() >= 5) {
+        if ($bookingSameDays->count() >= 2) {
             return back()->with('status', 'Sorry, you have reached your limit for this week');
         }
 

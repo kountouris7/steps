@@ -1,7 +1,5 @@
 @extends('administrator.layouts.app')
 @section('content')
-
-
     @include('partials.errors')
 
     <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
