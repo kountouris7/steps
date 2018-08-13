@@ -31,15 +31,15 @@ class GroupController extends Controller
         }
 
         $userSubscriptions = auth()->user()->subscription()->get();
-        $bookingSameDays   = auth()->user()->groups()->get();
+        $bookings          = auth()->user()->groups()->get();
 
-        if ($bookingSameDays->count() >= 2) {
-            return back()->with('status', 'Sorry, you have reached your limit for this week');
+        foreach ($userSubscriptions as $userSubscription) {
+            if ($bookings->count() >= $userSubscription->package_week) {
+                return back()->with('status', 'Sorry, you have reached your limit for this week');
+            }
         }
-
-
-        foreach ($bookingSameDays as $bookingSameDay) {
-            if (Carbon::parse($bookingSameDay->day_time)
+        foreach ($bookings as $booking) {
+            if (Carbon::parse($booking->day_time)
                       ->format('d F Y') == Carbon::parse($group->day_time)
                                                  ->format('d F Y')) {
                 return back()->with('status', 'You already booked a class on this day');
