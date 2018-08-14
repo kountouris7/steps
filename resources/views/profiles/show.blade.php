@@ -21,22 +21,18 @@
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="container">
         <div style="width:800px; margin:0 auto;">
-            <h4>{{ $user->name }} <br> Profile </h4>
-
             @forelse ($groups as $group)
                 <div class="container">
                     <ul class="collection">
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle">folder</i>
-                            {{ $group->created_at->diffForHumans() }}:<br>
-                            You have booked: {{$group->lesson->name}}<br>
-                            On {{date('D M Y', strtotime($group->day_time))}}<br>
-                            @ {{$group->time}}
+                        <li class="collection-item avatar center-align">
+                            <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
+                            {{$group->lesson->name}}<br>
+                            On {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}
                             <hr>
                             <form action="{{route('book.destroy', [$group->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="waves-effect waves-light btn-small">Delete Booking</button>
+                                <button type="submit" class="waves-effect pink accent-3 btn-small">Delete Booking</button>
 
                             </form>
                         </li>

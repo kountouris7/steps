@@ -2,7 +2,8 @@
 
     <div class="nav-wrapper grey darken-2">
         <a class="brand-logo" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}</a>
+
+            <img src="images/STEPS LOGO-1.jpg" style="width: 2cm; height: 2cm;" alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">

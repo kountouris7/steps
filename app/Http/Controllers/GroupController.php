@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\BookGroupRequest;
+use App\User;
 use Carbon\Carbon;
 
 class GroupController extends Controller
@@ -24,21 +25,34 @@ class GroupController extends Controller
         return view('show', compact('groups'));
     }
 
-    public function store(Group $group, BookGroupRequest $request)
+    public function store(Group $group, User $user, BookGroupRequest $request)
     {
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
 
-        $userSubscriptions = auth()->user()->subscription()->get();
-        $bookings          = auth()->user()->groups()->get();
+        $userSubscriptions = $user->subscription()->get();
+        $bookingsTotal     = $user->groups()->get();
+
+        $week = Carbon::now();
+        // $week->weekOfYear;
+
+        $from        = Carbon::parse($week->copy()->startOfWeek())->toDateString();
+        $to          = Carbon::parse($week->copy()->endOfWeek())->toDateString();
+
+        //$bookingDate = Carbon::parse($booking->day_time)->toDateString();
+        $bookingsWeekly = Group::with('bookings')->where('user_id', $user->id)
+                               //->whereBetween($bookingDate, [$from, $to])
+                               ->get();
+        dd($bookingsWeekly);
 
         foreach ($userSubscriptions as $userSubscription) {
-            if ($bookings->count() >= $userSubscription->package_week) {
+
+            if ($bookingsTotal->count() >= $userSubscription->package_week) {
                 return back()->with('status', 'Sorry, you have reached your limit for this week');
             }
         }
-        foreach ($bookings as $booking) {
+        foreach ($bookingsTotal as $booking) {
             if (Carbon::parse($booking->day_time)
                       ->format('d F Y') == Carbon::parse($group->day_time)
                                                  ->format('d F Y')) {
