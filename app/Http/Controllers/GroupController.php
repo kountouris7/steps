@@ -17,8 +17,7 @@ class GroupController extends Controller
 
     public function index()
     {
-
-        $groups = Group::with('level')->where('day_time', '>=', today()->nowWithSameTz())
+        $groups = Group::with('level')->where('day_time', '>=', today())
                        ->orderBy('day_time')
                        ->get();
 
@@ -30,28 +29,26 @@ class GroupController extends Controller
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
+        $date       = new Carbon();
+        $weekOfYear = $date->setISODate(now()->year, now()->weekOfYear);
+        $from = Carbon::parse($weekOfYear->copy()->startOfWeek())->toDateString();
+        $to   = Carbon::parse($weekOfYear->copy()->endOfWeek())->toDateString();
 
         $userSubscriptions = $user->subscription()->get();
+
+        $bookingsWeekly = $user->groups()
+                               ->whereBetween('day_time', [$from, $to])
+                               ->count();
+
         $bookingsTotal     = $user->groups()->get();
-
-        $week = Carbon::now();
-        // $week->weekOfYear;
-
-        $from        = Carbon::parse($week->copy()->startOfWeek())->toDateString();
-        $to          = Carbon::parse($week->copy()->endOfWeek())->toDateString();
-
-        //$bookingDate = Carbon::parse($booking->day_time)->toDateString();
-        $bookingsWeekly = Group::with('bookings')->where('user_id', $user->id)
-                               //->whereBetween($bookingDate, [$from, $to])
-                               ->get();
-        dd($bookingsWeekly);
 
         foreach ($userSubscriptions as $userSubscription) {
 
-            if ($bookingsTotal->count() >= $userSubscription->package_week) {
+            if ($bookingsWeekly == $userSubscription->package_week) {
                 return back()->with('status', 'Sorry, you have reached your limit for this week');
             }
         }
+
         foreach ($bookingsTotal as $booking) {
             if (Carbon::parse($booking->day_time)
                       ->format('d F Y') == Carbon::parse($group->day_time)
@@ -68,6 +65,7 @@ class GroupController extends Controller
 
         return back()->with('status', 'Group booked');
     }
+
 
     public function daysFilter($day)
     {
