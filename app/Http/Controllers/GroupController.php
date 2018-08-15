@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Http\Requests\BookGroupFilters;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
 use Carbon\Carbon;
@@ -26,15 +27,11 @@ class GroupController extends Controller
 
     public function store(Group $group, User $user, BookGroupRequest $request)
     {
-        $groupDate          = $group->day_time;
-        $groupDateWeekStart = Carbon::parse($groupDate)->copy()->startOfWeek()->toDateString();
-        $groupDateWeekEnd   = Carbon::parse($groupDate)->copy()->endOfWeek()->toDateString();
+        list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
         $userSubscriptions = $user->subscription()->get();
         $bookingsTotal = $user->groups()->get();
 
-        $bookingsWeekly = $user->groups()
-                               ->whereBetween('day_time', [$groupDateWeekStart, $groupDateWeekEnd])
-                               ->count();
+        $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
 
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
@@ -42,7 +39,7 @@ class GroupController extends Controller
 
         foreach ($userSubscriptions as $userSubscription) {
             if ($bookingsWeekly == $userSubscription->package_week) {
-                return back()->with('status', 'Sorry, you have spent your subscription limit for this week');
+                return back()->with('status', 'Sorry, you are not allowed another booking in this week');
             }
         }
         foreach ($bookingsTotal as $booking) {
@@ -67,6 +64,36 @@ class GroupController extends Controller
         $groups = Group::DayFilter($day)->get();
 
         return view('show', compact('groups'));
+    }
+
+    /**
+     * @param Group $group
+     *
+     * @return array
+     */
+    public function requestedGroupWeek(Group $group): array
+    {
+        $groupDate          = $group->day_time;
+        $groupDateWeekStart = Carbon::parse($groupDate)->copy()->startOfWeek()->toDateString();
+        $groupDateWeekEnd   = Carbon::parse($groupDate)->copy()->endOfWeek()->toDateString();
+
+        return [$groupDateWeekStart, $groupDateWeekEnd];
+    }
+
+    /**
+     * @param User $user
+     * @param $groupDateWeekStart
+     * @param $groupDateWeekEnd
+     *
+     * @return int
+     */
+    public function bookingsWeekly(User $user, $groupDateWeekStart, $groupDateWeekEnd): int
+    {
+        $bookingsWeekly = $user->groups()
+                               ->whereBetween('day_time', [$groupDateWeekStart, $groupDateWeekEnd])
+                               ->count();
+
+        return $bookingsWeekly;
     }
 
 }

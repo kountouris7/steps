@@ -7,6 +7,8 @@
             <li><a href="{{route('attendance.by.day', [2])}}">Wednesday</a></li>
             <li><a href="{{route('attendance.by.day', [3])}}">Thursday</a></li>
             <li><a href="{{route('attendance.by.day', [4])}}">Friday</a></li>
+            <li><a href="{{route('see.attendances')}}">ALL</a></li>
+
         </ul>
     </div>
 

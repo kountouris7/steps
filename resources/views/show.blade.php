@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
     @include('filterdays')
     @if (session('status'))
-        <div class="alert alert-warning">
-            {{ session('status') }}
+        <div class="alert center-align">
+           <h4><strong>{{ session('status') }}</strong></h4>
         </div>
     @endif
 
@@ -23,8 +24,8 @@
                             <div class="card">
                                 <div class="card-content">
                                     <p class="title col s12 center-align">
-                                        {{optional($group->lesson)->name ?? $group->id}}<br>
-                                        {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}<br>
+                                       <strong>{{optional($group->lesson)->name ?? $group->id}}</strong> <br>
+                                        {{Carbon\Carbon::parse($group->day_time)->format('D d, H:m')}}<br>
                                     </p>
                                 </div>
 
@@ -35,7 +36,7 @@
                                         <li class="tab"><button type="submit"
                                                                 class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                     {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->attendance() }}
-                                                of: {{$group->max_capacity}} {{'available'}}
+                                                of: {{$group->max_capacity}}  {{'available'}}
                                             </button></li>
                                     </ul>
                                 </div>

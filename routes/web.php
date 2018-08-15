@@ -29,6 +29,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
     Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
     Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');
+    Route::get('/see.attendances/{day}', 'AdminController@attendanceByDay')->name('attendance.by.day');
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
@@ -38,7 +39,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
-    Route::get('/see.attendances/{day}', 'AdminController@attendanceByDay')->name('attendance.by.day');
     Route::get('/see.subscribers/{month}', 'SubscriberController@showSubscribersByMonth')->name('subscriber.byMonth');
 
 });

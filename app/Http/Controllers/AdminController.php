@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Lesson;
 use App\Level;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -137,11 +138,23 @@ class AdminController extends Controller
 
     public function attendanceByDay($day)
     {
+        $to = $this->thisWeeksEnd();
         $attendances = Group::with('clients')
                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                            ->where('day_time', '>=', today())->get();
+                            ->where('day_time', '<=', $to)->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
+    }
+
+    /**
+     * @return string
+     */
+    public function thisWeeksEnd(): string
+    {
+        $date = today();
+        $to   = Carbon::parse($date)->copy()->endOfWeek()->toDateString();
+
+        return $to;
     }
 
 
