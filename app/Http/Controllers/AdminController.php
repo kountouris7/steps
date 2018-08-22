@@ -115,12 +115,12 @@ class AdminController extends Controller
 
     public function updategroup(Request $request, $id)
     {
-        $group           = Group::with('lesson', 'level')->find($id);
+        $group           = Group::with('lesson')->find($id);
         $lesson = $group->lesson;
-        //$level = $group->level;
 
         $group->day_time = request('day_time');
         $group->max_capacity = request('max_capacity');
+        $group->level_id = request('level_id');
 
         $lesson->name =request('name');
         $lesson->body = request('body');
@@ -128,7 +128,7 @@ class AdminController extends Controller
         $group->save();
         $lesson->save();
 
-        return redirect(route('show.groups'))->with('status', 'Group Updated');
+        return redirect(route('administrator.showgroups'))->with('status', 'Group Updated');
     }
 
     /**
