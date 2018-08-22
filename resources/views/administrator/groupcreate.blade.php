@@ -2,9 +2,9 @@
 @section('content')
     @include('partials.errors')
 
-    <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
         <div class="panel-heading">
-            <div class="level">
+            <div class="title">
                 <h3 class="flex">
                     {{$lesson->name}}
                 </h3>
@@ -15,8 +15,8 @@
                 <div class="form-group">
                     <label for="day_time">Date & Time:</label>
                     <input type="datetime-local" class="form-control" id="day_time" name="day_time"
-                                   style="width: 250px"
-                                   min="{{Carbon\Carbon::now()->toDateTimeString()}}" required>
+                           style="width: 250px"
+                           min="{{Carbon\Carbon::now()->toDateTimeString()}}" required>
                 </div>
                 <br>
                 <div class="form-group">
@@ -25,6 +25,7 @@
                               style="width: 100px; height: 40px">  </textarea>
                 </div>
                 <br>
+
                 <div class="form-group">
                     <label for="level">Choose Level:</label>
                     <select name="level_id" id="level_id" class="form-group" required>
@@ -46,7 +47,7 @@
                 </div>
             </form>
         </div>
-    </div>
+
 
     <form method="POST" action="{{route('create.level')}}">
         {{csrf_field()}}
@@ -63,6 +64,5 @@
 
         </div>
     </form>
-
+    </div>
 @endsection
-

@@ -106,18 +106,25 @@ class AdminController extends Controller
 
     public function editgroup($id)
     {
-        $group = Group::find($id);
+        $group = Group::with('level')->find($id);
+        $levels=Level::get();
+        $groupLevel=$group->level->level;
 
-        return view('administrator.editgroup', compact('group'));
+        return view('administrator.editgroup', compact('group', 'levels', 'groupLevel'));
     }
 
     public function updategroup(Request $request, $id)
     {
-        $group           = Group::with('lesson')->find($id);
+        $group           = Group::with('lesson', 'level')->find($id);
         $lesson = $group->lesson;
+        //$level = $group->level;
+
         $group->day_time = request('day_time');
+        $group->max_capacity = request('max_capacity');
+
         $lesson->name =request('name');
         $lesson->body = request('body');
+
         $group->save();
         $lesson->save();
 
