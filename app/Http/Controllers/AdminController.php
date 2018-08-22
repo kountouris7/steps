@@ -94,6 +94,36 @@ class AdminController extends Controller
         return redirect(route('show.groups'));
     }
 
+    public function showtoedit()
+    {
+        $groups = Group::with('level')
+                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
+                       ->orderBy('day_time')
+                       ->get();
+
+        return view('administrator.showgroups', compact('groups'));
+    }
+
+    public function editgroup($id)
+    {
+        $group = Group::find($id);
+
+        return view('administrator.editgroup', compact('group'));
+    }
+
+    public function updategroup(Request $request, $id)
+    {
+        $group           = Group::with('lesson')->find($id);
+        $lesson = $group->lesson;
+        $group->day_time = request('day_time');
+        $lesson->name =request('name');
+        $lesson->body = request('body');
+        $group->save();
+        $lesson->save();
+
+        return redirect(route('show.groups'))->with('status', 'Group Updated');
+    }
+
     /**
      * @param $id
      *
@@ -138,7 +168,7 @@ class AdminController extends Controller
 
     public function attendanceByDay($day)
     {
-        $to = $this->thisWeeksEnd();
+        $to          = $this->thisWeeksEnd();
         $attendances = Group::with('clients')
                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
                             ->where('day_time', '<=', $to)->get();

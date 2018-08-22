@@ -26,7 +26,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/show/lessons', 'AdminController@lessonshow')->name('show.lesson');
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
-    Route::delete('/group/{id}', 'AdminController@destroygroup')->name('group.destroy');
+    Route::get('/group/admin', 'AdminController@showtoedit')->name('administrator.showgroups');
+    Route::post('/group/edit/{id}', 'AdminController@editgroup')->name('group.edit');
+    Route::post('/group/update/{id}', 'AdminController@updategroup')->name('group.update');
+
+    Route::delete('/group/delete/{id}', 'AdminController@destroygroup')->name('group.destroy');
     Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
     Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');
     Route::get('/see.attendances/{day}', 'AdminController@attendanceByDay')->name('attendance.by.day');

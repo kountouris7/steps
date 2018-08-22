@@ -17,6 +17,9 @@
 <div id="app">
     @include('layouts.nav')
     @yield('content')
+
+
+
 </div>
 
 
@@ -26,11 +29,11 @@
 <!-- this is for dropdown btn -->
 <script>$(".dropdown-trigger").dropdown();</script>
 
-<script>  $(document).ready(function(){
+<script>  $(document).ready(function () {
         $('.collapsible').collapsible();
     });</script>
 
-<script> $(document).ready(function(){
+<script> $(document).ready(function () {
         $('.parallax').parallax();
     });</script>
 
@@ -39,13 +42,18 @@
         indicators: true
     });</script>
 
-<script>  $(document).ready(function(){
+<script>  $(document).ready(function () {
         $('.sidenav').sidenav();
     });</script>
 
-<script>$(document).ready(function(){
+<script>$(document).ready(function () {
         $('.tabs').tabs();
     });</script>
+
+<script>$(document).ready(function(){
+        $('.materialboxed').materialbox();
+    });</script>
+
 
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>

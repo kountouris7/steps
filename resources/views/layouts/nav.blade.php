@@ -3,7 +3,7 @@
     <div class="nav-wrapper grey darken-2">
         <a class="brand-logo" href="{{ url('/') }}">
 
-            <img src="images/STEPS LOGO-1.jpg" style="width: 2cm; height: 2cm;" alt="Steps Logo"></a>
+            <img src="https://scontent.fnic2-1.fna.fbcdn.net/v/t1.0-9/10670272_354243854736362_4108068647102529342_n.png?_nc_cat=0&oh=09d8ce2c12bb2db9d4ac3ca1327a6c1c&oe=5BEE6127" style="width: 2cm; height: 2cm;" alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">

@@ -18,7 +18,8 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::with('level')->where('day_time', '>=', today())
+        $groups = Group::with('level')
+                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
                        ->orderBy('day_time')
                        ->get();
 
@@ -56,8 +57,13 @@ class GroupController extends Controller
                       'user_id' => request('user_id'),
                   ]);
 
+        if (request()->expectsJson()){
+            return response()->json(['success'=>'Data is successfully added']);
+        }
+
         return back()->with('status', 'Group booked');
     }
+
 
     public function daysFilter($day)
     {

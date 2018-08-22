@@ -10,8 +10,9 @@
     <li><a href="{{route('admin')}}">Dashboard</a></li>
     <li><a href="{{route('see.attendances')}}">Check attendances </a></li>
     <li><div class="divider"></div></li>
-    <li><a href="{{route('create.lesson')}}">Add New Lesson</a></li>
-    <li><a href="{{route('show.lesson')}}">View Lessons</a></li>
+    <li><a href="{{route('create.lesson')}}">Create New Lesson</a></li>
+    <li><a href="{{route('show.lesson')}}">Schedule New Group</a></li>
+    <li><a href="{{route('administrator.showgroups')}}">Edit Group</a></li>
     <li><div class="divider"></div></li>
     <li><a href="{{route('upload.excel')}}">Upload File</a></li>
     <li><a href="{{route('showSubscribersCurrentMonth')}}">Clients</a></li>

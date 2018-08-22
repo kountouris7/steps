@@ -1,28 +1,19 @@
-@extends('layouts.app')
+@extends('administrator.layouts.app')
 @section('content')
-
-    @include('filterdays')
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>
         </div>
     @endif
-
     <div class="container">
-
         <div class="row">
-
             @forelse($groups as $group)
-
                 <form method="POST" action="{{route('book.group',[$group->id, auth()->user()->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <input type="hidden" name="group_id" value="{{$group->id}}">
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
-
-                        <div class="col s12 m4 l6 ">
-
-                            <div class="card">
+                        <div class="card">
                                 <div class="card-content">
                                     <p class="title col s12 center-align">
                                         <strong>{{optional($group->lesson)->name ?? $group->id}}</strong> <br>
@@ -37,11 +28,10 @@
                                         <li class="tab"><a class="active"
                                                            href="#test-desc-{{$group->id}}">Description</a></li>
                                         <li class="tab">
-                                            <button type="submit"
-                                                    class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                    {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->attendance() }}
-                                                of: {{$group->max_capacity}}   {{'available'}}
-                                            </button>
+
+                                            {{$group->attendance()}}
+                                                of: {{$group->max_capacity}} booked
+
                                         </li>
                                     </ul>
                                 </div>
@@ -50,10 +40,25 @@
                                     <div id="test-level-{{$group->id}}">{{$group->level->level}}</div>
                                 </div>
                             </div>
-
-                        </div>
                     </div>
                 </form>
+
+                @can ('before', $group)
+                    <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn-small">Delete Group</button>
+                    </form>
+
+                    <br>
+
+                    <form action="{{route('group.edit', [$group->id])}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('POST') }}
+                        <button type="submit" class="btn-small">Update Group
+                        </button>
+                    </form>
+                @endcan
 
             @empty
                 <div class="center-align">

@@ -26,13 +26,34 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <!-- this is for dropdown btn -->
-<script> $(document).ready(function(){
+<script>$(".dropdown-trigger").dropdown();</script>
+
+<script>  $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });</script>
+
+<script> $(document).ready(function () {
+        $('.parallax').parallax();
+    });</script>
+
+<script> $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });</script>
+
+<script>  $(document).ready(function () {
         $('.sidenav').sidenav();
     });</script>
 
-<script>  $(document).ready(function(){
-        $('select').formSelect();
+<script>$(document).ready(function () {
+        $('.tabs').tabs();
     });</script>
+
+<script>$(document).ready(function(){
+        $('.materialboxed').materialbox();
+    });</script>
+
+
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
