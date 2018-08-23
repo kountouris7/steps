@@ -27,8 +27,6 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function admin()
     {
         return view('administrator.layouts.app');
@@ -62,32 +60,12 @@ class AdminController extends Controller
         return view('administrator.lessonshow', compact('lessons'));
     }
 
-    public function showtoeditlessons()
-    {
-        $lessons = Lesson::latest()->get();
-
-        return view('administrator.showlessontoedit', compact('lessons'));
-    }
-
-    public function editlesson($id)
-    {
-        $lesson = Lesson::find($id);
-        return view('administrator.editlesson', compact('lesson'));
-    }
-
     public function groupcreate($id) //view
     {
         $lesson = Lesson::findOrFail($id);
         $levels = Level::get();
 
         return view('administrator.groupcreate', compact('lesson', 'levels'));
-    }
-
-    public function updatelesson($id)
-    {
-        $lesson = Lesson::with('groups')->find($id);
-
-        dd($lesson);
     }
 
     public function groupstore(Request $request)
@@ -141,7 +119,6 @@ class AdminController extends Controller
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
         ]);
-
 
         return redirect(route('administrator.showgroups'))->with('status', 'Group Updated');
     }
