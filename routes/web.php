@@ -5,7 +5,6 @@ Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show.groups');
-
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
@@ -26,8 +25,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/show/lessons', 'AdminController@lessonshow')->name('show.lesson');
     Route::get('/lesson/{id}', 'AdminController@groupcreate')->name('create.group');
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
-    Route::get('/group/admin', 'AdminController@showtoedit')->name('administrator.showgroups');
+    Route::get('/group/admin/groups', 'AdminController@showtoedit')->name('administrator.showgroups');
+    Route::get('/group/admin/lessons', 'AdminController@showtoeditlessons')->name('administrator.showlessons');
+    Route::get('/lesson/edit/{id}', 'AdminController@editlesson')->name('lesson.edit');
     Route::post('/group/edit/{id}', 'AdminController@editgroup')->name('group.edit');
+    Route::post('/lesson/update/{id}', 'AdminController@updatelesson')->name('lesson.update');
     Route::post('/group/update/{id}', 'AdminController@updategroup')->name('group.update');
 
     Route::delete('/group/delete/{id}', 'AdminController@destroygroup')->name('group.destroy');

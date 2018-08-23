@@ -62,12 +62,32 @@ class AdminController extends Controller
         return view('administrator.lessonshow', compact('lessons'));
     }
 
+    public function showtoeditlessons()
+    {
+        $lessons = Lesson::latest()->get();
+
+        return view('administrator.showlessontoedit', compact('lessons'));
+    }
+
+    public function editlesson($id)
+    {
+        $lesson = Lesson::find($id);
+        return view('administrator.editlesson', compact('lesson'));
+    }
+
     public function groupcreate($id) //view
     {
         $lesson = Lesson::findOrFail($id);
         $levels = Level::get();
 
         return view('administrator.groupcreate', compact('lesson', 'levels'));
+    }
+
+    public function updatelesson($id)
+    {
+        $lesson = Lesson::with('groups')->find($id);
+
+        dd($lesson);
     }
 
     public function groupstore(Request $request)
@@ -106,27 +126,22 @@ class AdminController extends Controller
 
     public function editgroup($id)
     {
-        $group = Group::with('level')->find($id);
-        $levels=Level::get();
-        $groupLevel=$group->level->level;
+        $group      = Group::with('level')->find($id);
+        $levels     = Level::get();
+        $groupLevel = $group->level->level;
 
         return view('administrator.editgroup', compact('group', 'levels', 'groupLevel'));
     }
 
     public function updategroup(Request $request, $id)
     {
-        $group           = Group::with('lesson')->find($id);
-        $lesson = $group->lesson;
+        $group = Group::with('lesson')->find($id);
+        $group->update([
+            'day_time'     => request('day_time'),
+            'max_capacity' => request('max_capacity'),
+            'level_id'     => request('level_id'),
+        ]);
 
-        $group->day_time = request('day_time');
-        $group->max_capacity = request('max_capacity');
-        $group->level_id = request('level_id');
-
-        $lesson->name =request('name');
-        $lesson->body = request('body');
-
-        $group->save();
-        $lesson->save();
 
         return redirect(route('administrator.showgroups'))->with('status', 'Group Updated');
     }

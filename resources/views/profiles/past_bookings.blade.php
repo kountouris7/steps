@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
+    @include('profiles.layouts.profilesnav')
     <div class="container">
-
+        <div style="width:800px; margin:0 auto;">
         <h4>{{ $user->name }} <br> Past Bookings </h4>
 
         @forelse ($groups as $group)
@@ -40,7 +40,7 @@
         <div class="col-md-5">
             <button class="waves-effect waves-light btn-small white"><a href="{{route('show.groups')}}">Back to Classes</a></button>
         </div>
-
+        </div>
     </div>
 
 @endsection

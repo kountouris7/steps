@@ -11,35 +11,19 @@
             <form method="POST" action="{{route('group.update', [$group->id])}}">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label for="day_time">Date & Time:</label>
+                    <label for="day_time">Change Date & Time:</label>
                     <input type="datetime-local" class="form-control" id="day_time" name="day_time"
                            style="width: 250px" min="{{Carbon\Carbon::now()->toDateTimeString()}}" required>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{$group->lesson->name}}">
-                        <label for="name">Lesson Name</label>
-                    </div>
-                </div>
-                <br>
                 <div class="form-group">
-                    <div class="input-field col s6">
-                    <textarea id="body" class="form-control" type="text" name="body"
-                              placeholder="{{$group->lesson->body}}" style="width: 559px; height: 100px"></textarea>
-                        <label for="body">Description</label>
-                    </div>
-                </div>
-                <br>
-
-                <div class="form-group">
-                    <label for="max_capacity">Maximum Capacity:</label>
+                    <label for="max_capacity">Change Maximum Capacity:</label>
                     <textarea name="max_capacity" id="max_capacity" class="form-control"
                               placeholder="{{$group->max_capacity}}" style="width: 100px; height: 40px"></textarea>
                 </div>
-<br>
+                <br>
                 <div class="form-group">
-                    <label for="level">Choose Level:</label>
+                    <label for="level">Change Choose Level:</label>
                     <select name="level_id" id="level_id" class="form-group" required>
                         <option value="" disabled selected>{{$groupLevel}}</option>
 
@@ -50,7 +34,7 @@
                         @endforeach
                     </select>
                 </div>
-<br>
+                <br>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Update Group</button>
