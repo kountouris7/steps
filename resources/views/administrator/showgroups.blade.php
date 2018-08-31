@@ -1,5 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
+
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>

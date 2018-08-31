@@ -1,4 +1,7 @@
 <?php
+
+use App\Events\GroupUpdated;
+
 Auth::routes();
 Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
@@ -17,6 +20,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::get('testof', function (){
+    return view('administrator.exper');
+});
+Route::any('test', function () {
+    GroupUpdated::dispatch('enter group here');
+});
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
@@ -27,7 +36,10 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('/group/{id}', 'AdminController@groupstore')->name('save.group');
     Route::get('/group/admin/groups', 'AdminController@showtoedit')->name('administrator.showgroups');
     Route::post('/group/edit/{id}', 'AdminController@editgroup')->name('group.edit');
+
     Route::post('/group/update/{id}', 'AdminController@updategroup')->name('group.update');
+
+
     Route::delete('/group/delete/{id}', 'AdminController@destroygroup')->name('group.destroy');
     Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
     Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');

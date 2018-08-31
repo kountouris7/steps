@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GroupUpdated;
 use App\Group;
 use App\Http\Requests\BookGroupFilters;
 use App\Http\Requests\BookGroupRequest;
@@ -25,6 +26,15 @@ class GroupController extends Controller
 
         return view('show', compact('groups'));
     }
+
+    /**
+     * Ship the given order.
+     *
+     * @param $groupId
+     *
+     * @return void
+     */
+
 
     public function store(Group $group, User $user, BookGroupRequest $request)
     {
