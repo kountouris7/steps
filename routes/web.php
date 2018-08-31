@@ -20,12 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::get('testof', function (){
-    return view('administrator.exper');
-});
-Route::any('test', function () {
-    GroupUpdated::dispatch('enter group here');
-});
+Route::any('test', 'AdminController@test')->name('testing');
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
@@ -39,7 +34,6 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     Route::post('/group/update/{id}', 'AdminController@updategroup')->name('group.update');
 
-
     Route::delete('/group/delete/{id}', 'AdminController@destroygroup')->name('group.destroy');
     Route::post('/create.level', 'AdminController@levelcreate')->name('create.level');
     Route::get('/see.attendances', 'AdminController@seeAttendances')->name('see.attendances');
@@ -47,7 +41,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
-    Route::get('/show/subscribers', 'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
+    Route::get('/show/subscribers',
+        'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('/subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
     Route::post('invite/', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');

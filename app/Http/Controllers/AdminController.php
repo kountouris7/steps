@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GroupUpdated;
 use App\Group;
 use App\Lesson;
 use App\Level;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Pusher\Pusher;
 
 
 class AdminController extends Controller
@@ -120,6 +120,7 @@ class AdminController extends Controller
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
         ]);
+
         return redirect(route('administrator.showgroups'))->with('status', 'Group Updated');
     }
 
@@ -173,6 +174,11 @@ class AdminController extends Controller
                             ->where('day_time', '<=', $to)->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
+    }
+
+    public function test()
+    {
+        GroupUpdated::dispatch('');
     }
 
     /**
