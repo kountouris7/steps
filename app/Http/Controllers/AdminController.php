@@ -114,14 +114,19 @@ class AdminController extends Controller
 
     public function updategroup(Request $request, $id)
     {
-        $group = Group::with('lesson')->find($id);
+        $group = Group::with('lesson')->findOrFail($id);
+
         $group->update([
             'day_time'     => request('day_time'),
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
         ]);
 
-        return redirect(route('administrator.showgroups'))->with('status', 'Group Updated');
+        $data = $group->lesson->name. 'has been updated';
+
+        GroupUpdated::dispatch($data);
+
+        return redirect(route('administrator.showgroups'))->with('status', $data);
     }
 
     /**
@@ -176,11 +181,6 @@ class AdminController extends Controller
         return view('administrator.seeAttendances', compact('attendances'));
     }
 
-    public function test()
-    {
-        GroupUpdated::dispatch('');
-    }
-
     /**
      * @return string
      */
@@ -190,6 +190,11 @@ class AdminController extends Controller
         $to   = Carbon::parse($date)->copy()->endOfWeek()->toDateString();
 
         return $to;
+    }
+
+    public function test()
+    {
+
     }
 
 

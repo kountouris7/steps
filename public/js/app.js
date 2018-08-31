@@ -13963,7 +13963,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
 });
 
 window.Echo.channel('updates').listen('GroupUpdated', function (e) {
-    alert('FINALLY IT WORKS!!!!!!!!!');
+    alert('fuck');
 });
 
 /***/ }),

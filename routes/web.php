@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::any('test', 'AdminController@test')->name('testing');
+Route::any('test/{id}', 'AdminController@test')->name('testing');
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');

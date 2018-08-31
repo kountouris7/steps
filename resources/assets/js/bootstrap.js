@@ -57,5 +57,6 @@ if (token) {
 
 window.Echo.channel('updates')
     .listen('GroupUpdated', (e) => {
-        alert('FINALLY IT WORKS!!!!!!!!!');
+        alert('fuck');
     });
+
