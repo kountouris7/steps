@@ -4,25 +4,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="public/css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="js/app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="csrf-token" content="{{csrf_token()}}">
-
-    <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('540913a769b358dafdd0', {
-            cluster: 'eu',
-            forceTLS: true
-        });
-
-        var channel = pusher.subscribe('updates');
-        channel.bind('GroupUpdated', function(data) {
-            alert(JSON.stringify(data));
-        });
-    </script>
-
 </head>
 <body>
 

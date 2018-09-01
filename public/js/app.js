@@ -13905,7 +13905,6 @@ var app = new Vue({
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
-
 window._ = __webpack_require__(14);
 window.Popper = __webpack_require__(3).default;
 
@@ -13962,8 +13961,8 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
     encrypted: true
 });
 
-window.Echo.channel('updates').listen('GroupUpdated', function (e) {
-    alert('fuck');
+window.Echo.channel('updates').listen('GroupUpdated', function (data) {
+    alert(JSON.stringify(data));
 });
 
 /***/ }),

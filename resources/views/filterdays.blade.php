@@ -1,5 +1,5 @@
 <nav class="nav-extended">
-    <div class="nav-wrapper grey darken-2">
+    <div class="nav-wrapper black">
         <ul class="left-align">
             <li><a href="{{route('groups.by.day', [0])}}">Monday</a></li>
             <li><a><a href="{{route('groups.by.day', [1])}}">Tuesday</a></a></li>

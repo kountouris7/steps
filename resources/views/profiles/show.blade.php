@@ -2,8 +2,6 @@
 @section('content')
     @include('profiles.layouts.profilesnav')
 
-
-
     <div class="container">
         <div style="width:800px; margin:0 auto;">
             @forelse ($groups as $group)

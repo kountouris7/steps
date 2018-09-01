@@ -26,6 +26,6 @@ class SendUpdateNotification
      */
     public function handle(GroupUpdated $event)
     {
-        var_dump($event->group .  'was updated');
+        //var_dump($event->group .  'was updated');
     }
 }
