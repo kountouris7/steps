@@ -1,16 +1,5 @@
 <?php
-//$conn = pg_connect(getenv("DATABASE_URL"));
-//$db = parse_url(getenv("DATABASE_URL"));
-//$pdo = new PDO("pgsql:" . sprintf(
-//        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-//        $db["host"]?? null,
-//        $db["port"]?? null,
-//        $db["user"]?? null,
-//        $db["pass"]?? null,
-//        ltrim($db["path"], "/")
-//    ));
-//
-//$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+
 return [
 
     /*
@@ -24,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql_production' ),
+    'default' => env('DB_CONNECTION', 'mysql_production' ),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,6 +46,21 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'mysql_production' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'db4free.net'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'stepsfitness'),
+            'username' => env('DB_USERNAME', 'kountouris'),
+            'password' => env('DB_PASSWORD', '00711855a'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
