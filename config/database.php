@@ -66,7 +66,7 @@ return [
             'database' => 'stepsfitness',
             'username' => 'kountouris',
             'password' => '00711855a',
-            'unix_socket' => env('DB_SOCKET', ''),
+           // 'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
