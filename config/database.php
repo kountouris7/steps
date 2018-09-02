@@ -56,11 +56,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'db4free.net'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'stepsfitness'),
-            'username' => env('DB_USERNAME', 'kountouris'),
-            'password' => env('DB_PASSWORD', '00711855a'),
+            'host' => 'db4free.net',
+            'port' => '3306',
+            'database' => 'stepsfitness',
+            'username' => 'kountouris',
+            'password' => '00711855a',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
