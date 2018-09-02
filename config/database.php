@@ -1,16 +1,16 @@
 <?php
-$conn = pg_connect(getenv("DATABASE_URL"));
-$db = parse_url(getenv("DATABASE_URL"));
-$pdo = new PDO("pgsql:" . sprintf(
-        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-        $db["host"]?? null,
-        $db["port"]?? null,
-        $db["user"]?? null,
-        $db["pass"]?? null,
-        ltrim($db["path"], "/")
-    ));
-
-$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+//$conn = pg_connect(getenv("DATABASE_URL"));
+//$db = parse_url(getenv("DATABASE_URL"));
+//$pdo = new PDO("pgsql:" . sprintf(
+//        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+//        $db["host"]?? null,
+//        $db["port"]?? null,
+//        $db["user"]?? null,
+//        $db["pass"]?? null,
+//        ltrim($db["path"], "/")
+//    ));
+//
+//$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
 return [
 
     /*
@@ -67,15 +67,15 @@ return [
 
         'pgsql_production' => [
             'driver' => 'pgsql',
-            'host' => $DATABASE_URL["host"],
-            'port' => $DATABASE_URL["port"],
-            'database' => ltrim($DATABASE_URL["path"], "/"),
-            'username' => $DATABASE_URL["user"],
-            'password' => $DATABASE_URL["pass"],
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-            'sslmode' => 'require',
+            'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [
