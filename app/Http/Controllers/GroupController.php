@@ -42,7 +42,7 @@ class GroupController extends Controller
     {
         list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
         $userSubscriptions = $user->subscription()->get();
-        $bookingsTotal = $user->groups()->get();
+        $bookingsTotal     = $user->groups()->get();
 
         $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
 
@@ -69,12 +69,13 @@ class GroupController extends Controller
                       'user_id' => request('user_id'),
                   ]);
 
-        if (request()->expectsJson()){
-            return response()->json(['success'=>'Data is successfully added']);
+        if (request()->expectsJson()) {
+            return response()->json(['success' => 'Data is successfully added']);
         }
 
 
         return back()->with('status', 'Group booked');
+
     }
 
 
