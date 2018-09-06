@@ -30,7 +30,9 @@ class GroupController extends Controller
     /**
      * Ship the given order.
      *
-     * @param $groupId
+     * @param Group $group
+     * @param User $user
+     * @param BookGroupRequest $request
      *
      * @return void
      */
@@ -70,6 +72,7 @@ class GroupController extends Controller
         if (request()->expectsJson()){
             return response()->json(['success'=>'Data is successfully added']);
         }
+
 
         return back()->with('status', 'Group booked');
     }
