@@ -45,6 +45,7 @@ class RegisterController extends Controller
             'password'        => Hash::make(request('password')),
             'type'            => User::DEFAULT_TYPE,
         ]);
+        dd($user);
 
         Invite::where('token', '=', request('token'))->delete(); //deletes invitation(with token) after registration
 
