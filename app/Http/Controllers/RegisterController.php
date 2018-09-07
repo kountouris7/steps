@@ -48,6 +48,6 @@ class RegisterController extends Controller
 
         Invite::where('token', '=', request('token'))->delete(); //deletes invitation(with token) after registration
 
-        return redirect(route('home'));
+        return redirect(route('login'));
     }
 }
