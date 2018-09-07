@@ -31,7 +31,7 @@ class SendEmail extends Mailable
 
     public function build()
     {
-        return $this->from('kountouris7@gmail.com')
+        return $this->from('stepsfitness@fitness.com')
                     ->view('emails.showEmail')->with($this->email->id);
     }
 
