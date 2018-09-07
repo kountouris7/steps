@@ -41,8 +41,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('/import', 'SubscriberController@import')->name('import.excel');
     Route::get('/show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
-    Route::get('/show/subscribers',
-        'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
+    Route::get('/show/subscribers', 'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('/subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
     Route::post('invite/', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');

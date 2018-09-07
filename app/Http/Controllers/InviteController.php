@@ -20,8 +20,7 @@ class InviteController extends Controller
     {
         $this->inviteUser($request->get('email'));
 
-        return redirect()
-            ->back();
+        return redirect(route('showSubscribersCurrentMonth'));
     }
 
     private function inviteUser($email)
