@@ -9,6 +9,8 @@ class Group extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['level']; //relationship to always eager load
+
     //protected $dates = ['day_time'];
 
     public function scopeDayFilter($query, $day)

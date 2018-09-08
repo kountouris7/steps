@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\GroupUpdated;
 use App\Group;
-use App\Http\Requests\BookGroupFilters;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
 use Carbon\Carbon;
@@ -19,24 +17,8 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::with('level')
-                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
-                       ->orderBy('day_time')
-                       ->get();
-
         return view('show', compact('groups'));
     }
-
-    /**
-     * Ship the given order.
-     *
-     * @param Group $group
-     * @param User $user
-     * @param BookGroupRequest $request
-     *
-     * @return void
-     */
-
 
     public function store(Group $group, User $user, BookGroupRequest $request)
     {
@@ -78,19 +60,6 @@ class GroupController extends Controller
 
     }
 
-
-    public function daysFilter($day)
-    {
-        $groups = Group::DayFilter($day)->get();
-
-        return view('show', compact('groups'));
-    }
-
-    /**
-     * @param Group $group
-     *
-     * @return array
-     */
     public function requestedGroupWeek(Group $group): array
     {
         $groupDate          = $group->day_time;
@@ -100,13 +69,6 @@ class GroupController extends Controller
         return [$groupDateWeekStart, $groupDateWeekEnd];
     }
 
-    /**
-     * @param User $user
-     * @param $groupDateWeekStart
-     * @param $groupDateWeekEnd
-     *
-     * @return int
-     */
     public function bookingsWeekly(User $user, $groupDateWeekStart, $groupDateWeekEnd): int
     {
         $bookingsWeekly = $user->groups()
@@ -114,6 +76,13 @@ class GroupController extends Controller
                                ->count();
 
         return $bookingsWeekly;
+    }
+
+    public function daysFilter($day)
+    {
+        $groups = Group::DayFilter($day)->get();
+
+        return view('show', compact('groups'));
     }
 
 }
