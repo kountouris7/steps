@@ -13,7 +13,6 @@
         <div class="row">
 
             @forelse($groups as $group)
-
                 <form method="POST" action="{{route('book.group',[$group->id, auth()->user()->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -39,7 +38,7 @@
                                         <li class="tab">
                                             <button type="submit"
                                                     class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                    {{$group->clients_count >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->clients_count }}
+                                                    {{$group->clients_count >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients_count }}
                                                 of: {{$group->max_capacity}}   {{'available'}}
                                             </button>
                                         </li>

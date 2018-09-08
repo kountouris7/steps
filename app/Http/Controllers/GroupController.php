@@ -82,7 +82,11 @@ class GroupController extends Controller
 
     public function daysFilter($day)
     {
-        $groups = Group::DayFilter($day)->get();
+        $groups = Group::with('level', 'lesson', 'bookings')
+                       ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+                       ->where('day_time', '>=', today())
+                       ->orderBy('day_time')
+                       ->get();
 
         return view('show', compact('groups'));
     }

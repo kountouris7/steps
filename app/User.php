@@ -36,6 +36,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    //protected $with = ['groups'];
+
     public function isAdmin()
     {
         return $this->type === self::ADMIN_TYPE;

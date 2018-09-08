@@ -9,16 +9,16 @@ class Group extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['level']; //relationship to always eager load
+    //protected $with = ['level', 'lesson']; //relationship to always eager load
 
     //protected $dates = ['day_time'];
 
-    public function scopeDayFilter($query, $day)
-    {
-        return $query->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                     ->where('day_time', '>=', today())
-                     ->orderBy('day_time');
-    }
+    //public function scopeDayFilter($query, $day)
+   // {
+    //    return $query->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+   //                  ->where('day_time', '>=', today())
+   //                  ->orderBy('day_time');
+   // }
 
     public function path()
     {

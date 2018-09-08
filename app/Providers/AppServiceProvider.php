@@ -19,9 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $groups = Group::where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
-                       ->latest()
+        $groups = Group::with('level', 'lesson', 'bookings')
+                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
+                       ->orderBy('day_time')
                        ->get();
+
         View::share('groups', $groups);
 
     }
