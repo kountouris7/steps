@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
         $groups = Group::where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
                        ->latest()
                        ->get();
-
         View::share('groups', $groups);
 
     }

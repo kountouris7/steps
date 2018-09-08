@@ -39,7 +39,7 @@
                                         <li class="tab">
                                             <button type="submit"
                                                     class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                    {{$group->attendance() >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->attendance() }}
+                                                    {{$group->clients_count >= $group->capacity() ? 'disabled' : '' }}> {{ $group->capacity() - $group->clients_count }}
                                                 of: {{$group->max_capacity}}   {{'available'}}
                                             </button>
                                         </li>

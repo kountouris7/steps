@@ -15,9 +15,11 @@ class GroupController extends Controller
         $this->middleware('auth');
     }
 
+//$groups is shared from AppServiceProvider
+
     public function index()
     {
-        return view('show', compact('groups'));
+        return view('show');
     }
 
     public function store(Group $group, User $user, BookGroupRequest $request)
