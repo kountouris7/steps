@@ -57,7 +57,6 @@ class GroupController extends Controller
             return response()->json(['success' => 'Data is successfully added']);
         }
 
-
         return back()->with('status', 'Group booked');
 
     }

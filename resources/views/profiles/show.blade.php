@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
     @include('profiles.layouts.profilesnav')
-
     <div class="container">
         <div style="width:800px; margin:0 auto;">
-            @forelse ($groups as $group)
+
+             @forelse ($groups as $group)
                 <div class="container">
                     <ul class="collection">
                         <li class="collection-item avatar center-align">
@@ -28,6 +28,7 @@
                 </div>
 
             @endforelse
+
 
         </div>
     </div>

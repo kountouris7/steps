@@ -90,7 +90,7 @@ class AdminController extends Controller
 
         ]);
 
-        return redirect(route('admin'));
+        return redirect(route('show.lesson'));
     }
 
     public function showtoedit()
