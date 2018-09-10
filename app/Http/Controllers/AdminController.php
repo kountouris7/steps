@@ -164,7 +164,7 @@ class AdminController extends Controller
 
     public function seeAttendances()
     {
-        $attendances = Group::has('clients')// Querying Relationship Existence
+        $attendances = Group::with('clients', 'lesson')// Querying Relationship Existence
                             ->where('day_time', '>=', today()->nowWithSameTz())
                             ->get();
 
@@ -174,9 +174,10 @@ class AdminController extends Controller
     public function attendanceByDay($day)
     {
         $to          = $this->thisWeeksEnd();
-        $attendances = Group::with('clients')
+        $attendances = Group::with('clients', 'lesson')
                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                            ->where('day_time', '<=', $to)->get();
+                            ->where('day_time', '<=', $to)
+                            ->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
     }

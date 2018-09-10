@@ -1,7 +1,5 @@
 <?php
 
-use App\Events\GroupUpdated;
-
 Auth::routes();
 Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
