@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
                  ->when(function () {
                      return CronEntry::shouldIRun('group:create', 1);
                  });
-        // $schedule->command('groups:create')->everyMinute();
+         //$schedule->command('groups:create')->everyMinute();
     }
 
     /**
