@@ -26,12 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('group:create')
-                 ->everyMinute()
-                 ->when(function () {
-                     return CronEntry::shouldIRun('group:create', 1);
-                 });
-        // $schedule->command('groups:create')->everyMinute();
+        //$schedule->command('group:create')
+        //         ->everyMinute()
+        //         ->when(function () {
+        //             return CronEntry::shouldIRun('group:create', 1);
+         //        });
+        $schedule->command('groups:create')->everyMinute();
     }
 
     /**
