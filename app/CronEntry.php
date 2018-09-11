@@ -25,11 +25,21 @@ class CronEntry extends Model
             ],
             [
                 'next_run' => Carbon::now()->addMinutes($minutes)->timestamp,
+
                 'last_run' => Carbon::now()->timestamp,
-            ]
+                ]
         );
 
         return true;
+    }
+
+    public static function updateOrCreate(array $attributes, array $values = [])
+    {
+        $instance = static::firstOrNew($attributes);
+
+        $instance->fill($values)->save();
+
+        return $instance;
     }
 }
 
