@@ -20,14 +20,11 @@ class CronEntry extends Model
             return false;
         }
         CronEntry::updateOrCreate(
-            [
-                'command' => $command
-            ],
+            ['command' => $command],
             [
                 'next_run' => Carbon::now()->addMinutes($minutes)->timestamp,
-
                 'last_run' => Carbon::now()->timestamp,
-                ]
+            ]
         );
 
         return true;
