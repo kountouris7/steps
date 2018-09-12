@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $guarded = [];
+    protected $table = 'groups';
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 

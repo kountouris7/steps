@@ -19,8 +19,8 @@ class CreateCronEntriesTable extends Migration
             $table->integer('next_run');
             $table->integer('last_run');
             $table->timestamps();
-            $table->primary('command');
-            $table->index('next_run');
+            //$table->primary('command');
+            //$table->index('next_run');
         });
     }
 
