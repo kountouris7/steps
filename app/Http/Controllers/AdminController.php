@@ -66,7 +66,17 @@ class AdminController extends Controller
         $lesson = Lesson::findOrFail($id);
         $levels = Level::get();
 
+        foreach ($levels as $level) {
+
+            if ($level->count < 4) {
+
+                return 'Please create Levels in your database'; //have to fix this and put in middleware??
+            }
+        }
+
         return view('administrator.groupcreate', compact('lesson', 'levels'));
+
+
     }
 
     public function groupstore(Request $request)
@@ -122,7 +132,7 @@ class AdminController extends Controller
             'level_id'     => request('level_id'),
         ]);
 
-        $data = $group->lesson->name. 'has been updated';
+        $data = $group->lesson->name . 'has been updated';
 
         GroupUpdated::dispatch($data);
 

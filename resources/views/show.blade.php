@@ -38,12 +38,14 @@
                                         <li class="tab">
                                             <button type="submit"
                                                     class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
-                                                    {{$group->clients_count >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients_count }}
+                                                    {{$group->clients->count() >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients->count()}}
                                                 of: {{$group->max_capacity}}   {{'available'}}
                                             </button>
                                         </li>
                                     </ul>
                                 </div>
+
+
                                 <div class="card-content grey lighten-4 center-align">
                                     <div id="test-desc-{{$group->id}}">{{optional($group->lesson)->body ?? $group->id}}</div>
                                     <div id="test-level-{{$group->id}}">{{$group->level->level}}</div>
