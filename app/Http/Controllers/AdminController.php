@@ -68,7 +68,7 @@ class AdminController extends Controller
 
         foreach ($levels as $level) {
 
-            if ($level->count < 4) {
+            if ($level->count == 0) {
 
                 return 'Please create Levels in your database'; //have to fix this and put in middleware??
             }
