@@ -9,11 +9,9 @@
     @endif
 
     <div class="container">
-
         <div class="row">
-
             @forelse($groups as $group)
-                <form method="POST" action="{{route('book.group',[$group->id, auth()->user()->id])}}">
+                <form method="POST" action="{{route('book.group',[$group->id, auth()->user()])}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <input type="hidden" name="group_id" value="{{$group->id}}">

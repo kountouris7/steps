@@ -5,7 +5,7 @@ Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/groups', 'GroupController@index')->name('show.groups');
+//Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::any('test/{id}', 'AdminController@test')->name('testing');
+Route::get('/testing', 'GroupController@index')->name('show.groups');
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');

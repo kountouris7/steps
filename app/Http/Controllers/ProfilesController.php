@@ -21,7 +21,7 @@ class ProfilesController extends Controller
 
     public function showPastBookings(User $user)
     {
-        $groups = $user->groups()
+        $groups = $user->groups()->with('lesson')
                        ->where('day_time', '<', today())
                        ->get();
 

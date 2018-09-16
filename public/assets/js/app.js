@@ -14,7 +14,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/Flash.vue'));
+Vue.component('example-component', require('.resources/views/administrator/exper.blade.php'));
 
 const app = new Vue({
     el: '#app',

@@ -42,6 +42,11 @@ class Subscriber extends Model
         return 'slug';
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'subscriber_id');

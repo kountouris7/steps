@@ -13,7 +13,7 @@
                         <i class="material-icons circle">folder</i>
                         {{ $group->created_at->diffForHumans() }}:<br>
                         You have booked: {{$group->lesson->name}}<br>
-                        On {{date('D M Y', strtotime($group->day))}}<br>
+                        On {{date('D M Y', strtotime($group->day_time))}}<br>
                         @ {{$group->time}}
                         <hr>
 

@@ -19,7 +19,7 @@ class GroupController extends Controller
 
     public function index()
     {
-        return view('show');
+        return view('administrator.exper');
     }
 
     public function store(Group $group, User $user, BookGroupRequest $request)
@@ -28,12 +28,11 @@ class GroupController extends Controller
         $userSubscriptions = $user->subscription()->get();
         $bookingsTotal     = $user->groups()->get();
 
-        $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
+        $bookingsWeekly    = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
 
         if ($group->attendance() >= $group->capacity()) {
             return back()->with('status', 'Sorry this group is fully booked');
         }
-
         foreach ($userSubscriptions as $userSubscription) {
             if ($bookingsWeekly == $userSubscription->package_week) {
                 return back()->with('status', 'Sorry, you are not allowed another booking in this week');
@@ -52,14 +51,13 @@ class GroupController extends Controller
                   $user = [
                       'user_id' => request('user_id'),
                   ]);
-
         if (request()->expectsJson()) {
             return response()->json(['success' => 'Data is successfully added']);
         }
 
         return back()->with('status', 'Group booked');
-
     }
+
 
     public function requestedGroupWeek(Group $group): array
     {
