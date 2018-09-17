@@ -57610,7 +57610,7 @@ exports = module.exports = __webpack_require__(48)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57631,6 +57631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+
             group_id: '',
             user_id: ''
         };
@@ -57639,9 +57640,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         bookGroup: function bookGroup() {
+
             axios.post('/testing/' + this.group.id + this.user.id, {
                 group_id: this.group.id,
                 user_id: this.user.id
+            }).catch(function (error) {
+                flash(error.response.data, 'danger');
             });
         }
     }

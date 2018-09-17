@@ -35,7 +35,7 @@
                                             <li class="tab"><a class="active"
                                                                href="#test-desc-{{$group->id}}">Description</a></li>
                                             <li class="tab">
-                                                <button type="submit" @click="book"
+                                                <button type="submit" @click="bookGroup"
                                                         class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                         {{$group->clients->count() >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients->count()}}
                                                     of: {{$group->max_capacity}}   {{'available'}}
@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-
+                    </form>
                         @empty
                             <div class="center-align">
                                 <h4>There are no groups on this day yet...</h4>
@@ -65,7 +65,3 @@
         </div>
     </showGroups>
 @endsection
-<script>export default {
-        components: {}
-    }
-</script>
