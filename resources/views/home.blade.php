@@ -17,20 +17,22 @@
 
     <div id="root">
         <ul>
-            <li v-for="name in names" v-text="name"></li>
+            <li v-for="testing in testings" v-text="testing"></li>
         </ul>
 
-        <button v-bind:title="title">Hover me</button>
     </div>
 
     <script>
         new Vue({
             el: '#root',
             data: {
-                title: 'heyyyy',
+                testings: []
             },
-
+            mounted() {
+                axios.get('/testing').then(response => this.testings = response.data);
+            }
         });
+
     </script>
 
 @endsection

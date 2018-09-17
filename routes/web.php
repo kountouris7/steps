@@ -12,13 +12,13 @@ Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 Route::get('profiles/{user}/past.bookings', 'ProfilesController@showPastBookings')->name('past.bookings');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
 
-});
 
 Route::get('/testing', 'GroupController@index')->name('show.groups');
+Route::post('/testing/{group}/{user}', 'GroupController@store')->name('testing.vue');
+
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/admin', 'AdminController@admin')->name('admin');
