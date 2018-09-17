@@ -14,10 +14,10 @@
         },
 
         methods: {
-            book() {
-                axios.post('/testing/' + this.group_id + this.user_id, {
-                    group_id: this.group_id,
-                    user_id: this.user_id
+            bookGroup() {
+                axios.post('/testing/' + this.group.id + this.user.id, {
+                    group_id: this.group.id,
+                    user_id: this.user.id
                 });
             }
         }

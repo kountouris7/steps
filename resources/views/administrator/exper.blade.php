@@ -12,10 +12,10 @@
         <div class="container">
             <div class="row">
                 @forelse($groups as $group)
-
+                    <form @submit="bookGroup">
                         <div class="form-group">
-                            <input type="hidden" v-model="group_id" value="{{$group->id}}">
-                            <input type="hidden" v-model="user_id" value="{{auth()->id()}}">
+                            <input type="hidden" name="group_id" v-model="group_id" value="{{$group->id}}">
+                            <input type="hidden" name="user_id" v-model="user_id" value="{{auth()->id()}}">
 
                             <div class="col s12 m4 l6 ">
 
@@ -55,13 +55,17 @@
                         </div>
 
 
-                @empty
-                    <div class="center-align">
-                        <h4>There are no groups on this day yet...</h4>
-                    </div>
+                        @empty
+                            <div class="center-align">
+                                <h4>There are no groups on this day yet...</h4>
+                            </div>
 
                 @endforelse
             </div>
         </div>
     </showGroups>
 @endsection
+<script>export default {
+        components: {}
+    }
+</script>

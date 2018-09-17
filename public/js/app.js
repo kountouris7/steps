@@ -14000,7 +14000,7 @@ window.Vue = __webpack_require__(39);
  */
 
 Vue.component('example-component', __webpack_require__(42));
-Vue.component('show', __webpack_require__(57));
+Vue.component('showGroups', __webpack_require__(57));
 
 var app = new Vue({
   el: '#root'
@@ -57638,10 +57638,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        book: function book() {
-            axios.post('/testing/' + this.group_id + this.user_id, {
-                group_id: this.group_id,
-                user_id: this.user_id
+        bookGroup: function bookGroup() {
+            axios.post('/testing/' + this.group.id + this.user.id, {
+                group_id: this.group.id,
+                user_id: this.user.id
             });
         }
     }

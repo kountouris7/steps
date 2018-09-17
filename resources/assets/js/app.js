@@ -15,7 +15,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/Flash.vue'));
-Vue.component('show', require('./components/ShowGroups.vue'));
+Vue.component('showGroups', require('./components/ShowGroups.vue'));
 
 
 const app = new Vue({
