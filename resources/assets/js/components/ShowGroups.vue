@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "Show.vue",
+        name: "ShowGroups.vue",
 
         data() {
             return {

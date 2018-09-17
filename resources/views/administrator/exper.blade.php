@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <show inline-template>
+    <showGroups inline-template>
 
         @include('filterdays')
         @if (session('status'))
@@ -63,5 +63,5 @@
                 @endforelse
             </div>
         </div>
-    </show>
+    </showGroups>
 @endsection
