@@ -3,8 +3,10 @@
 </template>
 
 <script>
+    import {AxiosInstance as axios} from "axios";
+
     export default {
-        name: "ShowGroups.vue",
+       // name: "ShowGroups.vue",
 
         data() {
             return {
@@ -16,13 +18,20 @@
 
         methods: {
             bookGroup() {
-
                 axios.post('/testing/' + this.group.id + this.user.id, {
                     group_id: this.group.id,
                     user_id: this.user.id
                 })
-                    .catch(error => {
-                    flash(error.response.data, 'danger');
+                    .then(response => 'ssssssss')
+                    .catch(e => {
+                        this.errors.push(e)
+                    });
+            },
+
+            destroy() {
+                axios.delete('/booking/' + this.group.id);
+                $(this.$el).fadeOut(300, () => {
+                    flash('Your reply has been deleted.');
                 });
             }
         }

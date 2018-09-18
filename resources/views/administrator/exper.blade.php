@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <showGroups inline-template>
+
 
         @include('filterdays')
         @if (session('status'))
@@ -35,7 +35,7 @@
                                             <li class="tab"><a class="active"
                                                                href="#test-desc-{{$group->id}}">Description</a></li>
                                             <li class="tab">
-                                                <button type="submit" @click="bookGroup"
+                                                <button type="submit" @click="bookGroup()"
                                                         class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                         {{$group->clients->count() >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients->count()}}
                                                     of: {{$group->max_capacity}}   {{'available'}}
@@ -63,5 +63,5 @@
                 @endforelse
             </div>
         </div>
-    </showGroups>
+
 @endsection

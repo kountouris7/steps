@@ -16,7 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('show-groups', require('./ShowGroups.vue'));
+Vue.component('show-groups', require('./components/ShowGroups.vue'));
 
 const app = new Vue({
     el: '#app'

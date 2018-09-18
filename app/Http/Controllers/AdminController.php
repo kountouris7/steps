@@ -151,6 +151,10 @@ class AdminController extends Controller
         $this->authorize('before', $group);
         $group->delete();
 
+        if (request()->expectsJson()) {
+            return response()->json(['status' => 'Data is deleted']);
+        }
+
         return back()->with('status', 'Group has been deleted');
     }
 

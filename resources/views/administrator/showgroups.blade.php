@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
-
+    <showGroups inline-template>
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>
@@ -9,11 +9,11 @@
     <div class="container">
         <div class="row">
             @forelse($groups as $group)
-                <form method="POST" action="{{route('book.group',[$group->id, auth()->user()->id])}}">
+                <form method="POST" action="{{route('book.group',[$group->id, auth()->id()])}}">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <input type="hidden" name="group_id" value="{{$group->id}}">
-                        <input type="hidden" name="user_id" value="{{auth()->id()}}">
+                        <input type="hidden" name="group_id" v-model="group_id" value="{{$group->id}}">
+                        <input type="hidden" name="user_id"  v-model="user_id" value="{{auth()->id()}}">
                         <div class="card">
                             <div class="card-content">
                                 <p class="title col s12 center-align">
@@ -46,11 +46,12 @@
 
 
                     @can ('before', $group)
-                        <form action="{{route('group.destroy', [$group->id])}}" method="POST">
+                    <button class="btn-small" @click="destroy">Delete Group</button>
+                      {{--  <form action="{{route('group.destroy', [$group->id])}}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button type="submit" class="btn-small">Delete Group</button>
-                        </form>
+                        </form> --}}
 <br>
                         <form action="{{route('group.edit', [$group->id])}}" method="POST">
                             {{ csrf_field() }}
@@ -68,5 +69,5 @@
             @endforelse
         </div>
     </div>
-
+    </showGroups>
 @endsection
