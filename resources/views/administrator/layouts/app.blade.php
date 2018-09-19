@@ -16,7 +16,6 @@
     <div style="width:800px; margin:0 auto;">
         @yield('content')
         <flash message="{{session('flash')}}"></flash>
-        <ShowGroups inline-template></ShowGroups>
     </div>
 </div>
 

@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
-    <ShowGroups inline-template>
+
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>
@@ -69,5 +69,5 @@
             @endforelse
         </div>
     </div>
-    </showGroups>
+
 @endsection

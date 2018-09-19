@@ -111,8 +111,8 @@ class AdminController extends Controller
                        ->orderBy('day_time')
                        ->get();
 
-        return view('administrator.showgroups', compact('groups'))
-            ->with('flash', 'Group has been updated and published');
+        return view('administrator.showgroups', compact('groups'));
+
     }
 
     public function editgroup($id)
@@ -138,7 +138,7 @@ class AdminController extends Controller
 
         GroupUpdated::dispatch($data);
 
-        return redirect(route('administrator.showgroups'))->with('status', $data);
+        return redirect(route('administrator.showgroups'))->with('flash', 'Group has been updated and published');
     }
 
     /**
