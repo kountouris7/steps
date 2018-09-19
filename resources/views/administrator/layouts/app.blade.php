@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{asset ('resources/assets/css/materialize.min.css')}}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{asset ('css/materialize.min.css')}}" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,6 +15,8 @@
     @include('administrator.layouts.nav')
     <div style="width:800px; margin:0 auto;">
         @yield('content')
+        <flash message="{{session('flash')}}"></flash>
+        <ShowGroups inline-template></ShowGroups>
     </div>
 </div>
 
@@ -56,8 +57,12 @@
 
 
 <!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="{{asset('resources/assets/js/materialize.min.js')}}"></script>
-<script src="{{asset('resources/assets/js/app.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
 
 </body>
 </html>
+<script>export default {
+        components: {}
+    }
+</script>

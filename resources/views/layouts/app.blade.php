@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{asset ('resources/assets/css/materialize.min.css')}}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{asset ('css/materialize.min.css')}}" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,6 +15,7 @@
 <div id="app">
     @include('layouts.nav')
     @yield('content')
+    <ShowGroups inline-template> </ShowGroups>
 </div>
 
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
@@ -49,10 +50,10 @@
         $('.materialboxed').materialbox();
     });</script>
 
-
 <!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="{{asset('resources/assets/js/materialize.min.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+
 
 </body>
 </html>

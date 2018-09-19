@@ -100,7 +100,8 @@ class AdminController extends Controller
 
         ]);
 
-        return redirect(route('show.lesson'));
+        return redirect(route('show.lesson'))
+            ->with('flash', 'Group has been published');
     }
 
     public function showtoedit()
@@ -110,7 +111,8 @@ class AdminController extends Controller
                        ->orderBy('day_time')
                        ->get();
 
-        return view('administrator.showgroups', compact('groups'));
+        return view('administrator.showgroups', compact('groups'))
+            ->with('flash', 'Group has been updated and published');
     }
 
     public function editgroup($id)

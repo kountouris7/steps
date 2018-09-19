@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <showGroups inline-template>
+    <ShowGroups inline-template>
         @include('filterdays')
         @if (session('status'))
             <div class="alert center-align">
@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 @forelse($groups as $group)
-                    <form @submit="bookGroup">
+                    <form method="POST">
                         <div class="form-group">
                             <input type="hidden" name="group_id" v-model="group_id" value="{{$group->id}}">
                             <input type="hidden" name="user_id" v-model="user_id" value="{{auth()->id()}}">
@@ -34,7 +34,7 @@
                                             <li class="tab"><a class="active"
                                                                href="#test-desc-{{$group->id}}">Description</a></li>
                                             <li class="tab">
-                                                <button type="submit" @click="bookGroup()"
+                                                <button type="submit" @click="bookGroup"
                                                         class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                         {{$group->clients->count() >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients->count()}}
                                                     of: {{$group->max_capacity}}   {{'available'}}
@@ -62,5 +62,6 @@
                 @endforelse
             </div>
         </div>
-    </showGroups>
+    </ShowGroups>
+
 @endsection

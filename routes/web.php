@@ -7,7 +7,7 @@ Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
-Route::delete('/booking/{group}/', 'GroupUserController@destroy')->name('book.destroy');
+Route::delete('/booking/{group}', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
 Route::get('profiles/{user}/past.bookings', 'ProfilesController@showPastBookings')->name('past.bookings');
 // {token} is a required parameter that will be exposed to us in the controller method

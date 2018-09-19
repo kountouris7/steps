@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app')
 @section('content')
-    <showGroups inline-template>
+    <ShowGroups inline-template>
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>
@@ -46,7 +46,7 @@
 
 
                     @can ('before', $group)
-                    <button class="btn-small" @click="destroy">Delete Group</button>
+                    <button class="btn-small" @click="destr">Delete Group</button>
                       {{--  <form action="{{route('group.destroy', [$group->id])}}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
