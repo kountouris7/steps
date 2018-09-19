@@ -138,7 +138,7 @@ class AdminController extends Controller
 
         GroupUpdated::dispatch($data);
 
-        return redirect(route('administrator.showgroups'))->with('flash', 'Group has been updated and published');
+        return redirect(route('administrator.showgroups'))->with('flash', $data);
     }
 
     /**

@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+//require('.materialize.min.js');
+
 window.Vue = require('vue');
 
 /**
@@ -16,7 +18,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('flash', require('./components/Flash.vue'));
-Vue.component('show-groups', require('./components/ShowGroups.vue'));
+//Vue.component('show-groups', require('./components/ShowGroups.vue'));
 
 const app = new Vue({
     el: '#app'

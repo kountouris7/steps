@@ -1,13 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
     @include('filterdays')
     @if (session('status'))
         <div class="alert center-align">
             <h4><strong>{{ session('status') }}</strong></h4>
         </div>
     @endif
-
     <div class="container">
         <div class="row">
             @forelse($groups as $group)

@@ -36,7 +36,7 @@
             hide() {
                 setTimeout(() => {
                     this.show = false;
-                }, 3000); //** 3 seconds
+                }, 5000); //** 5 seconds
             }
         }
     };

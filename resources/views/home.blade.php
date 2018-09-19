@@ -15,25 +15,5 @@
         </div>
     </div>
 
-    <div id="root">
-        <ul>
-            <li v-for="testing in testings" v-text="testing"></li>
-        </ul>
-
-    </div>
-
-    <script>
-        new Vue({
-            el: '#root',
-            data: {
-                testings: []
-            },
-            mounted() {
-                axios.get('/testing').then(response => this.testings = response.data);
-            }
-        });
-
-    </script>
-
 @endsection
 
