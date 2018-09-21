@@ -18,7 +18,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('flash', require('./components/Flash.vue'));
-//Vue.component('show-groups', require('./components/ShowGroups.vue'));
 Vue.component('groups', require('./components/Groups.vue'));
 Vue.component('BookGroup', require('./components/BookGroup.vue'));
 
