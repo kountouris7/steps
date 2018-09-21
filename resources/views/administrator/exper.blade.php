@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+    <groups inline-template>
         @include('filterdays')
         @if (session('status'))
             <div class="alert center-align">
@@ -62,6 +62,6 @@
                 @endforelse
             </div>
         </div>
-
+    </groups>
 
 @endsection

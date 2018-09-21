@@ -5,7 +5,7 @@ Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/groups', 'GroupController@index')->name('show.groups');
+Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profiles');
@@ -16,8 +16,8 @@ Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day')
 
 
 
-Route::get('/testing', 'GroupController@index')->name('show.groups');
-Route::post('/testing/{group}/{user}', 'GroupController@store')->name('testing.vue');
+//Route::get('/testing', 'GroupController@index')->name('show.groups');
+//Route::post('/testing/{group}/{user}', 'GroupController@store')->name('testing.vue');
 
 
 Route::group(['middleware' => 'is_admin'], function () {

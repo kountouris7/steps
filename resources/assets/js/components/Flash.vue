@@ -1,6 +1,6 @@
 <template>
-    <div class="alert alert-success alert-flash" role="alert" v-show="show">
-        <strong>Success!</strong> {{ body }}
+    <div class="alert alert-warning" role="alert" v-show="show">
+        <strong></strong> {{ body }}
     </div>
 </template>
 
@@ -43,7 +43,7 @@
 </script>
 
 <style>
-    .alert-flash {
+    .alert-warning {
         position: fixed;
         right: 25px;
         bottom: 25px;
