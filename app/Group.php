@@ -9,7 +9,7 @@ class Group extends Model
 {
     protected $guarded = [];
     protected $table = 'groups';
-    protected $appends = ['bookingsCount'];
+    protected $appends = ['bookingsCount', 'isBooked'];
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 
@@ -66,11 +66,13 @@ class Group extends Model
 
     public function isBooked()
     {
-        return ! ! $this->bookings->where('user_id', auth()->id());
+
+        return ! ! $this->bookings->where('user_id', auth()->id())->first();
     }
 
-    public function getIsBookedCountAttribute()
+    public function getIsBookedAttribute()
     {
+
         return $this->isBooked();
     }
 

@@ -52,6 +52,7 @@ class GroupController extends Controller
                       'user_id' => auth()->id(),
                   ]);
 
+
         if (request()->expectsJson()) {
             return response()->json(['status' => 'Data is successfully added']);
         }

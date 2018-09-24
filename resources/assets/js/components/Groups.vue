@@ -1,5 +1,5 @@
 <template>
-    <button type="submit" :class="classes" class="waves-effect pink accent-3 btn-small" @click="submit">
+    <button type="submit" :class="classes" class="waves-effect pink accent-3 btn-small" @click="toggle">
         <span v-text="bookingsCount"></span>
     </button>
 </template>
@@ -26,7 +26,7 @@
         },
 
         methods: {
-            submit() {
+            toggle() {
                 axios.post('/booking/' + this.group.id)
                     .then(response => {
                         console.log(response)
