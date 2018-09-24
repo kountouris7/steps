@@ -51,6 +51,14 @@ class Group extends Model
                     ->withTimestamps();
     }
 
+    public function getClientsCountAttribute()
+    {
+      // $attributes = ['user_id' => auth()->id()];
+      // if ($this->clients()->where($attributes)->exists()){
+      //
+      // }
+    }
+
     public function bookings()
     {
         return $this->hasMany(GroupUser::class, 'group_id');
@@ -58,7 +66,7 @@ class Group extends Model
 
     public function isBooked()
     {
-        return ! ! $this->bookings->where('user_id', auth()->id())->count();
+        return ! ! $this->bookings->where('user_id', auth()->id());
     }
 
     public function getIsBookedCountAttribute()

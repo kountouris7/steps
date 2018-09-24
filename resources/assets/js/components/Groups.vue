@@ -10,16 +10,17 @@
 
         props: ['group'],
 
-        data(){
-            return{
+        data() {
+            return {
                 bookingsCount: this.group.bookingsCount,
-                isBooked:this.group.isBooked
+                isBooked: this.group.isBooked,
+                //clients: this.group.clients
             }
         },
 
-        computed:{
-            classes(){
-                return[ this.isBooked ? 'disabled' : '' ];
+        computed: {
+            classes() {
+                return [this.isBooked ? 'disabled' : ''];
             }
 
         },
@@ -36,8 +37,8 @@
 
                 this.isBooked = true;
                 this.bookingsCount++;
-            },
 
+            },
 
 
         }
