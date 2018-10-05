@@ -10,7 +10,9 @@ window.Popper = require('popper.js').default;
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+    // require('bootstrap');
+    require('./materialize.min.js');
+
 } catch (e) {
 }
 
@@ -61,6 +63,7 @@ window.Echo.channel('updates')
     });
 
 
+window.Vue = require('vue');
 window.events = new Vue();
 
 window.flash = function (message) {

@@ -15,8 +15,8 @@
     </script>
 </head>
 <body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>{{--u should change this to the production url--}}
+{{--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>--}}
+{{--<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>--}}{{--u should change this to the production url--}}
 
 <div id="app">
     @include('layouts.nav')
@@ -26,40 +26,31 @@
 </div>
 
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--}}
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>--}}
 <!-- this is for dropdown btn -->
-<script>$(".dropdown-trigger").dropdown();</script>
-
-<script>  $(document).ready(function () {
-        $('.collapsible').collapsible();
-    });</script>
-
-<script> $(document).ready(function () {
-        $('.parallax').parallax();
-    });</script>
-
-<script> $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
-    });</script>
-
-<script>  $(document).ready(function () {
-        $('.sidenav').sidenav();
-    });</script>
-
-<script>$(document).ready(function () {
-        $('.tabs').tabs();
-    });</script>
-
-<script>$(document).ready(function () {
-        $('.materialboxed').materialbox();
-    });</script>
+<script></script>
 
 <!--JavaScript at end of body for optimized loading-->
 <script src="{{asset('js/app.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+        $(".dropdown-trigger").dropdown();
+        $('.parallax').parallax();
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true
+        });
+        $('.sidenav').sidenav();
+        $('.tabs').tabs();
+        $('.materialboxed').materialbox();
+    });
+</script>
+
+{{--<script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>--}}
 
 
 </body>
