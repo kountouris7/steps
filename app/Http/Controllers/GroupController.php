@@ -19,32 +19,38 @@ class GroupController extends Controller
 
     public function index()
     {
-        return view('show');
+        $groups = Group::with('level', 'lesson', 'bookings', 'clients')
+                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
+                       ->orderBy('day_time')
+                       ->get();
+
+        return view('show')
+            ->with('groups', $groups);
     }
 
     public function store(Group $group, User $user, BookGroupRequest $request)
     {
-        // list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
-        // $userSubscriptions = $user->subscription()->get();
-        // $bookingsTotal     = $user->groups()->get();
+         list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
+         $userSubscriptions = $user->subscription()->get();
+         $bookingsTotal     = $user->groups()->get();
 
-        // $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
+         $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
 
-        // if ($group->attendance() >= $group->capacity()) {
-        //     return back()->with('flash', 'Sorry this group is fully booked');
-        // }
-        // foreach ($userSubscriptions as $userSubscription) {
-        //     if ($bookingsWeekly == $userSubscription->package_week) {
-        //         return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
-        //     }
-        // }
-        // foreach ($bookingsTotal as $booking) {
-        //     if (Carbon::parse($booking->day_time)
-        //               ->format('d F Y') == Carbon::parse($group->day_time)
-        //                                          ->format('d F Y')) {
-        //         return back()->with('flash', 'Already booked a class on this day');
-        //     }
-        // }
+         if ($group->attendance() >= $group->capacity()) {
+             return back()->with('flash', 'Sorry this group is fully booked');
+         }
+         foreach ($userSubscriptions as $userSubscription) {
+             if ($bookingsWeekly == $userSubscription->package_week) {
+                 return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
+             }
+         }
+         foreach ($bookingsTotal as $booking) {
+             if (Carbon::parse($booking->day_time)
+                       ->format('d F Y') == Carbon::parse($group->day_time)
+                                                  ->format('d F Y')) {
+                 return back()->with('flash', 'Already booked a class on this day');
+             }
+         }
 
         try {
             $group->clients()

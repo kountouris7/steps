@@ -16,7 +16,7 @@ Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day')
 
 
 
-//Route::get('/testing', 'GroupController@index')->name('show.groups');
+Route::get('/testing', 'GroupController@reminders')->name('testing');
 //Route::post('/testing/{group}/{user}', 'GroupController@store')->name('testing.vue');
 
 

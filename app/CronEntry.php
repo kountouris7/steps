@@ -11,7 +11,14 @@ class CronEntry extends Model
 
     protected $fillable = ['command', 'next_run', 'last_run'];
 
-
+    /**
+     * returns true every seven days
+     *
+     * @param $command
+     * @param $minutes
+     *
+     * @return bool
+     */
     public static function shouldIRun($command, $minutes)
     {
         $cron = CronEntry::find($command);

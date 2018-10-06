@@ -51,13 +51,10 @@ class Group extends Model
                     ->withTimestamps();
     }
 
-    public function getClientsCountAttribute()
-    {
-      // $attributes = ['user_id' => auth()->id()];
-      // if ($this->clients()->where($attributes)->exists()){
-      //
-      // }
-    }
+   // public function getClientsAttribute()
+    //{
+    //    return $this->clients();
+   // }
 
     public function bookings()
     {

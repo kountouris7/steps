@@ -14,7 +14,6 @@
                 bookingsCount: this.group.bookingsCount,
                 isBooked: this.group.isBooked,
                 maxCapacity: this.group.max_capacity,
-                //clients: this.group.clients
             }
         },
 
@@ -23,7 +22,7 @@
                 return [this.isBooked ? 'disabled' : ''];
             },
             getBookButtonText() {
-                return this.bookingsCount + ' of ' + this.maxCapacity + ' available.';
+                return this.maxCapacity - this.bookingsCount + ' of ' + this.maxCapacity + ' available';
             }
         },
 
@@ -37,6 +36,9 @@
                         console.log(response)
                     })
                     .catch(error => {
+                        //if error status code == 422
+                        //show validation errors
+
                         alert('kolos')
                         console.log(error.response)
                     });

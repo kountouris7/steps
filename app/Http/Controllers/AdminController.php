@@ -117,8 +117,11 @@ class AdminController extends Controller
 
     public function editgroup($id)
     {
-        $group      = Group::with('level')->find($id);
+        $group      = Group::with('level')
+                           ->findOrFail($id);
+
         $levels     = Level::get();
+
         $groupLevel = $group->level->level;
 
         return view('administrator.editgroup', compact('group', 'levels', 'groupLevel'));
