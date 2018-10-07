@@ -35,7 +35,6 @@ class GroupController extends Controller
          $bookingsTotal     = $user->groups()->get();
 
          $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
-
          if ($group->attendance() >= $group->capacity()) {
              return back()->with('flash', 'Sorry this group is fully booked');
          }

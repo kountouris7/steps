@@ -29,7 +29,7 @@
                                                        href="#test-desc-{{$group->id}}">Description</a></li>
                                     <li class="tab">
 
-                                        <groups :group="{{$group}}"></groups>
+                                        <groups :group="{{$group}}" :auth="{{auth()->id()}}"></groups>
 
                                         {{-- <button type="submit"
                                                    class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}

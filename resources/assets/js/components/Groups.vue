@@ -7,13 +7,14 @@
 <script>
     export default {
 
-        props: ['group'],
+        props: ['group' , 'auth'],
 
         data() {
             return {
                 bookingsCount: this.group.bookingsCount,
                 isBooked: this.group.isBooked,
                 maxCapacity: this.group.max_capacity,
+
             }
         },
 
@@ -28,7 +29,7 @@
 
         methods: {
             toggle() {
-                axios.post('/booking/' + this.group.id)
+                axios.post('/booking/' + this.group.id + '/' + this.auth)
                     .then(response => {
                         this.isBooked = true;
                         this.bookingsCount++;

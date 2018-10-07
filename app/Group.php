@@ -16,11 +16,11 @@ class Group extends Model
     //protected $dates = ['day_time'];
 
     //public function scopeDayFilter($query, $day)
-   // {
+    // {
     //    return $query->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-   //                  ->where('day_time', '>=', today())
-   //                  ->orderBy('day_time');
-   // }
+    //                  ->where('day_time', '>=', today())
+    //                  ->orderBy('day_time');
+    // }
 
     public function path()
     {
@@ -39,11 +39,16 @@ class Group extends Model
 
     public function book() //this is ignored
     {
-       //$attributes = ['user_id' => auth()->id()];
-       //if ( ! $this->clients()->where($attributes)->exists()) {
-       //    $this->clients()->attach(auth()->id());
-       //}
+        //$attributes = ['user_id' => auth()->id()];
+        //if ( ! $this->clients()->where($attributes)->exists()) {
+        //    $this->clients()->attach(auth()->id());
+        //}
     }
+
+    //public function getClientsAttribute()
+   // {
+   //     return $this->clients();
+   // }
 
     public function clients()
     {
@@ -51,26 +56,21 @@ class Group extends Model
                     ->withTimestamps();
     }
 
-   // public function getClientsAttribute()
-    //{
-    //    return $this->clients();
-   // }
-
     public function bookings()
     {
         return $this->hasMany(GroupUser::class, 'group_id');
-    }
-
-    public function isBooked()
-    {
-
-        return ! ! $this->bookings->where('user_id', auth()->id())->first();
     }
 
     public function getIsBookedAttribute()
     {
 
         return $this->isBooked();
+    }
+
+    public function isBooked()
+    {
+
+        return ! ! $this->bookings->where('user_id', auth()->id())->first();
     }
 
     public function getBookingsCountAttribute()
