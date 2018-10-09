@@ -9,7 +9,7 @@ class Group extends Model
 {
     protected $guarded = [];
     protected $table = 'groups';
-    protected $appends = ['bookingsCount', 'isBooked'];
+    protected $appends = ['bookingsCount', 'isBooked', 'clients'];
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 
@@ -45,10 +45,10 @@ class Group extends Model
         //}
     }
 
-    //public function getClientsAttribute()
-   // {
-   //     return $this->clients();
-   // }
+    public function getClientsAttribute()
+    {
+        return $this->clients();
+    }
 
     public function clients()
     {

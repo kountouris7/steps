@@ -31,6 +31,10 @@
             toggle() {
                 axios.post('/booking/' + this.group.id + '/' + this.auth)
                     .then(response => {
+                        alert(response.data);
+                        if (response.status === 422){
+                              //window.location.reload()  //when click ok on alert -> refresh page so button wont disable (temporary solution)
+                        }
                         this.isBooked = true;
                         this.bookingsCount++;
 
@@ -39,9 +43,8 @@
                     .catch(error => {
                         //if error status code == 422
                         //show validation errors
-
-                        alert('kolos')
-                        console.log(error.response)
+                        alert('kolos');
+                        console.log(error.data)
                     });
 
 

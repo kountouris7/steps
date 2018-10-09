@@ -6,6 +6,7 @@ use App\Group;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class GroupController extends Controller
 {
@@ -36,18 +37,21 @@ class GroupController extends Controller
 
          $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
          if ($group->attendance() >= $group->capacity()) {
-             return back()->with('flash', 'Sorry this group is fully booked');
+             return response('Sorry this group is fully booked');
+             //return back()->with('flash', 'Sorry this group is fully booked');
          }
          foreach ($userSubscriptions as $userSubscription) {
              if ($bookingsWeekly == $userSubscription->package_week) {
-                 return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
+                 return response('Sorry, you have reached your weekly booking limit');
+                 //return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
              }
          }
          foreach ($bookingsTotal as $booking) {
              if (Carbon::parse($booking->day_time)
                        ->format('d F Y') == Carbon::parse($group->day_time)
                                                   ->format('d F Y')) {
-                 return back()->with('flash', 'Already booked a class on this day');
+                 return response('Already booked a class on this day', 422);
+                 //return back()->with('flash', 'Already booked a class on this day');
              }
          }
 
@@ -55,7 +59,7 @@ class GroupController extends Controller
             $group->clients()
                   ->attach($group->id,
                       [
-                          'user_id' => auth()->id(),
+                          'user_id' => $user->id,
                       ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -64,11 +68,12 @@ class GroupController extends Controller
         }
 
 
-        if (request()->expectsJson()) {
-            return response()->json(['status' => 'Data is successfully added']);
-        }
+     //   if (request()->expectsJson()) {
+      //      return response()->json(['status' => 'Data is successfully added']);
+      //  }
 
-        return back()->with('flash', 'Booking Successful');
+        return response('Booking Successful');
+        //return back()->with('flash', 'Booking Successful');
     }
 
 
