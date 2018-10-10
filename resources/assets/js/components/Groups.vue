@@ -7,7 +7,7 @@
 <script>
     export default {
 
-        props: ['group' , 'auth'],
+        props: ['group', 'auth'],
 
         data() {
             return {
@@ -31,9 +31,9 @@
             toggle() {
                 axios.post('/booking/' + this.group.id + '/' + this.auth)
                     .then(response => {
-                        alert(response.data);
-                        if (response.status === 422){
-                              //window.location.reload()  //when click ok on alert -> refresh page so button wont disable (temporary solution)
+                        if (response.status === 222) { //find out why error 222?
+                            alert(response.data.message);
+                            window.location.reload()  //when click ok on alert -> refresh page so button wont disable (temporary solution)
                         }
                         this.isBooked = true;
                         this.bookingsCount++;

@@ -50,7 +50,10 @@ class GroupController extends Controller
              if (Carbon::parse($booking->day_time)
                        ->format('d F Y') == Carbon::parse($group->day_time)
                                                   ->format('d F Y')) {
-                 return response('Already booked a class on this day', 422);
+
+                 return response()->json(['message' => 'Already booked a class on this day' ], 222);
+
+                // return response('Already booked a class on this day', true);
                  //return back()->with('flash', 'Already booked a class on this day');
              }
          }
@@ -68,9 +71,9 @@ class GroupController extends Controller
         }
 
 
-     //   if (request()->expectsJson()) {
-      //      return response()->json(['status' => 'Data is successfully added']);
-      //  }
+       if (request()->expectsJson()) {
+            return response()->json(['status' => 'Data is successfully added']);
+        }
 
         return response('Booking Successful');
         //return back()->with('flash', 'Booking Successful');
