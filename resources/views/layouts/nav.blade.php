@@ -18,7 +18,7 @@
                                 class="material-icons right">arrow_drop_down</i></a></li>
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="{{ route('profiles', Auth::user()) }}">My Profile</a></li>
+                    <li><a href="{{ route('profile.showBookings', Auth::user()) }}">My Profile</a></li>
                     <li><a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

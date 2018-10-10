@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\User;
+use Carbon\Carbon;
 
 class ProfilesController extends Controller
 {
+    public function dashboard(User $user)
+    {
+        $groups=$user->groups()
+                     ->with('clients')
+                     ->count('group_id');
+        return view('profiles.dashboard', compact('user','groups'));
+    }
 
-    public function show(User $user)
+    public function showBookings(User $user)
     {
         $groups = $user->groups()->with('lesson')
                        ->where('day_time', '>', today())
                        ->get(); //doesn't show past bookings
 
 
-        return view('profiles.show', compact('user', 'groups'));
+        return view('profiles.showBookings', compact('user', 'groups'));
 
     }
 

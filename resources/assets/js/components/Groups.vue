@@ -2,6 +2,7 @@
     <button type="submit" :class="classes" class="waves-effect pink accent-3 btn-small" @click="toggle">
         <span v-text="getBookButtonText"></span>
     </button>
+
 </template>
 
 <script>
