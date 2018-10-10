@@ -37,12 +37,12 @@ class GroupController extends Controller
 
          $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
          if ($group->attendance() >= $group->capacity()) {
-             return response('Sorry this group is fully booked');
+             return response()->json(['message' => 'Sorry this group is fully booked'], 222);
              //return back()->with('flash', 'Sorry this group is fully booked');
          }
          foreach ($userSubscriptions as $userSubscription) {
              if ($bookingsWeekly == $userSubscription->package_week) {
-                 return response('Sorry, you have reached your weekly booking limit');
+                 return response()->json(['message' => 'Sorry, you have reached your weekly booking limit'], 222);
                  //return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
              }
          }

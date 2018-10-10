@@ -43,7 +43,7 @@
                     .catch(error => {
                         //if error status code == 422
                         //show validation errors
-                        alert('kolos');
+                        alert('Woops!! Something went wrong');
                         console.log(error.data)
                     });
 
