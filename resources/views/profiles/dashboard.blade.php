@@ -6,7 +6,7 @@
 
             Here show total month bookings, subscription package, paid status etc..<br>
 
-            Bookings Count: {{$groups}}
+           Monthly Bookings Count: {{$groups}}
 
 
         </div>

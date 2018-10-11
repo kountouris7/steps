@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
 use App\User;
 use Carbon\Carbon;
 
@@ -10,10 +9,14 @@ class ProfilesController extends Controller
 {
     public function dashboard(User $user)
     {
-        $groups=$user->groups()
-                     ->with('clients')
-                     ->count('group_id');
-        return view('profiles.dashboard', compact('user','groups'));
+        $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateString();
+        $groupDateMonthEnd   = Carbon::now()->endOfMonth()->toDateString();
+
+        $groups = $user->groups()
+                       ->whereBetween('day_time', [$groupDateMonthStart, $groupDateMonthEnd])
+                       ->count('group_id');
+
+        return view('profiles.dashboard', compact('user', 'groups'));
     }
 
     public function showBookings(User $user)
