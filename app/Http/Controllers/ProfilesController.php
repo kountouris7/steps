@@ -14,7 +14,7 @@ class ProfilesController extends Controller
 
         $groups = $user->groups()
                        ->whereBetween('day_time', [$groupDateMonthStart, $groupDateMonthEnd])
-                       ->count('group_id');
+                       ->get();
 
         return view('profiles.dashboard', compact('user', 'groups'));
     }
