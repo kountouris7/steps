@@ -15,13 +15,12 @@
                 bookingsCount: this.group.bookingsCount,
                 isBooked: this.group.isBooked,
                 maxCapacity: this.group.max_capacity,
-
             }
         },
 
         computed: {
             classes() {
-                return [this.isBooked ? 'disabled' : ''];
+                return [this.isBooked ? 'disabled' : '']; //if status 222 then dont disable?
             },
             getBookButtonText() {
                 return this.maxCapacity - this.bookingsCount + ' of ' + this.maxCapacity + ' available';
@@ -32,14 +31,13 @@
             toggle() {
                 axios.post('/booking/' + this.group.id + '/' + this.auth)
                     .then(response => {
+                        //console.log(response);
                         if (response.status === 222) { //find out why error 222?
                             alert(response.data.message);
-                            window.location.reload()  //when click ok on alert -> refresh page so button wont disable (temporary solution)
+                        }else{
+                            this.isBooked = true;
+                            this.bookingsCount++;
                         }
-                        this.isBooked = true;
-                        this.bookingsCount++;
-
-                        console.log(response)
                     })
                     .catch(error => {
                         //if error status code == 422

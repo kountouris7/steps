@@ -47,18 +47,16 @@ class GroupController extends Controller
              }
          }
          foreach ($bookingsTotal as $booking) {
-             if (Carbon::parse($booking->day_time)
-                       ->format('d F Y') == Carbon::parse($group->day_time)
-                                                  ->format('d F Y')) {
 
-                 return response()->json(['message' => 'Already booked a class on this day' ], 222);
-
-                // return response('Already booked a class on this day', true);
-                 //return back()->with('flash', 'Already booked a class on this day');
-             }
+                 if (Carbon::parse($booking->day_time)
+                           ->format('d F Y') == Carbon::parse($group->day_time)
+                                                      ->format('d F Y')) {
+                     return response()->json(['message' => 'Already booked a class on this day' ], 222);
+                     // return response('Already booked a class on this day', true);
+                     //return back()->with('flash', 'Already booked a class on this day');
+                 }
          }
-
-        try {
+         try {
             $group->clients()
                   ->attach($group->id,
                       [

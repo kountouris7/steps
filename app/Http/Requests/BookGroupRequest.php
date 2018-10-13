@@ -26,6 +26,7 @@ class BookGroupRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     *
      * @return array
      */
     public function rules() //this double checks that users cant book same group twice.
@@ -38,7 +39,6 @@ class BookGroupRequest extends FormRequest
                                  return $query->where('group_id', request('id'));
                              }),
         ];
-
     }
 
     /**
@@ -47,7 +47,8 @@ class BookGroupRequest extends FormRequest
      *
      * @return array
      */
-    public function messages() //* error?? if button disable is  off the message doesnt display. im gettin unauthorized howevr
+    public function messages(
+    ) //* error?? if button disable is  off the message doesnt display. im gettin unauthorized howevr
     {
         return [
             'user_id.unique' => 'You already have a group booked this group.',
