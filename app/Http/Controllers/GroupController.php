@@ -52,7 +52,7 @@ class GroupController extends Controller
                            ->format('d F Y') == Carbon::parse($group->day_time)
                                                       ->format('d F Y')) {
                      return response()->json(['message' => 'Already booked a class on this day' ], 222);
-                     // return response('Already booked a class on this day', true);
+                    // return back(222)->with('flash', 'bkbmnbnm');
                      //return back()->with('flash', 'Already booked a class on this day');
                  }
          }

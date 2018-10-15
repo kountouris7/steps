@@ -8,7 +8,7 @@
 <script>
     export default {
 
-        props: ['group', 'auth'],
+        props: ['group', 'auth',],
 
         data() {
             return {
