@@ -1,4 +1,3 @@
-
 <div v-show="loader" class="preloader-wrapper active">
     <div class="spinner-layer spinner-red-only">
         <div class="circle-clipper left">

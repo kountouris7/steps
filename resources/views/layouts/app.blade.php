@@ -20,10 +20,11 @@
 
 <div id="app">
     @include('layouts.nav')
-    @include('layouts.loader')
     @yield('content')
     <flash message="{{session('flash')}}"></flash>
 </div>
+
+
 
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
 
