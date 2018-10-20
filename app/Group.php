@@ -9,7 +9,7 @@ class Group extends Model
 {
     protected $guarded = [];
     protected $table = 'groups';
-    protected $appends = ['bookingsCount', 'isBooked', 'clients'];
+    protected $appends = ['bookingsCount', 'isBooked'];
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 

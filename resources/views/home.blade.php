@@ -14,6 +14,5 @@
                  style="width: 100%; height: 315px;">
         </div>
     </div>
-
 @endsection
 

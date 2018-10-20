@@ -19,6 +19,4 @@ Vue.component('BookGroup', require('./components/BookGroup.vue'));
 
 const app = new Vue({
     el: '#app'
-
-
 });
