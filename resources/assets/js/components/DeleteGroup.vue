@@ -5,7 +5,24 @@
             {{lesson}} <br>
             On {{moment(day_time).format("dddd")}} at {{moment(day_time).format("hh:mm")}}
             <hr>
-            <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking</button>
+
+            <div v-if="loading" class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking
+                </button>
+            </div>
         </li>
     </ul>
 
@@ -21,18 +38,18 @@
 
         data() {
             return {
-                //deleted: true,
-                moment:moment,
+                loading: false,
+                moment: moment,
                 day_time: this.group.day_time,
-                lesson:this.group.lesson.name
+                lesson: this.group.lesson.name
             }
         },
 
         methods: {
             toggle() {
+                this.loading = true;
                 axios.delete('/booking/' + this.group.id)
                     .then(response => {
-
                         console.log(response);
                     });
 
