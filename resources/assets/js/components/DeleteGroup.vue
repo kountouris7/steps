@@ -1,4 +1,5 @@
 <template>
+    <div id="app">
     <ul class="collection">
         <li class="collection-item avatar center-align">
             <strong> You have booked:</strong><br>
@@ -26,7 +27,7 @@
         </li>
     </ul>
 
-
+    </div>
 </template>
 
 <script>
