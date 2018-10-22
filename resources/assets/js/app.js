@@ -15,7 +15,7 @@ require('./bootstrap');
 
 Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('groups', require('./components/Groups.vue'));
-Vue.component('DeleteGroup', require('./components/DeleteGroup.vue'));
+Vue.component('delete-group', require('./components/DeleteGroup.vue'));
 
 const app = new Vue({
     el: '#app'
