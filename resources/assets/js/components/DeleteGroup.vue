@@ -52,9 +52,8 @@
                     .then(response => {
                         console.log(response);
                     });
-
                 $(this.$el).fadeOut(300, () => {
-                    flash('Your reply has been deleted.');
+                    flash('Your booking has been deleted.');
                 });
             },
         }

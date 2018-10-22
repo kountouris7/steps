@@ -47,7 +47,8 @@
                         //find out why error 222?
                         if (response.status === 222) {
                             this.loading = false;
-                            alert(response.data.message);
+                           // alert(response.data.message);
+                            flash(response.data.message);
                         } else {
                             this.loading = false;
                             this.isBooked = true;

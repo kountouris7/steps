@@ -1,6 +1,6 @@
 <template>
     <div class="alert alert-warning" role="alert" v-show="show">
-        <strong></strong> {{ body }}
+       <strong>{{ body }}</strong>
     </div>
 </template>
 
@@ -36,7 +36,7 @@
             hide() {
                 setTimeout(() => {
                     this.show = false;
-                }, 5000); //** 5 seconds
+                }, 4000); //** 4 seconds
             }
         }
     };
@@ -45,7 +45,8 @@
 <style>
     .alert-warning {
         position: fixed;
-        right: 25px;
-        bottom: 25px;
+        right: 7%;
+        bottom: 7%;
+        background: lightgreen;
     }
 </style>
