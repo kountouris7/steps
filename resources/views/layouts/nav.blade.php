@@ -2,7 +2,8 @@
 
     <div class="nav-wrapper black">
         <a class="brand-logo" href="{{ url('/home') }}">
-            <img src="https://thumb.ibb.co/hqwUKe/steps_fitness_logo_2.png" style="width: 2cm; height: 1.5cm;" alt="Steps Logo"></a>
+            <img src="https://thumb.ibb.co/hqwUKe/steps_fitness_logo_2.png" style="width: 2cm; height: 1.5cm;"
+                 alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">

@@ -61,6 +61,11 @@ class Group extends Model
         return $this->hasMany(GroupUser::class, 'group_id');
     }
 
+    public function getBookingsAttribute()
+    {
+        return $this->bookings();
+    }
+
     public function getIsBookedAttribute()
     {
 

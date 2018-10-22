@@ -8,20 +8,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}', 'GroupUserController@destroy')->name('book.destroy');
-
 Route::get('/profile/dashboard/{user}', 'ProfilesController@dashboard')->name('profile.dashboard');
 Route::get('/profile/{user}', 'ProfilesController@showBookings')->name('profile.showBookings');
 Route::get('profile/{user}/past.bookings', 'ProfilesController@showPastBookings')->name('past.bookings');
-
-
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+
 Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
-
-
-
 Route::get('/testing', 'GroupController@reminders')->name('testing');
-//Route::post('/testing/{group}/{user}', 'GroupController@store')->name('testing.vue');
+
 
 
 Route::group(['middleware' => 'is_admin'], function () {

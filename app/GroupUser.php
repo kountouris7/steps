@@ -8,19 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class GroupUser extends Model
 {
 
+
     /**
      * Don't auto-apply mass assignment protection.
      *
      * @var array
      */
     protected $guarded = [];
-
-    protected $fillable =['user_id', 'group_id'];
+    protected $fillable = ['user_id', 'group_id'];
 
     public function path()
     {
         return "/booking/{$this->group_id}";
     }
+
     public function client()
     {
         return $this->belongsTo(User::class, 'user_id');
