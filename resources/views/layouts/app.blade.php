@@ -34,7 +34,6 @@
 <script src="{{asset('js/app.js')}}"></script>
 
 <script>
-    $('.dropdown-trigger').dropdown();
     $(document).ready(function () {
         $('.dropdown-trigger').dropdown();
         {{--

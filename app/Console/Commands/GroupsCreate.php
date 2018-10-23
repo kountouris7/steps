@@ -39,14 +39,15 @@ class GroupsCreate extends Command
      */
     public function handle()
     {
-        $lastWeek = Carbon::today()->subWeek()->toDateString(); //this will run every sunday
+
+        $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every sunday
         $groups   = Group::with('lesson')
-                         ->where('day_time', '>', $lastWeek)
+                         ->where('day_time', '>', $lastWeekDate)
                          ->get();
 
         foreach ($groups as $group) {
             $newGroups      = $group->replicate();
-            $newGroups->day_time = Carbon::parse($group->day_time)->addWeek(1);
+            $newGroups->day_time = Carbon::parse($newGroups->day_time)->copy()->addWeek(1);
             $newGroups->save();
         }
        return info('New classes created');

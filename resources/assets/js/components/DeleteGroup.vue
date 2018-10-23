@@ -21,7 +21,8 @@
                     </div>
                 </div>
                 <div v-else>
-                    <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking</button>
+                    <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking
+                    </button>
                 </div>
             </li>
         </ul>
@@ -53,8 +54,15 @@
                     });
                 $(this.$el).fadeOut(300, () => {
                     flash('Your booking has been deleted.');
-                });
-            },
+                })
+                    .catch(error => {
+                        this.loading = false;
+                        //if error status code == 422
+                        //show validation errors
+                        alert('Woops!!!Please try to refresh the page');
+                        console.log(error.data)
+                    });
+            }
         }
     }
 </script>

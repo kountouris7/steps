@@ -59,7 +59,7 @@
                         this.loading = false;
                         //if error status code == 422
                         //show validation errors
-                        alert('Woops!! Something went wrong');
+                        alert('Woops!!!Please try to refresh the page');
                         console.log(error.data)
                     });
             },
