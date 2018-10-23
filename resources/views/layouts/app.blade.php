@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Scripts -->
+
+  {{-- <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
-    </script>
+    </script>--}}
 </head>
 <body>
 
 
 
 <div id="app">
-    {{--  --}}
     @include('layouts.nav')
     @yield('content')
     <flash message="{{session('flash')}}"></flash>
@@ -34,18 +34,21 @@
 <script src="{{asset('js/app.js')}}"></script>
 
 <script>
+    $('.dropdown-trigger').dropdown();
     $(document).ready(function () {
-        $('.collapsible').collapsible();
         $('.dropdown-trigger').dropdown();
+        {{--
+        $('.collapsible').collapsible();
         $('.parallax').parallax();
+        $('.sidenav').sidenav();
+         $('.materialboxed').materialbox();
+        --}}
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
             indicators: true
         });
-        $('.sidenav').sidenav();
         $('.tabs').tabs();
-        $('.materialboxed').materialbox();
-       // $('.preloader-wrapper').hide();
+
     });
 </script>
 
