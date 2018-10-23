@@ -6,10 +6,9 @@
                  alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-dow">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.groups')}}">Classes</a></li>
-
             @if (Auth::guest())
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register.user') }}">Register</a></li>
@@ -38,14 +37,33 @@
                     </form>
                 </ul>
             @endif
-
         </ul>
     </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
+
     <li><a href="{{route('home')}}">Home</a></li>
     <li><a href="{{route('show.groups')}}">Classes</a></li>
+
+    <li><a href="{{ route('login') }}">Login</a></li>
+    <li><a href="{{ route('register.user') }}">Register</a></li>
+    <li><a href="{{ route('profile.dashboard', Auth::user()) }}">My Profile</a></li>
+    <li><a href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+            Logout</a></li>
+    <li class="divider" tabindex="-1"></li>
+
+    @if(Auth::user()->isAdmin())
+        <li><a href="{{ route('admin') }}">Admin Panel</a></li>
+    @endif
+
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+          style="display: none;">
+        {{ csrf_field() }}
+    </form>
 </ul>
 
 
