@@ -80,8 +80,8 @@ class GroupController extends Controller
     public function requestedGroupWeek(Group $group): array
     {
         $groupDate          = $group->day_time;
-        $groupDateWeekStart = Carbon::parse($groupDate)->copy()->startOfWeek()->toDateString();
-        $groupDateWeekEnd   = Carbon::parse($groupDate)->copy()->endOfWeek()->toDateString();
+        $groupDateWeekStart = Carbon::parse($groupDate)->startOfWeek()->toDateString();
+        $groupDateWeekEnd   = Carbon::parse($groupDate)->endOfWeek()->toDateString();
 
         return [$groupDateWeekStart, $groupDateWeekEnd];
     }
