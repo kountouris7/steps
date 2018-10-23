@@ -31,10 +31,7 @@
                 <div class="center-align">
                     <h3>You have no bookings...</h3>
                 </div>
-
             @endforelse
-
-
         </div>
     </div>
 @endsection

@@ -21,8 +21,7 @@
                     </div>
                 </div>
                 <div v-else>
-                    <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking
-                    </button>
+                    <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Delete Booking</button>
                 </div>
             </li>
         </ul>
