@@ -6,7 +6,7 @@
                  alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right">
+        <ul id="nav-mobile" class="right hide-on-med-and-dow">
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.groups')}}">Classes</a></li>
 
@@ -42,5 +42,20 @@
         </ul>
     </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="{{route('home')}}">Home</a></li>
+    <li><a href="{{route('show.groups')}}">Classes</a></li>
+
+    @if (Auth::guest())
+        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('register.user') }}">Register</a></li>
+    @endif
+
+</ul>
+
+
+
+
 
 
