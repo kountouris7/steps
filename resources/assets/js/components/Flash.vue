@@ -47,6 +47,6 @@
         position: fixed;
         right: 7%;
         bottom: 7%;
-        background: lightgreen;
+        background-color: lightgreen;
     }
 </style>
