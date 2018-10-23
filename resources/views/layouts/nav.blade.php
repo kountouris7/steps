@@ -6,7 +6,7 @@
                  alt="Steps Logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <ul class="right hide-on-med-and-down">
+        <ul id="slide-out" class="right hide-on-med-and-down">
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.groups')}}">Classes</a></li>
 
