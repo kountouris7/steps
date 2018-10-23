@@ -43,18 +43,6 @@
     </div>
 </nav>
 
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="{{route('home')}}">Home</a></li>
-    <li><a href="{{route('show.groups')}}">Classes</a></li>
-
-    @if (Auth::guest())
-        <li><a href="{{ route('login') }}">Login</a></li>
-        <li><a href="{{ route('register.user') }}">Register</a></li>
-    @endif
-
-</ul>
-
-
 
 
 
