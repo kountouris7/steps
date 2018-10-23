@@ -43,6 +43,11 @@
     </div>
 </nav>
 
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="{{route('home')}}">Home</a></li>
+    <li><a href="{{route('show.groups')}}">Classes</a></li>
+</ul>
+
 
 
 
