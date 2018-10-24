@@ -6,7 +6,6 @@
     @forelse($attendances as $attendance)
 
         @foreach($attendance->clients as $attendant) {{--That's because $attendance->clients is a collection--}}
-
             <ul class="collection">
                 <li class="collection-item avatar">
                     <img src="images/yuna.jpg" alt="" class="circle">

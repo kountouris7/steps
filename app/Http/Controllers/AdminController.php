@@ -198,6 +198,7 @@ class AdminController extends Controller
                             ->where('day_time', '<=', $to)
                             ->get();
 
+
         return view('administrator.seeAttendances', compact('attendances'));
     }
 

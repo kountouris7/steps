@@ -45,11 +45,6 @@ class Group extends Model
         //}
     }
 
-    public function getClientsAttribute()
-    {
-        return $this->clients();
-    }
-
     public function clients()
     {
         return $this->belongsToMany(User::class, 'group_users')
