@@ -1,7 +1,5 @@
 <ul id="slide-out" class="sidenav sidenav-fixed">
-    <li><div class="user-view">
 
-        </div></li>
     <li><a href="{{route('admin')}}">Dashboard</a></li>
     <li><a href="{{route('see.attendances')}}">Check attendances </a></li>
     <li><div class="divider"></div></li>

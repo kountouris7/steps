@@ -10,7 +10,7 @@
                 <div class="form-group">
                    {{-- <input type="hidden" name="group_id" value="{{$group->id}}">
                      <input type="hidden" name="user_id"  value="{{auth()->id()}}"> --}}
-                    <div class="col s12 m4 l6 ">
+                    <div class="col s12 m4 l6">
 
                         <div class="card">
                             <div class="card-content">
@@ -31,14 +31,11 @@
 
                                         <groups :group="{{$group}}" :auth="{{auth()->id()}}"></groups>
 
-
                                         {{-- <button type="submit"
                                                    class="waves-effect pink accent-3 btn-small"{{ $group->isBooked() ? 'disabled' : '' }}
                                                    {{$group->clients->count() >= $group->max_capacity ? 'disabled' : '' }}> {{ $group->max_capacity - $group->clients->count()}}
                                                of: {{$group->max_capacity}}   {{'available'}}
                                            </button> --}}
-
-
                                     </li>
                                 </ul>
                             </div>

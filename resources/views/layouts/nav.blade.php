@@ -19,17 +19,16 @@
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="{{ route('profile.dashboard', Auth::user()) }}">My Profile</a></li>
+
+                    <li class="divider" tabindex="-1"></li>
+                    @if(Auth::user()->isAdmin())
+                        <li><a href="{{ route('admin') }}">Admin Panel</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                    @endif
                     <li><a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             Logout</a></li>
-
-                    <li class="divider" tabindex="-1"></li>
-
-                    @if(Auth::user()->isAdmin())
-                        <li><a href="{{ route('admin') }}">Admin Panel</a></li>
-                    @endif
-
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                           style="display: none;">

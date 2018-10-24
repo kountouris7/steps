@@ -10,6 +10,7 @@
 
         <ul>
             <li><a href="{{ route('profile.dashboard', Auth::user()) }}">My Profile</a></li>
+
             <li class="divider" tabindex="-1"></li>
 
             @if(Auth::user()->isAdmin())
@@ -17,7 +18,6 @@
 
                 <li class="divider" tabindex="-1"></li>
             @endif
-
 
             <li><a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
