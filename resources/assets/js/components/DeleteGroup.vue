@@ -4,7 +4,7 @@
             <li class="collection-item avatar center-align">
                 <strong> You have booked:</strong><br>
                 {{lesson}} <br>
-                On {{moment(day_time).format("dddd")}} at {{moment(day_time).format("hh:mm")}}
+                On {{moment(day_time).format("dddd")}} at {{moment(day_time).format("HH:mm")}}
                 <hr>
 
                 <div v-if="loading" class="preloader-wrapper small active">
