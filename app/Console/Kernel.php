@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         //             return CronEntry::shouldIRun('group:create', 10080); //returns true every seven days
         //         });
 
-        $schedule->command('groups:create')->everyMinute();
+        $schedule->command('groups:create')->sundays();
     }
 
     /**
