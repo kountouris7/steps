@@ -9,7 +9,7 @@
                     Token: {{$invite->token}}<br>
                     Date Send: {{$invite->created_at->format('M Y')}}
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="#!" class="secondary-content"><i class="material-icons">timelapse</i></a>
             </li>
         </ul>
 
