@@ -1,4 +1,4 @@
-@extends('administrator.layouts.app')
+@extends('layouts.app')
 @section('content')
     @foreach($articles as $article)
         <div class="container">
@@ -10,11 +10,10 @@
                         <span class="card-title">{{$article->title}}</span>
                     </div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <p>{{$article->description}}.</p>
                     </div>
                     <div class="card-action">
-                        <a href="#">Read Full</a>
+                        <a href="{{route('articles.read')}}">Read Full</a>
                     </div>
                 </div>
             </div>
