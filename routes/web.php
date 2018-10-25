@@ -48,6 +48,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('see.subscribers/{month}', 'SubscriberController@showSubscribersByMonth')->name('subscriber.byMonth');
 
     Route::get('articles.write', 'AdminController@articlesWrite')->name('articles.write');
+    Route::post('articles.post', 'AdminController@articlesPost')->name('articles.post');
 
 });
 

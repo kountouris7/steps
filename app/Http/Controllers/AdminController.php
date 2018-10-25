@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Events\GroupUpdated;
 use App\Group;
 use App\Invite;
@@ -224,6 +225,20 @@ class AdminController extends Controller
     public function articlesWrite()
     {
         return view('administrator.writeArticles');
+    }
+
+    public function articlesPost(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:30',
+            'body' => 'required',
+        ]);
+
+        Article::create([
+           'title' => request('title'),
+           'body'=>request('body')
+        ]);
+
     }
 
     public function test()
