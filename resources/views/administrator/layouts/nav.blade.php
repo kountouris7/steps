@@ -2,6 +2,7 @@
 
     <li><a href="{{route('admin')}}">Dashboard</a></li>
     <li><a href="{{route('see.attendances')}}">Check attendances </a></li>
+    <li><a href="{{route('check.invites')}}">Check invites </a></li>
     <li><div class="divider"></div></li>
     <li><a href="{{route('create.lesson')}}">Create New Lesson</a></li>
     <li><a href="{{route('show.lesson')}}">Create New Group</a></li>

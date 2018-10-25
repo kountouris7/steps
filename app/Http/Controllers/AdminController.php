@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\GroupUpdated;
 use App\Group;
+use App\Invite;
 use App\Lesson;
 use App\Level;
 use Carbon\Carbon;
@@ -117,10 +118,10 @@ class AdminController extends Controller
 
     public function editgroup($id)
     {
-        $group      = Group::with('level')
-                           ->findOrFail($id);
+        $group = Group::with('level')
+                      ->findOrFail($id);
 
-        $levels     = Level::get();
+        $levels = Level::get();
 
         $groupLevel = $group->level->level;
 
@@ -211,6 +212,13 @@ class AdminController extends Controller
         $to   = Carbon::parse($date)->copy()->endOfWeek()->toDateString();
 
         return $to;
+    }
+
+    public function checkPendingInvitations()
+    {
+        $invites = Invite::get();
+
+        return view('administrator.checkInvites', compact('invites'));
     }
 
     public function test()

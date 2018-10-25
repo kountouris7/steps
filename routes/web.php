@@ -44,6 +44,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
+    Route::get('check.invites', 'AdminController@checkPendingInvitations')->name('check.invites');
     Route::get('/see.subscribers/{month}', 'SubscriberController@showSubscribersByMonth')->name('subscriber.byMonth');
 
 });
