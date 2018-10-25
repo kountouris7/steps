@@ -18,7 +18,6 @@ Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day')
 Route::get('/testing', 'GroupController@reminders')->name('testing');
 
 
-
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('admin', 'AdminController@admin')->name('admin');
     Route::get('lesson/create', 'AdminController@lessoncreate')->name('create.lesson');
@@ -38,17 +37,21 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('import', 'SubscriberController@import')->name('import.excel');
     Route::get('show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
-    Route::get('show/subscribers', 'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
+    Route::get('show/subscribers',
+        'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
+
+    //email
     Route::post('invite/', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');
     Route::get('create.email', 'EmailController@createEmail')->name('create.email');
     Route::post('send.email', 'EmailController@sendEmail')->name('send.email');
     Route::get('check.invites', 'AdminController@checkPendingInvitations')->name('check.invites');
     Route::get('see.subscribers/{month}', 'SubscriberController@showSubscribersByMonth')->name('subscriber.byMonth');
-
+//articles
     Route::get('articles.write', 'AdminController@articlesWrite')->name('articles.write');
     Route::post('articles.post', 'AdminController@articlesPost')->name('articles.post');
+    Route::get('articles.show', 'AdminController@articlesShow')->name('articles.show');
 
 });
 

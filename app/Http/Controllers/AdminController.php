@@ -239,7 +239,16 @@ class AdminController extends Controller
            'body'=>request('body')
         ]);
 
+        return redirect(route('articles.show'));
     }
+
+    public function articlesShow()
+    {
+        $titles=Article::get();
+
+        return view('administrator.articlesShow', compact('titles'));
+    }
+
 
     public function test()
     {

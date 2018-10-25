@@ -12,6 +12,9 @@
     <li><a href="{{route('showSubscribersCurrentMonth')}}">Clients</a></li>
     <li><a href="{{route('create.email')}}">Send Email</a></li>
     <li><div class="divider"></div></li>
+    <li><a href="{{route('articles.write')}}">Write article</a></li>
+    <li><a href="{{route('articles.show')}}">Go to articles</a></li>
+    <li><div class="divider"></div></li>
     <li><a href="{{route('show.groups')}}">View as Client</a></li>
 
 </ul>
