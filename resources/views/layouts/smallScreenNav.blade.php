@@ -30,4 +30,5 @@
             </form>
             @endif
         </ul>
+        <li><a class="btn small tooltipped pink accent-3" data-position="bottom" data-tooltip="Available Soon">Articles</a></li>
 </ul>

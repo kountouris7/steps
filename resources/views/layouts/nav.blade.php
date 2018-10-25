@@ -7,6 +7,7 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class="btn tooltipped pink accent-3" data-position="bottom" data-tooltip="Available Soon">Articles</a></li>
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="{{route('show.groups')}}">Classes</a></li>
             @if (Auth::guest())

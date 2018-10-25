@@ -37,17 +37,12 @@
     $(document).ready(function () {
         $('.dropdown-trigger').dropdown();
         $('.sidenav').sidenav();
-        {{--
-        $('.collapsible').collapsible();
-        $('.parallax').parallax();
-        $('.sidenav').sidenav();
-         $('.materialboxed').materialbox();
-        --}}
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
             indicators: true
         });
         $('.tabs').tabs();
+        $('.tooltipped').tooltip();
 
     });
 </script>
