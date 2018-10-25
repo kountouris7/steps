@@ -230,13 +230,15 @@ class AdminController extends Controller
     public function articlesPost(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|max:30',
+            'title' => 'required|max:60',
             'body' => 'required',
+            'description' => 'required|max:171'
         ]);
 
         Article::create([
            'title' => request('title'),
-           'body'=>request('body')
+           'body'=>request('body'),
+           'description'=>request('description'),
         ]);
 
         return redirect(route('articles.show'));
@@ -244,9 +246,9 @@ class AdminController extends Controller
 
     public function articlesShow()
     {
-        $titles=Article::get();
+        $articles=Article::get();
 
-        return view('administrator.articlesShow', compact('titles'));
+        return view('administrator.articlesShow', compact('articles'));
     }
 
 

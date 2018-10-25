@@ -20,6 +20,11 @@
                 </div>
 
                 <div class="input-field col s12">
+                    <input placeholder="Description for article" id="description" name="description" type="text" required>
+                    <label for="description">Description</label>
+                </div>
+
+                <div class="input-field col s12">
                     <i class="material-icons prefix">mode_edit</i>
                     <textarea id="textarea1" name="body" class="materialize-textarea" required></textarea>
                     <label for="textarea1" class="pink-text">Text area</label>
