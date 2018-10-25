@@ -7,14 +7,12 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a class="btn tooltipped pink accent-3" data-position="bottom" data-tooltip="Available Soon">Articles</a></li>
-            <li><a href="{{route('home')}}">Home</a></li>
-            <li><a href="{{route('show.groups')}}">Classes</a></li>
-            @if (Auth::guest())
-                <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('register.user') }}">Register</a></li>
-            @else
-            <!-- Dropdown Trigger -->
+            @if(auth()->user())
+                <li><a class="btn tooltipped pink accent-3" data-position="bottom" data-tooltip="Available Soon">Articles</a>
+                </li>
+                <li><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{route('show.groups')}}">Classes</a></li>
+                <!-- Dropdown Trigger -->
                 <li><a class='dropdown-trigger' data-target='dropdown1'>{{ Auth::user()->name }}<i
                                 class="material-icons right">arrow_drop_down</i></a></li>
                 <!-- Dropdown Structure -->
@@ -35,6 +33,11 @@
                           style="display: none;">
                         {{ csrf_field() }}
                     </form>
+
+                    @else
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register.user') }}">Register</a></li>
+
                 </ul>
             @endif
         </ul>
