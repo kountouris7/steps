@@ -221,6 +221,11 @@ class AdminController extends Controller
         return view('administrator.checkInvites', compact('invites'));
     }
 
+    public function articlesWrite()
+    {
+        return view('administrator.writeArticles');
+    }
+
     public function test()
     {
 
