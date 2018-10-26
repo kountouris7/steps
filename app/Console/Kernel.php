@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         //         });
 
 //the heroku scheduler runs daily at 20:30
-        $schedule->command('groups:create')->sundays();
+        $schedule->command('groups:create')->fridays();
     }
 
     /**
