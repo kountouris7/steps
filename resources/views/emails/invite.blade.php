@@ -71,7 +71,17 @@
 
 <p>
     Hello,<br>
-    This is your activation code: <strong>{{$invite->token}}</strong>
+
+    <strong>
+        Εχω διαγραψει του λογαριασμους σας καταλαθος. <br>
+        Θα πρεπει να ξανακανετε λογαριασμο. <br>
+        Οσοι εχετε 2 Email χρησιποποιηστε αυτο για να κανετε εγγραφη.
+    </strong><br>
+
+    <strong>Login Instructions:</strong> <br>
+    1. Copy your activation code: <strong>{{$invite->token}}.</strong> <br>
+    2.Click the link bellow. <br>
+    3.Use this Email to login - choose your password -- paste activation code in field 'Activation code'
 </p>
 
 <a href="{{ route('accept', [$invite->token]) }}">Click here</a> to login!
