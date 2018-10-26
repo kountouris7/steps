@@ -71,13 +71,6 @@
 
 <p>
     Hello,<br>
-
-    <strong>
-        Εχω διαγραψει του λογαριασμους σας καταλαθος. <br>
-        Θα πρεπει να ξανακανετε λογαριασμο. <br>
-        Οσοι εχετε 2 Email χρησιποποιηστε αυτο για να κανετε εγγραφη.
-    </strong><br>
-
     <strong>Login Instructions:</strong> <br>
     1. Copy your activation code: <strong>{{$invite->token}}.</strong> <br>
     2.Click the link bellow. <br>
