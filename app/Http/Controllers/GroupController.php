@@ -106,15 +106,4 @@ class GroupController extends Controller
         return view('show', compact('groups'));
     }
 
-    public function reminders()
-    {
-        $groups = Group::with('clients')
-                       ->where('day_time', '>=', today())
-                       ->get();
-
-        foreach ($groups as $group) {
-            dd($group->clients);
-        }
-    }
-
 }

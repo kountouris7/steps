@@ -15,7 +15,6 @@ Route::get('profile/{user}/past.bookings', 'ProfilesController@showPastBookings'
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 
 Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
-Route::get('/testing', 'GroupController@reminders')->name('testing');
 
 
 Route::group(['middleware' => 'is_admin'], function () {
