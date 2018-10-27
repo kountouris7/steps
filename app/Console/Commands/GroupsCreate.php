@@ -2,9 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Email;
 use App\Group;
+use App\Mail\SendGroupUpdateEmail;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class GroupsCreate extends Command
 {
@@ -35,21 +38,26 @@ class GroupsCreate extends Command
     /**
      * Execute the console command.
      *
+     * @param Email $email
+     *
      * @return mixed
      */
-    public function handle()
+    public function handle(Email $email)
     {
 
         $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every Friday
-        $groups   = Group::with('lesson')
-                         ->where('day_time', '>', $lastWeekDate)
-                         ->get();
+        $groups       = Group::with('lesson')
+                             ->where('day_time', '>', $lastWeekDate)
+                             ->get();
 
         foreach ($groups as $group) {
-            $newGroups      = $group->replicate();
+            $newGroups           = $group->replicate();
             $newGroups->day_time = Carbon::parse($newGroups->day_time)->copy()->addWeek(1);
             $newGroups->save();
         }
-       return info('New classes created');
+
+        Mail::to('kountouris7@gmail.com')->send(new SendGroupUpdateEmail($email));
+
+        return info('New classes created');
     }
 }
