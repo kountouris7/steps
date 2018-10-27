@@ -40,6 +40,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('show/subscribers',
         'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
+    Route::get('view.users', 'AdminController@viewUsers')->name('view.users');
+
 
     //email
     Route::post('invite/', 'InviteController@process')->name('process');

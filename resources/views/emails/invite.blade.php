@@ -71,7 +71,9 @@
 
 <p>
     Hello,<br>
+
     <strong>Login Instructions:</strong> <br>
+
     1. Copy your activation code: <strong>{{$invite->token}}.</strong> <br>
     2.Click the link bellow. <br>
     3.Use this Email to login - choose your password -- paste activation code in field 'Activation code'

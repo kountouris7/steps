@@ -8,6 +8,7 @@ use App\Group;
 use App\Invite;
 use App\Lesson;
 use App\Level;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -257,6 +258,13 @@ class AdminController extends Controller
 
         return view('articlesRead', compact('articles'));
 
+    }
+
+    public function viewUsers()
+    {
+        $users = User::with('subscription')->get();
+
+        return view('administrator.viewUsers', compact('users'));
     }
 
     public function test()
