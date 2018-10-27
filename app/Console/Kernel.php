@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\GroupsCreate',
+        'App\Console\Commands\GroupsDelete',
     ];
 
     /**
@@ -34,6 +35,7 @@ class Kernel extends ConsoleKernel
 
 //the heroku scheduler runs daily at 20:30
         $schedule->command('groups:create')->fridays();
+        $schedule->command('groups:delete')->saturdays();
     }
 
     /**

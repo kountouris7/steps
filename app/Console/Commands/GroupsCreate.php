@@ -40,7 +40,7 @@ class GroupsCreate extends Command
     public function handle()
     {
 
-        $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every sunday
+        $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every Friday
         $groups   = Group::with('lesson')
                          ->where('day_time', '>', $lastWeekDate)
                          ->get();

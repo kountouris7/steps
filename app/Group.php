@@ -4,16 +4,18 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Group extends Model
 {
+   // use SoftDeletes;
     protected $guarded = [];
     protected $table = 'groups';
     protected $appends = ['bookingsCount', 'isBooked'];
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 
-    //protected $dates = ['day_time'];
+   // protected $dates = ['created_at'];
 
     //public function scopeDayFilter($query, $day)
     // {
