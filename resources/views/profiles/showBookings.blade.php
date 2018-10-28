@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('content')
     @include('profiles.layouts.profilesnav')
-    <div class="container">
-        <div style="width:800px; margin:0 auto;">
 
-            @forelse ($groups as $group)
-                <div class="container">
-                    {{--      <ul class="collection">
+    <div class="container" style="margin-left: 35%">
+        <div class="row">
+            <div class="col s8 m6 l6">
+                @forelse ($groups as $group)
+                    <delete-group :group="{{$group}}"></delete-group>
+
+
+                    {{--
+                         <ul class="collection">
                                <li class="collection-item avatar center-align">
                                    <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
                                      {{$group->lesson->name}}<br>
@@ -25,13 +29,18 @@
 
                             </li>
                         </ul> --}}
-                    <delete-group :group="{{$group}}"></delete-group>
+
+
+                @empty
+                    <div class="center-align">
+                        <h3>You have no bookings...</h3>
                     </div>
-            @empty
-                <div class="center-align">
-                    <h3>You have no bookings...</h3>
-                </div>
-            @endforelse
+                @endforelse
+            </div>
         </div>
     </div>
+
+
+
+
 @endsection

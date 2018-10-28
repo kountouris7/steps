@@ -2,7 +2,6 @@
 @section('content')
     @forelse($invites as $invite)
         <ul class="collection">
-
             <li class="collection-item avatar">
                 <span class="title"><strong>Invitation to:</strong></span>
                 <p>Email: {{$invite->email}} <br>
