@@ -6,7 +6,7 @@
     @forelse($attendances as $attendance)
 
         @foreach($attendance->clients as $attendant) {{--That's because $attendance->clients is a collection--}}
-            <ul class="collection">
+            <ol class="collection">
                 <li class="collection-item avatar">
                     <img src="images/yuna.jpg" alt="" class="circle">
                     <span class="title"><strong>{{$attendant->name}}</strong></span>
@@ -16,7 +16,7 @@
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
-            </ul>
+            </ol>
 
         @endforeach
 

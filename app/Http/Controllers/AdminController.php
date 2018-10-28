@@ -195,12 +195,11 @@ class AdminController extends Controller
 
     public function attendanceByDay($day)
     {
-        $to          = $this->thisWeeksEnd();
+        $thisWeeksEnd          = $this->thisWeeksEnd();
         $attendances = Group::with('clients', 'lesson')
                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                            ->where('day_time', '<=', $to)
+                            ->where('day_time', '>=', $thisWeeksEnd)
                             ->get();
-
 
         return view('administrator.seeAttendances', compact('attendances'));
     }
