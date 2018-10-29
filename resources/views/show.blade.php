@@ -16,7 +16,7 @@
                             <div class="card-content">
                                 <p class="title col s12 center-align">
                                     <strong>{{optional($group->lesson)->name ?? $group->id}}</strong> <br>
-                                    {{Carbon\Carbon::parse($group->day_time)->format('l jS \\of  F H:i')}}<br>
+                                    {{Carbon\Carbon::parse($group->day_time)->format('l F jS \\@   H:i')}}<br>
                                 </p>
                             </div>
 
