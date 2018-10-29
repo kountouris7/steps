@@ -8,7 +8,8 @@
 
             <li class="collection-item avatar">
                 <span class="title"><strong>User:</strong></span>
-                {{$user->name}}
+                {{$user->name}}<br>
+                {{$user->email}}
             </li>
         </ul>
 
