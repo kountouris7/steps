@@ -8,7 +8,11 @@
                     Token: {{$invite->token}}<br>
                     Date Send: {{$invite->created_at->format('M Y')}}
                 </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">timelapse</i></a>
+                <hr>
+                <form method="POST" action="{{route('delete.invites', [$invite->id])}}">
+                    {{csrf_field()}}
+                <button type="submit" class="waves-effect pink accent-3 btn-small">Delete</button>
+                </form>
             </li>
         </ul>
 

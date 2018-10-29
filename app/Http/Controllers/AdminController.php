@@ -195,11 +195,11 @@ class AdminController extends Controller
 
     public function attendanceByDay($day)
     {
-        $thisWeeksEnd          = $this->thisWeeksEnd();
-        $attendances = Group::with('clients', 'lesson')
-                            ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                            ->where('day_time', '<=', $thisWeeksEnd)
-                            ->get();
+        $thisWeeksEnd = $this->thisWeeksEnd();
+        $attendances  = Group::with('clients', 'lesson')
+                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+                             ->where('day_time', '<=', $thisWeeksEnd)
+                             ->get();
 
         return view('administrator.seeAttendances', compact('attendances'));
     }
@@ -220,6 +220,14 @@ class AdminController extends Controller
         $invites = Invite::get();
 
         return view('administrator.checkInvites', compact('invites'));
+    }
+
+    public function deleteInvites($id)
+    {
+        $invite=Invite::findOrFail($id);
+        $invite->delete();
+
+        return back()->with('flash', 'Initation has been deleted');
     }
 
     public function articlesWrite()
