@@ -79,7 +79,7 @@
     3.Use this Email to login - choose your password -- paste activation code in field 'Activation code'
 </p>
 
-<a href="{{ route('accept', [$invite->token]) }}">Click here</a> to login!
+<h2><a href="{{ route('accept', [$invite->token]) }}">Click here</a> to login!</h2>
 </body>
 </html>
 

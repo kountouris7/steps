@@ -50,10 +50,10 @@ class InviteController extends Controller
     public function accept(Request $request, $token)
     {
         if ( ! $invite = Invite::where('token', $token)->first()) {
-            abort(404);
+            //abort(404);
+            return view('redirectToLoginError');
+            //return response('Please signIn: https://stepsfitness.herokuapp.com', 404);
         }
-
-
         return redirect(route('register.form'));
     }
 
