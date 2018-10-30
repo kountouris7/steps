@@ -10,10 +10,10 @@ class ProfilesController extends Controller
     public function dashboard(User $user)
     {
         $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateString();
-        $groupDateMonthEnd   = Carbon::now()->endOfMonth()->toDateString();
+        $groupDateMonthEndPlusTwoWeeks   = Carbon::now()->endOfMonth()->addWeeks('2')->toDateString();
 
         $groups = $user->groups()
-                       ->whereBetween('day_time', [$groupDateMonthStart, $groupDateMonthEnd])
+                       ->whereBetween('day_time', [$groupDateMonthStart, $groupDateMonthEndPlusTwoWeeks])
                        ->get();
 
         return view('profiles.dashboard', compact('user', 'groups'));
