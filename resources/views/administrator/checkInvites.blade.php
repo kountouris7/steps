@@ -6,7 +6,7 @@
                 <span class="title"><strong>Invitation to:</strong></span>
                 <p>Email: {{$invite->email}} <br>
                     Token: {{$invite->token}}<br>
-                    Date Send: {{$invite->created_at->format('M Y')}}
+                    Date Send: {{$invite->created_at->format('l F jS \\@   H:i')}}
                 </p>
                 <hr>
                 <form method="POST" action="{{route('delete.invites', [$invite->id])}}">

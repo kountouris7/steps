@@ -7,7 +7,7 @@
     </li>
     <li><a href="{{route('profile.dashboard', [$user->id])}}">DashBoard</a></li>
     <li><a href="{{route('profile.showBookings', [$user->id])}}">Current Bookings</a></li>
-    <li><a href="{{route('past.bookings', [$user->id])}}">Past Bookings</a></li>
+    {{-- <li><a href="{{route('past.bookings', [$user->id])}}">Past Bookings</a></li> --}}
     <li><a href="{{route('show.groups')}}">Back to Classes</a></li>
     <li>
         <div class="divider"></div>

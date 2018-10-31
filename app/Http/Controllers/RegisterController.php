@@ -34,14 +34,14 @@ class RegisterController extends Controller
             'token'    => 'required|string|exists:invites,token',
         ]);
 
-        if ( ! $subscriber = Subscriber::where('email', $request->email)->first()) {
-            return back()->with('status', 'Please sign in with the email that you gave to us in order to invite you');
+        if ( ! $invitation = Invite::where('email', $request->email)->first()) {
+            return back()->with('flash', 'Please use the email you received the invitation to sign in');
         }
 
         $user = User::create([
             'name'            => request('name'),
             'email'           => request('email'),
-            'subscription_id' => $subscriber->id,
+            'subscription_id' => $invitation->id,
             'password'        => Hash::make(request('password')),
             'type'            => User::DEFAULT_TYPE,
         ]);

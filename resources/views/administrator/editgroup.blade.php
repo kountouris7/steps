@@ -37,7 +37,7 @@
                 <br>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Update Group</button>
+                    <button type="submit" class="waves-effect pink accent-3 btn-small">Update Group</button>
                 </div>
 
             </form>
