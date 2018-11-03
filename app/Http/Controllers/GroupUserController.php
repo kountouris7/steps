@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\GroupUser;
 
 
 class GroupUserController extends Controller
@@ -18,9 +17,11 @@ class GroupUserController extends Controller
     public function destroy($group)
     {
         $group = Group::findOrFail($group);
+        GroupUser::where('group_id' , $group->id)->delete();
+        //$group = Group::findOrFail($group);
 
-            $this->authorize('update', $group);
-            auth()->user()->groups()->detach($group->id);
+      //  $this->authorize('update', $group);
+      //  auth()->user()->groups()->detach($group->id);
 
         if (request()->wantsJson()) {
             return response()->json(['message' => 'success'], 200);
