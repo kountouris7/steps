@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     const ADMIN_TYPE = 'admin';
     const DEFAULT_TYPE = 'default'; //instead of hard-coding the type values into our factory we used class constants
@@ -39,6 +41,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $dates = ['deleted_at'];
     //protected $with = ['groups'];
 
     public function isAdmin()

@@ -16,12 +16,14 @@ class GroupUserController extends Controller
      */
     public function destroy($group)
     {
-        $group = Group::findOrFail($group);
-        GroupUser::where('group_id' , $group->id)->delete();
-        //$group = Group::findOrFail($group);
+        //this is for softDeletes i dont think is what i need here??
 
-      //  $this->authorize('update', $group);
-      //  auth()->user()->groups()->detach($group->id);
+        //$group = Group::findOrFail($group);
+        //GroupUser::where('group_id' , $group->id)->delete();
+
+        $group = Group::findOrFail($group);
+        $this->authorize('update', $group);
+        auth()->user()->groups()->detach($group->id);
 
         if (request()->wantsJson()) {
             return response()->json(['message' => 'success'], 200);
