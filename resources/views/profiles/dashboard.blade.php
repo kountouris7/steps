@@ -14,7 +14,7 @@
                             </p>
                         </div>
                         <div class="card-action">
-                            <a href="{{route('profile.showBookings', [$user->id])}}">Current bookings</a>
+                            <a href="{{route('profile.showBookings', [$user->id])}}">Manage your bookings</a>
                            {{--  <a href="{{route('past.bookings', [$user->id])}}">Past Bookings</a> --}}
                         </div>
                     </div>
