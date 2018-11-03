@@ -31,6 +31,7 @@
                 <td>{{$subscriber->discount}}</td>
                 <td>{{$subscriber->price}}</td>
                 <td>{{Carbon\Carbon::parse($subscriber->month)->format('F Y')}}</td>
+                <td><a href="{{route('subscriber.edit', [$subscriber->id])}}">Edit</a> </td>
 
             </tr>
         @endforeach

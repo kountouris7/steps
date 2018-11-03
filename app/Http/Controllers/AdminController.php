@@ -8,6 +8,7 @@ use App\Group;
 use App\Invite;
 use App\Lesson;
 use App\Level;
+use App\Subscriber;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -224,7 +225,7 @@ class AdminController extends Controller
 
     public function deleteInvites($id)
     {
-        $invite=Invite::findOrFail($id);
+        $invite = Invite::findOrFail($id);
         $invite->delete();
 
         return back()->with('flash', 'Initation has been deleted');
@@ -272,6 +273,32 @@ class AdminController extends Controller
         $users = User::with('subscription')->get();
 
         return view('administrator.viewUsers', compact('users'));
+    }
+
+    public function subscriberEdit($id)
+    {
+        $subscriber = Subscriber::findOrFail($id);
+
+        return view('administrator.subscribersEdit', compact('subscriber'));
+    }
+
+    public function subscriberUpdate($id)
+    {
+        $subscriber = Subscriber::findOrFail($id);
+        $subscriber->updateOrCreate(
+            [
+                'email' => $subscriber->email,
+
+            ],
+            [
+                'name'         => request('name'),
+                'surname'      => request('surname'),
+                'package_week' => request('package_week'),
+                'amount'       => request('amount'),
+                'discount'     => request('discount'),
+                'price'        => request('price'),
+            ]);
+//dd($q);
     }
 
     public function test()

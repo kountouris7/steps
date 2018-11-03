@@ -48,6 +48,12 @@ class RegisterController extends Controller
 
         Invite::where('token', '=', request('token'))->delete(); //deletes invitation(with token) after registration
 
+       $sub= Subscriber::create([
+            'name'  => request('name'),
+            'email' => request('email'),
+            'month'=>today(),
+        ]);
+
         return redirect(route('login'));
     }
 }

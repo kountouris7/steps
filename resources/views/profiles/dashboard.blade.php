@@ -27,12 +27,12 @@
                         <div class="card-content white-text">
                             <span class="card-title">Package</span>
                             <p>
-                                Your Weekly pack is: <strong>{{$user->subscription->package_week}}</strong> <br>
+                                Your Weekly pack is: <strong>{{optional($user->subscription)->package_week ?? '0'}}</strong> <br>
                                 sessions / week
                             </p>
                         </div>
                         <div class="card-action">
-                            <a href="#"> Monthly subscription: €{{$user->subscription->price}}</a>
+                            <a href="#"> Monthly subscription: €{{optional($user->subscription)->price ?? '0'}}</a>
                         </div>
                     </div>
                 </div>

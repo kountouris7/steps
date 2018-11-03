@@ -6,7 +6,6 @@
 <hr>
 <form action="{{ route('send.multiple') }}" method="POST">
     {{ csrf_field() }}
-
     <button type="submit">Invite All</button>
 </form>
 <hr>
