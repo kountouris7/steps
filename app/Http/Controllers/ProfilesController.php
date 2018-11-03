@@ -25,7 +25,6 @@ class ProfilesController extends Controller
                        ->where('day_time', '>', today())
                        ->get(); //doesn't show past bookings
 
-
         return view('profiles.showBookings', compact('user', 'groups'));
 
     }

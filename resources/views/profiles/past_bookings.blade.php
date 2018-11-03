@@ -10,7 +10,7 @@
                         <li class="collection-item avatar center-align">
                             <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
                             {{$group->lesson->name}}<br>
-                            On {{Carbon\Carbon::parse($group->day_time)->toDayDateTimeString()}}
+                            On {{Carbon\Carbon::parse($group->day_time)->format('l F jS \\@   H:i')}}
                             <hr>
 
 

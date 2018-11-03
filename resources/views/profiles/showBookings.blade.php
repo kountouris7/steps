@@ -36,6 +36,9 @@
                         <h3>You have no bookings...</h3>
                     </div>
                 @endforelse
+
+                      <strong><a href="{{route('past.bookings', [$user->id])}}">Older Bookings</a></strong>
+
             </div>
         </div>
     </div>

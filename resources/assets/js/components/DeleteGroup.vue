@@ -32,7 +32,6 @@
 
 <script>
     var moment = require('moment');
-    //moment().format();
 
     export default {
         props: ['group'],
