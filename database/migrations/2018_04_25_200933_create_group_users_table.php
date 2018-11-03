@@ -17,6 +17,7 @@ class CreateGroupUsersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('group_id');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->unique(['user_id', 'group_id']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GroupUser;
 use App\User;
 use Carbon\Carbon;
 

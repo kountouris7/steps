@@ -10,13 +10,12 @@ use Illuminate\Http\Request;
 class GroupUserController extends Controller
 {
     /**
-     * @param Request $request
      * @param $group
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request,  $group)
+    public function destroy($group)
     {
         $group = Group::findOrFail($group);
 
