@@ -284,21 +284,22 @@ class AdminController extends Controller
 
     public function subscriberUpdate($id)
     {
-        $subscriber = Subscriber::findOrFail($id);
-        $subscriber->updateOrCreate(
+        Subscriber::updateOrCreate(
             [
-                'email' => $subscriber->email,
-
+                'id'   => $id,
             ],
             [
                 'name'         => request('name'),
                 'surname'      => request('surname'),
+                'email'        => request('email'),
                 'package_week' => request('package_week'),
                 'amount'       => request('amount'),
                 'discount'     => request('discount'),
                 'price'        => request('price'),
             ]);
-//dd($q);
+
+        return back()->with('flash', 'Subscriber has been updated');
+
     }
 
 
@@ -329,9 +330,6 @@ class AdminController extends Controller
 
         return back()->with('flash', 'User Deleted');
     }
-
-
-
 
 
 }
