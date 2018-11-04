@@ -42,6 +42,10 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('subscriber/edit/{id}', 'AdminController@subscriberUpdate')->name('subscriber.update');
     Route::get('subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
     Route::get('view.users', 'AdminController@viewUsers')->name('view.users');
+    Route::delete('delete.user/{id}', 'AdminController@deleteUser')->name('delete.user');
+    Route::get('withdrawn.users', 'AdminController@withdrawnUsers')->name('withdrawn.users');
+    Route::get('restore.users/{id}', 'AdminController@restoreUser')->name('restore.user');
+    Route::delete('forceDelete.user/{id}', 'AdminController@forceDeleteUser')->name('forceDelete.user');
 
 
     //email

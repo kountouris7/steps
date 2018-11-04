@@ -301,10 +301,37 @@ class AdminController extends Controller
 //dd($q);
     }
 
-    public function test()
-    {
 
+    public function deleteUser($id)
+    {
+        User::where('id', $id)->delete();
+
+        return back()->with('flash', 'User Withdrawn');
     }
+
+    public function withdrawnUsers()
+    {
+        $withdrawnUsers = User::onlyTrashed()->get();
+
+        return view('administrator.withdrawnUsers', compact('withdrawnUsers'));
+    }
+
+    public function restoreUser($id)
+    {
+        User::where('id', $id)->restore();
+
+        return back()->with('flash', 'User Restored');
+    }
+
+    public function forceDeleteUser($id)
+    {
+        User::where('id', $id)->forceDelete();
+
+        return back()->with('flash', 'User Deleted');
+    }
+
+
+
 
 
 }

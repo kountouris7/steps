@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
     @include('profiles.layouts.profilesnav')
-
     <div class="container" style="margin-left: 35%">
         <div class="row">
             <div class="col s8 m6 l6">
@@ -33,12 +32,12 @@
 
                 @empty
                     <div class="center-align">
-                        <h3>You have no bookings...</h3>
+                        <h3>You don't have any future bookings...</h3>
                     </div>
                 @endforelse
-
-                      <strong><a href="{{route('past.bookings', [$user->id])}}">Older Bookings</a></strong>
-
+                <div class="center-align">
+                    <strong><a href="{{route('past.bookings', [$user->id])}}">Older Bookings</a></strong>
+                </div>
             </div>
         </div>
     </div>
