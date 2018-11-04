@@ -4,26 +4,26 @@ namespace App\Console\Commands;
 
 use App\Email;
 use App\Group;
+use App\GroupUser;
 use App\Mail\DeleteBookings;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class GroupsCreate extends Command
+class BookingsDelete extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'groups:create';
+    protected $signature = 'bookings:delete';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'New Groups Created';
+    protected $description = 'Old Bookings deleted';
 
     /**
      * Create a new command instance.
@@ -44,20 +44,16 @@ class GroupsCreate extends Command
      */
     public function handle(Email $email)
     {
+        $groups =  Group::with('clients')
+                        ->where('day_time', '<' , today())
+                        ->get();
 
-        $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every Friday
-        $groups       = Group::with('lesson')//this necessary??
-                             ->where('day_time', '>', $lastWeekDate)
-                             ->get();
-
-        foreach ($groups as $group) {
-            $newGroups           = $group->replicate();
-            $newGroups->day_time = Carbon::parse($newGroups->day_time)->copy()->addWeek(1);
-            $newGroups->save();
+        foreach($groups as $group){
+            foreach ($group->clients as $booking){
+                $booking->pivot->delete();
+            }
         }
-
         Mail::to('kountouris7@gmail.com')->send(new DeleteBookings($email));
-
-        return info('New classes created');
+        return info('Old bookings have been deleted');
     }
 }

@@ -8,16 +8,16 @@
                     <ul class="collection">
                         <li class="collection-item avatar center-align">
                             <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
-                            {{$group->lesson->name}}<br>
+                           <strong> {{$group->lesson->name}}</strong><br>
                             On {{Carbon\Carbon::parse($group->day_time)->format('l F jS \\@   H:i')}}
-                            <hr>
-                            <form action="{{route('book.destroy', [$group->id])}}" method="POST">
+
+                           {{--<form action="{{route('book.destroy', [$group->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="waves-effect pink accent-3 btn-small
 {{$group->day_time > $groupDateMonthStart ? 'disabled' : '' }}">Clear Booking
                                 </button>
-                            </form>
+                            </form>--}}
                         </li>
                     </ul>
                 </div>

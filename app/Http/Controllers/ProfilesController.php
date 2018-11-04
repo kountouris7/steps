@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\GroupUser;
+use App\Group;
 use App\User;
 use Carbon\Carbon;
 
@@ -10,8 +10,8 @@ class ProfilesController extends Controller
 {
     public function dashboard(User $user)
     {
-        $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateString();
-        $groupDateMonthEndPlusTwoWeeks   = Carbon::now()->endOfMonth()->addWeeks('2')->toDateString();
+        $groupDateMonthStart           = Carbon::now()->firstOfMonth()->toDateString();
+        $groupDateMonthEndPlusTwoWeeks = Carbon::now()->endOfMonth()->addWeeks('2')->toDateString();
 
         $groups = $user->groups()
                        ->whereBetween('day_time', [$groupDateMonthStart, $groupDateMonthEndPlusTwoWeeks])
@@ -32,13 +32,11 @@ class ProfilesController extends Controller
 
     public function showPastBookings(User $user)
     {
-        $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateTimeString();
-       // $groupDateMonthEnd   = Carbon::now()->endOfMonth()->toDateString();
-//dd($groupDateMonthStart);
-        $groups = $user->groups()->with('lesson')
+
+       $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateTimeString();
+       $groups = $user->groups()->with('lesson')
                        ->where('day_time', '<', today())
                        ->get();
-
         return view('profiles.past_bookings', compact('user', 'groups', 'groupDateMonthStart'));
     }
 }
