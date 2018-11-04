@@ -232,7 +232,7 @@ class AdminController extends Controller
         $invite = Invite::findOrFail($id);
         $invite->delete();
 
-        return back()->with('flash', 'Initation has been deleted');
+        return back()->with('flash', 'Invitation has been deleted');
     }
 
     public function articlesWrite()

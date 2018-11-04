@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row">
             @forelse($groups as $group)
-               {{-- <form method="POST" action="{{route('book.group',[$group->id, auth()->id()])}}">
-                    {{csrf_field()}} --}}
+                {{-- <form method="POST" action="{{route('book.group',[$group->id, auth()->id()])}}">
+                     {{csrf_field()}} --}}
 
                 <div class="form-group">
-                   {{-- <input type="hidden" name="group_id" value="{{$group->id}}">
-                     <input type="hidden" name="user_id"  value="{{auth()->id()}}"> --}}
+                    {{-- <input type="hidden" name="group_id" value="{{$group->id}}">
+                      <input type="hidden" name="user_id"  value="{{auth()->id()}}"> --}}
                     <div class="col s12 m4 l6">
 
                         <div class="card">
@@ -58,8 +58,5 @@
 
             @endforelse
         </div>
-
     </div>
-
-
 @endsection

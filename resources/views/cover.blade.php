@@ -9,24 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     @include('layouts.coverStyle')
-    
+
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-center links">
-            @auth
-                <a href="{{ url('/home') }}">
-                    <div class="title m-b-md">
-                        STEPS FITNESS STUDIO
-                    </div>
-                </a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register.form') }}">Register</a>
-            @endauth
-        </div>
-    @endif
+
+    <div class="top-center links">
+        <a href="{{ url('/home') }}">
+            <div class="title m-b-md">
+                STEPS FITNESS STUDIO
+            </div>
+        </a>
+
+    </div>
 
 
 </div>

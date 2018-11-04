@@ -45,13 +45,14 @@ class RegisterController extends Controller
             'password'        => Hash::make(request('password')),
             'type'            => User::DEFAULT_TYPE,
         ]);
+//deletes invitation(with token) after registration
+        Invite::where('token', '=', request('token'))->delete();
+//Registers users in subscribers table also...later will be exported to xls
 
-        Invite::where('token', '=', request('token'))->delete(); //deletes invitation(with token) after registration
-
-       $sub= Subscriber::create([
+        $sub = Subscriber::create([
             'name'  => request('name'),
             'email' => request('email'),
-            'month'=>today(),
+            'month' => today(),
         ]);
 
         return redirect(route('login'));

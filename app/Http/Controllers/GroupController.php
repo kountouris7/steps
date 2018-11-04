@@ -20,8 +20,8 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::with('level', 'lesson', 'bookings', 'clients')
-                       ->where('day_time', '>=', today()->nowWithSameTz()->toDateTimeString())
+        $groups = Group::with('level', 'lesson')
+                       ->where('day_time', '>=', now()->toDateTimeString())
                        ->orderBy('day_time')
                        ->get();
 
