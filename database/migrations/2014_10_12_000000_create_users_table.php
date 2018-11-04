@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 
