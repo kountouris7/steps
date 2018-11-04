@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Email;
 use App\Group;
-use App\Mail\SendGroupUpdateEmail;
+use App\Mail\DeleteBookings;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -56,7 +56,7 @@ class GroupsCreate extends Command
             $newGroups->save();
         }
 
-        Mail::to('kountouris7@gmail.com')->send(new SendGroupUpdateEmail($email));
+        Mail::to('kountouris7@gmail.com')->send(new DeleteBookings($email));
 
         return info('New classes created');
     }

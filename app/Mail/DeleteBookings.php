@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendGroupUpdateEmail extends Mailable
+class DeleteBookings extends Mailable
 {
     use Queueable, SerializesModels;
     public $email;
@@ -30,6 +30,6 @@ class SendGroupUpdateEmail extends Mailable
     public function build()
     {
         return $this->from('stepsfitness@fitness.com')
-                    ->view('emails.groupsUpdated');
+                    ->view('emails.groupsDeleted');
     }
 }
