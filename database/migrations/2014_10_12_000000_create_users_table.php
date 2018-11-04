@@ -21,9 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('type');
            // $table->string('token');
             $table->unsignedInteger('subscription_id')->nullable();
-            $table->softDeletes();
+
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
