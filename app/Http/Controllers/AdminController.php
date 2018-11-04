@@ -135,6 +135,10 @@ class AdminController extends Controller
     {
         $group = Group::with('lesson')->findOrFail($id);
 
+        $this->validate($request, [
+            'level_id' => 'required',
+        ]);
+
         $group->update([
             'day_time'     => request('day_time'),
             'max_capacity' => request('max_capacity'),

@@ -18,7 +18,7 @@ class CreateGroupsTable extends Migration
             $table->unsignedInteger('lesson_id');
             $table->dateTime('day_time');
             $table->integer('max_capacity');
-            $table->unsignedInteger('level_id');
+            $table->unsignedInteger('level_id')->required();
             $table->timestamps();
 
             ////$table->foreign('lesson_id')

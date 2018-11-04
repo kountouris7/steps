@@ -18,6 +18,7 @@ u should change this to the production url--}}
     <div style="width:800px; margin:0 auto;">
         @yield('content')
         <flash message="{{session('flash')}}"></flash>
+        @include('partials.errors')
     </div>
 </div>
 
