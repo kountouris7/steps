@@ -120,7 +120,6 @@ class GroupController extends Controller
         if ($dayToSearch) {
             $groups = Group::with('level', 'lesson', 'bookings')
                            ->where('day_time', 'like', "$dayToSearch%")
-                           ->where('day_time', '>=', today())
                            ->orderBy('day_time')
                            ->get()
                            ->transform(function ($group) {
