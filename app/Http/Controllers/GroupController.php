@@ -26,6 +26,7 @@ class GroupController extends Controller
                        ->get();
 
         return view('show')
+
             ->with('groups', $groups);
     }
 
