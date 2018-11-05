@@ -11,7 +11,7 @@ class Group extends Model
    // use SoftDeletes;
     protected $guarded = [];
     protected $table = 'groups';
-    protected $appends = ['bookingsCount', 'isBooked'];
+    //protected $appends = ['bookingsCount', 'isBooked'];
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 
@@ -58,24 +58,13 @@ class Group extends Model
         return $this->hasMany(GroupUser::class, 'group_id');
     }
 
-    public function getBookingsAttribute()
-    {
-        return $this->bookings();
-    }
-
-    public function getIsBookedAttribute()
-    {
-
-        return $this->isBooked();
-    }
-
     public function isBooked()
     {
 
         return ! ! $this->bookings->where('user_id', auth()->id())->first();
     }
 
-    public function getBookingsCountAttribute()
+    public function bookingsCount()
     {
         return $this->bookings->count();
     }
