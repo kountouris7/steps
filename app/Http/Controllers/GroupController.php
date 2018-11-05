@@ -104,11 +104,34 @@ class GroupController extends Controller
 
     public function daysFilter($day)
     {
-        $groups = Group::with('level', 'lesson', 'bookings')
-                       ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                       ->where('day_time', '>=', today())
-                       ->orderBy('day_time')
-                       ->get();
+        $dates = [];
+        $today = Carbon::today();
+
+        for ($i = 0; $i < 7; $i++) {
+            $dates[$today->dayOfWeek] = $today->addDay($i)->toDateString();
+        }
+
+        ksort($dates);
+
+        $dayToSearch = $dates[$day] ?? null;
+
+        $groups = [];
+
+        if ($dayToSearch) {
+            $groups = Group::with('level', 'lesson', 'bookings')
+                           ->where('day_time', 'like', "$dayToSearch%")
+                           ->where('day_time', '>=', today())
+                           ->orderBy('day_time')
+                           ->get()
+                           ->transform(function ($group) {
+                               return collect(array_merge($group->toArray(), [
+                                   'bookingsCount' => $group->bookingsCount(),
+                                   'level'         => $group->level,
+                                   'isBooked'      => $group->bookings->contains('user_id', auth()->id()),
+                                   'lesson'        => $group->lesson,
+                               ]));
+                           });
+        }
 
         return view('show', compact('groups'));
     }
