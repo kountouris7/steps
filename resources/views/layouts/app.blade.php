@@ -31,7 +31,7 @@
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
 
 <!--JavaScript at end of body for optimized loading-->
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{mix('js/app.js')}}"></script>
 
 <script>
     $(document).ready(function () {

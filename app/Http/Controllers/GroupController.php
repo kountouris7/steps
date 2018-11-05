@@ -6,7 +6,6 @@ use App\Group;
 use App\Http\Requests\BookGroupRequest;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Session;
 
 class GroupController extends Controller
 {
@@ -20,43 +19,50 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::with('level', 'lesson')
+        $groups = Group::with(['bookings', 'level', 'lesson'])
                        ->where('day_time', '>=', now()->toDateTimeString())
                        ->orderBy('day_time')
-                       ->get();
+                       ->get()
+                       ->transform(function ($group) {
+                           return collect(array_merge($group->toArray(), [
+                               'bookingsCount' => $group->bookingsCount(),
+                               'level'         => $group->level,
+                               'isBooked'      => $group->bookings->contains('user_id', auth()->id()),
+                               'lesson'        => $group->lesson,
+                           ]));
+                       });
 
         return view('show')
-
             ->with('groups', $groups);
     }
 
     public function store(Group $group, User $user, BookGroupRequest $request)
     {
-         list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
-         $userSubscriptions = $user->subscription()->get();
-         $bookingsTotal     = $user->groups()->get();
+        list($groupDateWeekStart, $groupDateWeekEnd) = $this->requestedGroupWeek($group);
+        $userSubscriptions = $user->subscription()->get();
+        $bookingsTotal     = $user->groups()->get();
 
-         $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
-         if ($group->attendance() >= $group->capacity()) {
-             return response()->json(['message' => 'Sorry this group is fully booked'], 222);
-             //return back()->with('flash', 'Sorry this group is fully booked');
-         }
-         foreach ($userSubscriptions as $userSubscription) {
-             if ($bookingsWeekly == $userSubscription->package_week) {
-                 return response()->json(['message' => 'Sorry, you have reached your weekly booking limit'], 222);
-                 //return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
-             }
-         }
-         foreach ($bookingsTotal as $booking) {
+        $bookingsWeekly = $this->bookingsWeekly($user, $groupDateWeekStart, $groupDateWeekEnd);
+        if ($group->attendance() >= $group->capacity()) {
+            return response()->json(['message' => 'Sorry this group is fully booked'], 222);
+            //return back()->with('flash', 'Sorry this group is fully booked');
+        }
+        foreach ($userSubscriptions as $userSubscription) {
+            if ($bookingsWeekly == $userSubscription->package_week) {
+                return response()->json(['message' => 'Sorry, you have reached your weekly booking limit'], 222);
+                //return back()->with('flash', 'Sorry, you have reached your weekly booking limit');
+            }
+        }
+        foreach ($bookingsTotal as $booking) {
 
-                 if (Carbon::parse($booking->day_time)
-                           ->format('d F Y') == Carbon::parse($group->day_time)
-                                                      ->format('d F Y')) {
-                     return response()->json(['message' => 'Already booked a class on this day' ], 222);
-                     //return back()->with('flash', 'Already booked a class on this day');
-                 }
-         }
-         try {
+            if (Carbon::parse($booking->day_time)
+                      ->format('d F Y') == Carbon::parse($group->day_time)
+                                                 ->format('d F Y')) {
+                return response()->json(['message' => 'Already booked a class on this day'], 222);
+                //return back()->with('flash', 'Already booked a class on this day');
+            }
+        }
+        try {
             $group->clients()
                   ->attach($group->id,
                       [
@@ -69,7 +75,7 @@ class GroupController extends Controller
         }
 
 
-       if (request()->expectsJson()) {
+        if (request()->expectsJson()) {
             return response()->json(['status' => 'Data is successfully added']);
         }
 

@@ -43,7 +43,7 @@ u should change this to the production url--}}
 
 
 <!--JavaScript at end of body for optimized loading-->
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{mix('js/app.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
 
 </body>
