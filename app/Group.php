@@ -15,7 +15,7 @@ class Group extends Model
 
     //protected $with = ['level', 'lesson']; //relationship to always eager load
 
-   // protected $dates = ['created_at'];
+   protected $dates = ['day_time'];
 
     //public function scopeDayFilter($query, $day)
     // {
