@@ -108,7 +108,7 @@ class GroupController extends Controller
         $today = Carbon::today();
 
         for ($i = 0; $i < 7; $i++) {
-            $dates[$today->dayOfWeek] = $today->addDay($i)->toDateString();
+            $dates[$today->dayOfWeek] = $today->addDay($i)->startOfDay()->toDateTimeString();
         }
 
         ksort($dates);
