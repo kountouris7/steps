@@ -108,7 +108,8 @@ class GroupController extends Controller
         $today = Carbon::today();
 
         for ($i = 0; $i < 7; $i++) {
-            $dates[$today->dayOfWeek] = $today->addDay($i)->startOfDay();
+            $groupDateTime                    = $today->copy()->addDay($i);
+            $dates[$groupDateTime->dayOfWeek] = $groupDateTime;
         }
 
         ksort($dates);
@@ -119,7 +120,7 @@ class GroupController extends Controller
 
         if ($dayToSearch) {
             $groups = Group::with('level', 'lesson', 'bookings')
-                           ->where('day_time', '>=', $dayToSearch)
+                           ->whereBetween('day_time', [$dayToSearch->startOfDay()->toDateTimeString(), $dayToSearch->endOfDay()->toDateTimeString()])
                            ->orderBy('day_time')
                            ->get()
                            ->transform(function ($group) {
