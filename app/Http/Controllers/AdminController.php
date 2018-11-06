@@ -191,22 +191,58 @@ class AdminController extends Controller
 
     public function seeAttendances()
     {
-        $attendances = Group::with('clients', 'lesson')// Querying Relationship Existence
+        $attendances = Group::with('clients', 'lesson')
                             ->where('day_time', '>=', today()->nowWithSameTz())
-                            ->get();
+                            ->get()->transform(function ($group) {
+                                return collect(array_merge($group->toArray(), [
+                                    'clients' => $group->clients,
+                                    'lesson'  => $group->lesson,
+                                    ]));
+                            });
 
         return view('administrator.seeAttendances', compact('attendances'));
     }
 
     public function attendanceByDay($day)
     {
-        $thisWeeksEnd = $this->thisWeeksEnd();
-        $attendances  = Group::with('clients', 'lesson')
-                             ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
-                             ->where('day_time', '<=', $thisWeeksEnd)
-                             ->get();
+        $dates = [];
+        $today = Carbon::today();
+
+        for ($i = 0; $i < 7; $i++) {
+            $groupDateTime                    = $today->copy()->addDay($i);
+            $dates[$groupDateTime->dayOfWeek] = $groupDateTime;
+        }
+
+        ksort($dates);
+
+        $dayToSearch = $dates[$day] ?? null;
+
+        $attendances = [];
+
+        if ($dayToSearch) {
+            $attendances = Group::with('lesson', 'clients')
+                                ->whereBetween('day_time', [
+                                    $dayToSearch->startOfDay()->toDateTimeString(),
+                                    $dayToSearch->endOfDay()->toDateTimeString(),
+                                ])
+                                ->orderBy('day_time')
+                                ->get()
+                                ->transform(function ($group) {
+                                    return collect(array_merge($group->toArray(), [
+                                        'lesson'  => $group->lesson,
+                                        'clients' => $group->clients,
+                                    ]));
+                                });
+        }
 
         return view('administrator.seeAttendances', compact('attendances'));
+        // $thisWeeksEnd = $this->thisWeeksEnd();
+        // $attendances  = Group::with('clients', 'lesson')
+        //                      ->whereRaw("WEEKDAY(groups.day_time) =" . $day)
+        //                      ->where('day_time', '<=', $thisWeeksEnd)
+        //                      ->get();
+
+
     }
 
     /**
@@ -290,7 +326,7 @@ class AdminController extends Controller
     {
         Subscriber::updateOrCreate(
             [
-                'id'   => $id,
+                'id' => $id,
             ],
             [
                 'name'         => request('name'),
