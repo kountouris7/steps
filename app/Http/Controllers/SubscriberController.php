@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportSubscribersRequest;
 use App\Subscriber;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -80,15 +80,37 @@ class SubscriberController extends Controller
 
     public function showAllSubscribers()
     {
-        $subscribers=Subscriber::get();
+        $subscribers = Subscriber::get();
+
         return view('administrator.subscribers', compact('subscribers'));
     }
 
     //What is month? A string? A carbon object?
     public function showSubscribersByMonth($month)
     {
-        $subscribers = Subscriber::whereMonth('month', $month)
-                         ->get();
+        $dates        = [];
+        $currentMonth = Carbon::now();
+
+
+        //
+
+        for ($i = 0; $i < 12; $i++) {
+
+            $clientMonth                    = $currentMonth->copy()->addMonth($i)->format('m');
+            $dates[$clientMonth] = $clientMonth;
+        }
+
+        ksort($dates);
+        $monthToSearch = $dates[$month] ?? null;
+
+        $subscribers = [];
+
+        if ($monthToSearch) {
+            $subscribers = Subscriber::whereMonth('month', $month)
+                                     ->get()->transform(function ($group) {
+                    return collect(array_merge($group->toArray()));
+                });;
+        }
 
         return view('administrator.subscribers', compact('subscribers'));
     }
@@ -96,6 +118,7 @@ class SubscriberController extends Controller
     public function subscriberProfile($id)
     {
         $subscriber = Subscriber::findOrFail($id);
+
         return view('administrator.subscribersProfile', compact('subscriber'));
     }
 

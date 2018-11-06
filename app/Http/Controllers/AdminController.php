@@ -193,12 +193,13 @@ class AdminController extends Controller
     {
         $attendances = Group::with('clients', 'lesson')
                             ->where('day_time', '>=', today()->nowWithSameTz())
+                            ->orderBy('day_time')
                             ->get()->transform(function ($group) {
-                                return collect(array_merge($group->toArray(), [
-                                    'clients' => $group->clients,
-                                    'lesson'  => $group->lesson,
-                                    ]));
-                            });
+                return collect(array_merge($group->toArray(), [
+                    'clients' => $group->clients,
+                    'lesson'  => $group->lesson,
+                ]));
+            });
 
         return view('administrator.seeAttendances', compact('attendances'));
     }
