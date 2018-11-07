@@ -48,7 +48,6 @@
                         </div>
                     </div>
 
-
                     <div class="col s12 center-align">
                         <button type="submit" class="waves-effect pink accent-3 btn-large">
                             {{ __('Login') }}
