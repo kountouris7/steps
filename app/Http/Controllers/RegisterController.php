@@ -41,6 +41,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name'            => request('name'),
             'email'           => request('email'),
+
             //'subscription_id' => $invitation->id,
             'password'        => Hash::make(request('password')),
             'type'            => User::DEFAULT_TYPE,
