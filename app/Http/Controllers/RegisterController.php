@@ -49,11 +49,11 @@ class RegisterController extends Controller
         Invite::where('token', '=', request('token'))->delete();
 //Registers users in subscribers table also...later will be exported to xls
 
-        $sub = Subscriber::create([
-            'name'  => request('name'),
-            'email' => request('email'),
-            'month' => today(),
-        ]);
+     //   $sub = Subscriber::create([
+       //     'name'  => request('name'),
+         //   'email' => request('email'),
+           // 'month' => today(),
+        //]);
 
         return redirect(route('login'));
     }

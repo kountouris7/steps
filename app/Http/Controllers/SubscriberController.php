@@ -32,14 +32,12 @@ class SubscriberController extends Controller
                     foreach ($data as $key => $value) {
                         $insertData = Subscriber::updateOrCreate(
                             [
-                                'name'    => $value->name,
-                                'surname' => $value->surname,
+                                'email'        => $value->email,
 
                             ],
                             [
                                 'name'         => $value->name,
                                 'surname'      => $value->surname,
-                                'email'        => $value->email,
                                 'package_week' => $value->package_week,
                                 'amount'       => $value->amount,
                                 'discount'     => $value->discount,
