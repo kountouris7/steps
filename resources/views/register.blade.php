@@ -60,7 +60,7 @@
                         <div class="input-field col s6">
                             <input id="token" type="text"
                                    class="form-control{{ $errors->has('token') ? ' is-invalid' : '' }}"
-                                   name="token" placeholder="Copy activation" required>
+                                   name="token" placeholder="Paste activation code" required>
 
                             @if ($errors->has('token'))
                                 <span class="invalid-feedback">
