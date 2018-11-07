@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImportSubscribersRequest;
 use App\Subscriber;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -70,47 +71,33 @@ class SubscriberController extends Controller
 
     public function showSubscribersCurrentMonth()
     {
-        //date('m') = currentMonth//
-        $subscribers = Subscriber::whereRaw("MONTH(subscribers.created_at) =" . date('m'))
-                                 ->orWhereRaw("MONTH(subscribers.month) =" . date('m'))
-                                 ->get();
+        $currentMonth = today();
+        $startOfMonth = Carbon::parse($currentMonth)->startOfMonth()->toDateTimeString();
+        $endOfMonth   = Carbon::parse($currentMonth)->endOfMonth()->toDateTimeString();
+        $subscribers  = Subscriber::whereBetween('month', [$startOfMonth, $endOfMonth])->get()
+                                  ->transform(function ($subscriber) {
+                                      return collect(array_merge($subscriber->toArray()));
+                                  });;
 
         return view('administrator.subscribers', compact('subscribers'));
     }
 
     public function showAllSubscribers()
     {
-        $subscribers = Subscriber::get();
+        $subscribers = Subscriber::get()
+                                 ->transform(function ($subscriber) {
+                                     return collect(array_merge($subscriber->toArray()));
+                                 });
 
         return view('administrator.subscribers', compact('subscribers'));
     }
 
-    //What is month? A string? A carbon object?
     public function showSubscribersByMonth($month)
     {
-        $dates        = [];
-        $currentMonth = Carbon::now();
-
-
-        //
-
-        for ($i = 0; $i < 12; $i++) {
-
-            $clientMonth                    = $currentMonth->copy()->addMonth($i)->format('m');
-            $dates[$clientMonth] = $clientMonth;
-        }
-
-        ksort($dates);
-        $monthToSearch = $dates[$month] ?? null;
-
-        $subscribers = [];
-
-        if ($monthToSearch) {
-            $subscribers = Subscriber::whereMonth('month', $month)
-                                     ->get()->transform(function ($group) {
-                    return collect(array_merge($group->toArray()));
-                });;
-        }
+        $subscribers = Subscriber::whereMonth('month', $month)
+                                 ->get()->transform(function ($subscriber) {
+                return collect(array_merge($subscriber->toArray()));
+            });;
 
         return view('administrator.subscribers', compact('subscribers'));
     }

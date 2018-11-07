@@ -22,16 +22,16 @@
 
         @foreach($subscribers as $subscriber)
             <tr>
-                <td>{{$subscriber->id}}</td>
-                <td><a href="{{ route('subscriber.profile', [$subscriber->id]) }}">{{$subscriber->name}}</a></td>
-                <td>{{$subscriber->surname}}</td>
-                <td>{{$subscriber->email}}</td>
-                <td>{{$subscriber->package_week}}</td>
-                <td>{{$subscriber->amount}}</td>
-                <td>{{$subscriber->discount}}</td>
-                <td>{{$subscriber->price}}</td>
-                <td>{{Carbon\Carbon::parse($subscriber->month)->format('F Y')}}</td>
-                <td><a href="{{route('subscriber.edit', [$subscriber->id])}}">Edit</a> </td>
+                <td>{{$subscriber->get('id')}}</td>
+                <td><a href="{{ route('subscriber.profile', [$subscriber->get('id')]) }}">{{$subscriber->get('name')}}</a></td>
+                <td>{{$subscriber->get('surname')}}</td>
+                <td>{{$subscriber->get('email')}}</td>
+                <td>{{$subscriber->get('package_week')}}</td>
+                <td>{{$subscriber->get('amount')}}</td>
+                <td>{{$subscriber->get('discount')}}</td>
+                <td>{{$subscriber->get('price')}}</td>
+                <td>{{Carbon\Carbon::parse($subscriber->get('month'))->format('F Y')}}</td>
+                <td><a href="{{route('subscriber.edit', [$subscriber->get('id')])}}">Edit</a> </td>
 
             </tr>
         @endforeach
