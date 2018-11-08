@@ -53,11 +53,15 @@ class RegisterController extends Controller
 
 //Registers users in subscribers table also...later will be exported to xls
 
-        $sub = Subscriber::create([
-            'name'  => request('name'),
-            'email' => request('email'),
-            'month' => today(),
-        ]);
+//you should change this to update or Create
+        $sub = Subscriber::updateOrCreate(
+            [
+                'email' => request('email'),
+            ],
+            [
+                'name' => request('name'),
+                'month' => today(),
+            ]);
 
         return redirect(route('login'));
     }

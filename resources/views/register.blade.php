@@ -57,7 +57,7 @@
                             <label for="password-confirm">{{ __('Confirm Password') }}</label>
                         </div>
 
-                        <div class="input-field col s6">
+                    {{----}}    <div class="input-field col s6">
                             <input id="token" type="text"
                                    class="form-control{{ $errors->has('token') ? ' is-invalid' : '' }}"
                                    name="token" placeholder="Paste activation code" required>
