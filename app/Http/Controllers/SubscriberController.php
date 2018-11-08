@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImportSubscribersRequest;
 use App\Subscriber;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -32,7 +31,7 @@ class SubscriberController extends Controller
                     foreach ($data as $key => $value) {
                         $insertData = Subscriber::updateOrCreate(
                             [
-                                'email'        => $value->email,
+                                'email' => $value->email,
 
                             ],
                             [
@@ -92,11 +91,16 @@ class SubscriberController extends Controller
 
     public function showSubscribersByMonth($month)
     {
-        $subscribers = Subscriber::whereMonth('month', $month)
+        $monthRequestedByAdmin = Carbon::now()->month($month)->toDateTimeString();
+        $startOfMonth          = Carbon::parse($monthRequestedByAdmin)->startOfMonth()->toDateTimeString();
+        $endOfMonth            = Carbon::parse($monthRequestedByAdmin)->endOfMonth()->toDateTimeString();
+
+
+        $subscribers = Subscriber::whereBetween('month', [$startOfMonth, $endOfMonth])
                                  ->get()->transform(function ($subscriber) {
                 return collect(array_merge($subscriber->toArray()));
             });;
-
+        //dd($startOfMonth);
         return view('administrator.subscribers', compact('subscribers'));
     }
 
