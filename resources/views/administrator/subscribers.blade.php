@@ -18,7 +18,7 @@
         </thead>
         <tbody>
 
-       @include('administrator.layouts.navSubscribersByMonth')
+        @include('administrator.layouts.navSubscribersByMonth')
 
         @foreach($subscribers as $subscriber)
             <tr>
@@ -31,13 +31,11 @@
                 <td>{{$subscriber->discount}}</td>
                 <td>{{$subscriber->price}}</td>
                 <td>{{Carbon\Carbon::parse($subscriber->month)->format('F Y')}}</td>
-                <td><a href="{{route('subscriber.edit', [$subscriber->id])}}">Edit</a> </td>
-
+                <td><a href="{{route('subscriber.edit', [$subscriber->id])}}">Edit</a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
-        @include('administrator.invite')
-
-
+    <br>
+    <a href="{{route('add.subscriberView')}}">Add/Invite Client</a>
 @endsection

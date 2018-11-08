@@ -44,10 +44,8 @@
                 axios.post('/booking/' + this.group.id + '/' + this.auth)
                     .then(response => {
                         console.log(response);
-                        //find out why error 222?
                         if (response.status === 222) {
                             this.loading = false;
-                           // alert(response.data.message);
                             flash(response.data.message);
                         } else {
                             this.loading = false;
@@ -57,8 +55,6 @@
                     })
                     .catch(error => {
                         this.loading = false;
-                        //if error status code == 422
-                        //show validation errors
                         alert('Woops!!!Please try to refresh the page');
                         console.log(error.data)
                     });
