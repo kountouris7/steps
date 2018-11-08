@@ -82,7 +82,8 @@ class SubscriberController extends Controller
             'discount'     => request('discount'),
             'price'        => request('price'),
         ]);
-        return redirect(route('subscriber.profile'));
+
+        return redirect(route('showAllSubscribers'))->with('flash', 'Client added successfully');
     }
 
 
@@ -98,7 +99,7 @@ class SubscriberController extends Controller
 
     public function showAllSubscribers()
     {
-        $subscribers = Subscriber::get();
+        $subscribers = Subscriber::latest()->get();
 
         return view('administrator.subscribers', compact('subscribers'));
     }
