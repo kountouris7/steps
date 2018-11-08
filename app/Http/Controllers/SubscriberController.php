@@ -71,20 +71,13 @@ class SubscriberController extends Controller
         $currentMonth = today();
         $startOfMonth = Carbon::parse($currentMonth)->startOfMonth()->toDateTimeString();
         $endOfMonth   = Carbon::parse($currentMonth)->endOfMonth()->toDateTimeString();
-        $subscribers  = Subscriber::whereBetween('month', [$startOfMonth, $endOfMonth])->get()
-                                  ->transform(function ($subscriber) {
-                                      return collect(array_merge($subscriber->toArray()));
-                                  });;
-
+        $subscribers  = Subscriber::whereBetween('month', [$startOfMonth, $endOfMonth])->get();
         return view('administrator.subscribers', compact('subscribers'));
     }
 
     public function showAllSubscribers()
     {
-        $subscribers = Subscriber::get()
-                                 ->transform(function ($subscriber) {
-                                     return collect(array_merge($subscriber->toArray()));
-                                 });
+        $subscribers = Subscriber::get();
 
         return view('administrator.subscribers', compact('subscribers'));
     }
@@ -97,10 +90,7 @@ class SubscriberController extends Controller
 
 
         $subscribers = Subscriber::whereBetween('month', [$startOfMonth, $endOfMonth])
-                                 ->get()->transform(function ($subscriber) {
-                return collect(array_merge($subscriber->toArray()));
-            });;
-        //dd($startOfMonth);
+                                 ->get();
         return view('administrator.subscribers', compact('subscribers'));
     }
 
