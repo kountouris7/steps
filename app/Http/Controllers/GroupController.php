@@ -107,7 +107,7 @@ class GroupController extends Controller
         $dates = [];
         $today = Carbon::today();
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i <= 7; $i++) {
             $groupDateTime                    = $today->copy()->addDay($i);
             $dates[$groupDateTime->dayOfWeek] = $groupDateTime;
         }
@@ -115,7 +115,6 @@ class GroupController extends Controller
         ksort($dates);
 
         $dayToSearch = $dates[$day] ?? null;
-
         $groups = [];
 
         if ($dayToSearch) {
