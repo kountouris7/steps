@@ -37,29 +37,25 @@ class RegisterController extends Controller
         if ( ! $invitation = Invite::where('email', $request->email)->first()) {
             return back()->with('flash', 'Please use the email you received the invitation to sign in');
         }
-        // $subscription = Subscriber::where('email', $request->email)->first();
+        $subscription = Subscriber::where('email', $request->email)->first();
 
-        $user = User::create([
-            'name'     => request('name'),
-            'email'    => request('email'),
-            // 'subscription_id' => $subscription->id,
-            'password' => Hash::make(request('password')),
-            'type'     => User::DEFAULT_TYPE,
+        User::create([
+            'name'            => request('name'),
+            'email'           => request('email'),
+            'subscription_id' => $subscription->id,
+            'password'        => Hash::make(request('password')),
+            'type'            => User::DEFAULT_TYPE,
         ]);
 
-//deletes invitation(with token) after registration
+        //deletes invitation(with token) after registration
         Invite::where('token', '=', request('token'))->delete();
-
-
-//Registers users in subscribers table also...later will be exported to xls
-
-//you should change this to update or Create
-        $sub = Subscriber::updateOrCreate(
+        //Registers users in subscribers table...later will be exported to xls
+        Subscriber::updateOrCreate(
             [
                 'email' => request('email'),
             ],
             [
-                'name' => request('name'),
+                'name'  => request('name'),
                 'month' => today(),
             ]);
 
