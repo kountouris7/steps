@@ -46,10 +46,10 @@ class GroupsDelete extends Command
      */
     public function handle(Email $email)
     {
-        $lastWeekDate = Carbon::today()->subWeek()->toDateString(); //this will run every Saturday
-        $today        = Carbon::today()->toDateString();
+        $lastMonthFirstDay = Carbon::today()->subMonth()->toDateTimeString(); //this will run every month's 1st.
+        $today        = Carbon::today()->toDateTimeString();
 
-        Group::whereBetween('day_time', [$lastWeekDate, $today])->delete();
+        Group::whereBetween('day_time', [$lastMonthFirstDay, $today])->delete();
         Mail::to('kountouris7@gmail.com')->send(new SendCronNotif($email));
         return info('Old groups have been deleted');
 

@@ -3,7 +3,7 @@
     @include('profiles.layouts.profilesnav')
     <div class="container" style="margin-left: 35%">
         <div class="row">
-            <div class="col s8 m6 l6">
+            <div class="col s12 m4 l6">
                 @forelse ($groups as $group)
                     <delete-group :group="{{$group}}"></delete-group>
 
