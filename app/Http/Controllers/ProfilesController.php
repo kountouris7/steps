@@ -21,11 +21,12 @@ class ProfilesController extends Controller
 
     public function showBookings(User $user)
     {
+        $currentMonth = Carbon::now()->format('F');
         $groups = $user->groups()->with('lesson')
                        ->where('day_time', '>', today())
                        ->get(); //doesn't show past bookings
 
-        return view('profiles.showBookings', compact('user', 'groups'));
+        return view('profiles.showBookings', compact('user', 'groups' , 'currentMonth'));
 
     }
 
