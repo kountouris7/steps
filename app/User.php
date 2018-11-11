@@ -42,6 +42,7 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
     //protected $with = ['groups'];
 
     public function isAdmin()
@@ -53,7 +54,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class, 'group_users');
     }
-
     public function subscription()
     {
         return $this->hasOne(Subscriber::class, 'email', 'email');

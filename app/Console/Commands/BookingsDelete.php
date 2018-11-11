@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Email;
-use App\Group;
 use App\GroupUser;
 use App\Mail\DeleteBookings;
 use Illuminate\Console\Command;
@@ -44,15 +43,7 @@ class BookingsDelete extends Command
      */
     public function handle(Email $email)
     {
-        $groups =  Group::with('clients')
-                        ->where('day_time', '<' , today())
-                        ->get();
-
-        foreach($groups as $group){
-            foreach ($group->clients as $booking){
-                $booking->pivot->delete();
-            }
-        }
+        GroupUser::where('created_at', '<', today())->delete();
         Mail::to('kountouris7@gmail.com')->send(new DeleteBookings($email));
         return info('Old bookings have been deleted');
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
 use App\User;
 use Carbon\Carbon;
 
@@ -32,11 +31,11 @@ class ProfilesController extends Controller
 
     public function showPastBookings(User $user)
     {
+        $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateTimeString();
+        $groups              = $user->groups()->with('lesson')
+                                    ->where('day_time', '<', today())
+                                    ->get();
 
-       $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateTimeString();
-       $groups = $user->groups()->with('lesson')
-                       ->where('day_time', '<', today())
-                       ->get();
         return view('profiles.past_bookings', compact('user', 'groups', 'groupDateMonthStart'));
     }
 }
