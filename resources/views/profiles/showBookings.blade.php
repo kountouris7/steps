@@ -6,7 +6,7 @@
             <div class="col s12 m4 l6">
                 <div class="header center-align" style="font-family: 'Raleway', sans-serif;">
               <h4>
-                  {{$currentMonth}} Bookings
+                  <strong>{{$currentMonth}} Bookings</strong>
               </h4>
                 </div>
                 @forelse ($groups as $group)
@@ -41,7 +41,13 @@
                     </div>
                 @endforelse
                 <div class="center-align">
-                    <strong><a href="{{route('past.bookings', [$user->id])}}">Older Bookings</a></strong>
+                    <ul class="collection">
+                        <li class="collection-item avatar center-align">
+                            <strong><a href="{{route('past.bookings', [$user->id])}}">Past Bookings</a></strong>
+                            <hr>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>

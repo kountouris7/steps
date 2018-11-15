@@ -24,8 +24,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function cover()
-    {
-        return view('cover');
-    }
+    //public function cover()
+    //{
+      //  return view('cover');
+    //}
 }

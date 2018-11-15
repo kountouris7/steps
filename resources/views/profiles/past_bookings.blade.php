@@ -3,8 +3,14 @@
     @include('profiles.layouts.profilesnav')
     <div class="container" style="margin-left: 35%">
         <div class="row">
+            <div class="col s12 m4 l6">
+            <div class="header center-align" style="font-family: 'Raleway', sans-serif;">
+                <h5>
+                    <strong>{{$currentMonth}} Past Bookings</strong>
+                </h5>
+            </div>
             @forelse ($groups as $group)
-                <div class="col s12 m4 l6">
+
                     <ul class="collection">
                         <li class="collection-item avatar center">
                             <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
@@ -20,13 +26,14 @@
                             </form>--}}
                         </li>
                     </ul>
-                </div>
 
             @empty
                 <div>
                     <h3>You have no past bookings...</h3>
                 </div>
             @endforelse
+            </div>
+
         </div>
     </div>
 

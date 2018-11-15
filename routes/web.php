@@ -1,19 +1,18 @@
 <?php
 
 Auth::routes();
-Route::get('/', 'HomeController@cover')->name('cover');
+//Route::get('/', 'HomeController@cover')->name('cover');
 Route::get('/register', 'RegisterController@index')->name('register.form');
 Route::post('/register', 'RegisterController@create')->name('register.user');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/groups', 'GroupController@index')->name('show.groups');
 Route::post('/booking/{group}/{user}', 'GroupController@store')->name('book.group');
 Route::delete('/booking/{group}', 'GroupUserController@destroy')->name('book.destroy');
 Route::get('/profile/dashboard/{user}', 'ProfilesController@dashboard')->name('profile.dashboard');
 Route::get('/profile/{user}', 'ProfilesController@showBookings')->name('profile.showBookings');
-Route::get('profile/{user}/past.bookings', 'ProfilesController@showPastBookings')->name('past.bookings');
+Route::get('profile/{user}/past.bookings', 'ProfilesController@showPastBookingsCurrentMonth')->name('past.bookings');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
-
 Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
 
 
@@ -47,8 +46,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('withdrawn.users', 'AdminController@withdrawnUsers')->name('withdrawn.users');
     Route::get('restore.users/{id}', 'AdminController@restoreUser')->name('restore.user');
     Route::delete('forceDelete.user/{id}', 'AdminController@forceDeleteUser')->name('forceDelete.user');
-
-
     //email
     Route::post('invite/', 'InviteController@process')->name('process');
     Route::post('send.multiple', 'InviteController@sendMultiple')->name('send.multiple');

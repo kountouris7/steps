@@ -20,11 +20,6 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    protected function checkEmail()
-    {
-
-    }
-
     protected function create(Request $request)
     {
         $this->validate($request, [
