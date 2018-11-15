@@ -15,7 +15,7 @@
 <div class="flex-center position-ref full-height">
 
     <div class="top-center links">
-        <a href="{{ url('/home') }}">
+        <a href="{{ url('/') }}">
             <div class="title m-b-md">
                 STEPS FITNESS STUDIO
             </div>
