@@ -56,7 +56,7 @@ class GroupsCreate extends Command
             $newGroups->save();
         }
 
-        Mail::to('kountouris7@gmail.com')->send(new DeleteBookings($email));
+       // Mail::to('kountouris7@gmail.com')->send(new DeleteBookings($email));
 
         return info('New classes created');
     }
