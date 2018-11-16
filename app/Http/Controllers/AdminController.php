@@ -124,11 +124,11 @@ class AdminController extends Controller
         $group = Group::with('level')
                       ->findOrFail($id);
 
+        $lessons=Lesson::get();
+
         $levels = Level::get();
 
-        $groupLevel = $group->level->level;
-
-        return view('administrator.editgroup', compact('group', 'levels', 'groupLevel'));
+        return view('administrator.editgroup', compact('group', 'lessons','levels'));
     }
 
     public function updategroup(Request $request, $id)
@@ -139,11 +139,13 @@ class AdminController extends Controller
             'level_id' => 'required',
         ]);
 
-        $group->update([
+       $x= $group->update([
             'day_time'     => request('day_time'),
             'max_capacity' => request('max_capacity'),
             'level_id'     => request('level_id'),
+            'lesson_id'    => request('lesson_id'),
         ]);
+
 
         $data = $group->lesson->name . 'has been updated';
 
