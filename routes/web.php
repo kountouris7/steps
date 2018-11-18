@@ -58,7 +58,7 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('articles.write', 'AdminController@articlesWrite')->name('articles.write');
     Route::post('articles.post', 'AdminController@articlesPost')->name('articles.post');
     Route::get('articles.show', 'AdminController@articlesShow')->name('articles.show');
-    Route::get('articles.read', 'AdminController@articlesRead')->name('articles.read');
+    Route::get('articles.read/{id}', 'AdminController@articlesRead')->name('articles.read');
 
 });
 

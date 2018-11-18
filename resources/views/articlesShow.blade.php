@@ -13,13 +13,11 @@
                         <p>{{$article->description}}.</p>
                     </div>
                     <div class="card-action">
-                        <a href="{{route('articles.read')}}">Read Full</a>
+                        <a href="{{route('articles.read', [$article->id])}}">Read Full</a>
                     </div>
                 </div>
             </div>
         </div>
         </div>
-
-
     @endforeach
 @endsection

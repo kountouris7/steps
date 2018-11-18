@@ -303,11 +303,11 @@ class AdminController extends Controller
         return view('articlesShow', compact('articles'));
     }
 
-    public function articlesRead()
+    public function articlesRead($id)
     {
-        $articles = Article::get();
+        $article = Article::find($id);
 
-        return view('articlesRead', compact('articles'));
+        return view('articlesRead', compact('article'));
 
     }
 
