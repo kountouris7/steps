@@ -8,14 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <!-- Scripts -->
-      <script>
-          window.Laravel = {!! json_encode([
-              'csrfToken' => csrf_token(),
-          ]) !!};
-      </script>--}}
+  {{-- <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>--}}
 </head>
 <body>
+
 
 
 <div id="app">
@@ -24,6 +25,7 @@
     <flash message="{{session('flash')}}"></flash>
 
 </div>
+
 
 
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
@@ -42,7 +44,6 @@
         $('.tabs').tabs();
         $('.tooltipped').tooltip();
 
-        $('.summernote').summernote();
     });
 </script>
 </body>
