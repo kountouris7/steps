@@ -282,59 +282,18 @@ class AdminController extends Controller
     public function articlesPost(Request $request)
     {
         $this->validate($request, [
-
-            'detail' => 'required',
-
+            'title'       => 'required|max:60',
+            'body'        => 'required',
+            'description' => 'required|max:171',
         ]);
 
-        $detail = $request->input('detail');
+        Article::create([
+            'title'       => request('title'),
+            'body'        => request('body'),
+            'description' => request('description'),
+        ]);
 
-        $dom = new \DomDocument();
-
-        $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        $images = $dom->getElementsByTagName('img');
-
-        foreach ($images as $k => $img) {
-
-            $data = $img->getAttribute('src');
-
-            list($type, $data) = explode(';', $data);
-
-            list(, $data) = explode(',', $data);
-
-            $data = base64_decode($data);
-
-            $image_name = "/upload/" . time() . $k . '.png';
-
-            $path = public_path() . $image_name;
-
-            file_put_contents($path, $data);
-
-            $img->removeAttribute('src');
-
-            $img->setAttribute('src', $image_name);
-
-        }
-
-        $detail = $dom->saveHTML();
-
-        dd($detail);
-
-
-        //      $validatedData = $request->validate([
-        //          'title'       => 'required|max:60',
-        //          'body'        => 'required',
-        //          'description' => 'required|max:171',
-        //      ]);
-//
-        //      Article::create([
-        //          'title'       => request('title'),
-        //          'body'        => request('body'),
-        //          'description' => request('description'),
-        //      ]);
-//
-        return redirect(route('articles.show'));
+        return redirect(route('articles.show', compact('article')));
     }
 
     public function articlesShow()

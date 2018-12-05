@@ -5,24 +5,21 @@
     <link type="text/css" rel="stylesheet" href="{{asset ('css/materialize.min.css')}}" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
-    <!-- summernote WYSIWYG editor -->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- include libraries(jQuery, bootstrap) summernote -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> {{-- this is for the fonts--}}
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!-- include summernote css/js-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
 
 </head>
 <body>
-
-{{--
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
-u should change this to the production url--}}
 <div id="app">
     @include('administrator.layouts.nav')
     <div style="width:800px; margin:0 auto;">
@@ -49,8 +46,8 @@ u should change this to the production url--}}
         $('.sidenav').sidenav();
         $('.tabs').tabs();
         $('.materialboxed').materialbox();
-        M.textareaAutoResize($('#textarea1'));
-        $('#summernote').summernote();
+        /* M.textareaAutoResize($('#textarea1'));*/
+        $('#textarea1').summernote();
     });</script>
 
 
