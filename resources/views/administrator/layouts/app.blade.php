@@ -47,8 +47,11 @@
         $('.tabs').tabs();
         $('.materialboxed').materialbox();
         /* M.textareaAutoResize($('#textarea1'));*/
-        $('#textarea1').summernote();
-    });</script>
+        $('#textarea1').summernote({
+            height: 500,
+        });
+    });
+</script>
 
 
 <!--JavaScript at end of body for optimized loading-->

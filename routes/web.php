@@ -15,6 +15,9 @@ Route::get('profile/{user}/past.bookings', 'ProfilesController@showPastBookingsC
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 Route::get('/groups/{day}', 'GroupController@daysFilter')->name('groups.by.day');
 
+Route::get('articles.show', 'AdminController@articlesShow')->name('articles.show');
+Route::get('articles.read/{id}', 'AdminController@articlesRead')->name('articles.read');
+
 
 Route::group(['middleware' => 'is_admin'], function () {
     Route::get('admin', 'AdminController@admin')->name('admin');
@@ -57,9 +60,6 @@ Route::group(['middleware' => 'is_admin'], function () {
 //articles
     Route::get('articles.write', 'AdminController@articlesWrite')->name('articles.write');
     Route::post('articles.post', 'AdminController@articlesPost')->name('articles.post');
-    Route::get('articles.show', 'AdminController@articlesShow')->name('articles.show');
-    Route::get('articles.read/{id}', 'AdminController@articlesRead')->name('articles.read');
-
 });
 
 

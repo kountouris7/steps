@@ -28,14 +28,14 @@
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="textarea1" name="body" class="summernote" required></textarea>
+                    <textarea id="textarea1" name="body" required></textarea>
                     <label for="textarea1" class="pink-text">Text area</label>
                 </div>
+                <div>
+                    <button type="submit" class="waves-effect pink accent-3 btn-small">Post</button>
+                </div>
+            </div>
 
-            </div>
-            <div>
-                <button type="submit" class="waves-effect pink accent-3 btn-small">Post</button>
-            </div>
         </form>
     </div>
 
