@@ -5,8 +5,11 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
+
 require('./bootstrap');
 require('summernote');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,6 +21,10 @@ Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('groups', require('./components/Groups.vue'));
 Vue.component('delete-group', require('./components/DeleteGroup.vue'));
 
+
 const app = new Vue({
     el: '#app'
+
 });
+
+

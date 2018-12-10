@@ -13,6 +13,7 @@
 
     @endif
 
+
     <div class="row">
         <form method="POST" action="{{route('articles.post')}}" class="col s12">
             {{csrf_field()}}
