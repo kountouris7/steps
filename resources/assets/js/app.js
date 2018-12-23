@@ -8,7 +8,7 @@
 
 
 require('./bootstrap');
-require('summernote');
+
 
 
 /**
