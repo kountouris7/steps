@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div v-else>
-                            <button type="submit" class="waves-effect pink accent-3 btn-small" onclick="return confirm('Are you sure?')" @click="toggle">Cancel
+                            <button type="submit" class="waves-effect pink accent-3 btn-small" @click="toggle">Cancel
                                 Booking
                             </button>
                         </div>

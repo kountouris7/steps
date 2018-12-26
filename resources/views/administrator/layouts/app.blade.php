@@ -37,8 +37,9 @@
         $('.sidenav').sidenav();
         $('.tabs').tabs();
         $('.materialboxed').materialbox();
-        /* M.textareaAutoResize($('#textarea1'));*/
-       /* $('#textarea1').materialnote();*/
+        $(".delete").on("submit", function(){
+            return confirm("Are you sure?");
+        });
     });
 </script>
 
