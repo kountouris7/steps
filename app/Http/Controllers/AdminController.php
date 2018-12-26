@@ -345,6 +345,14 @@ class AdminController extends Controller
 
     }
 
+    public function deleteSubscriber(Subscriber $subscriber, $id)
+    {
+        //need to detach subscription id from users OR delete that column?? is it necessary?
+    $x = User::with('subscription')->where('subscription_id', $id)->get();
+    dd($x);
+        return back()->with('flash', 'Client Deleted');
+    }
+
 
     public function deleteUser($id)
     {

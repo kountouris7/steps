@@ -37,13 +37,16 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('see.attendances/{day}', 'AdminController@attendanceByDay')->name('attendance.by.day');
     Route::get('excel', 'SubscriberController@index')->name('upload.excel');
     Route::post('import', 'SubscriberController@import')->name('import.excel');
+    //subscribers-clients
     Route::get('show/all.subscribers', 'SubscriberController@showAllSubscribers')->name('showAllSubscribers');
     Route::get('show/subscribers', 'SubscriberController@showSubscribersCurrentMonth')->name('showSubscribersCurrentMonth');
     Route::get('add.subscriber.form', 'SubscriberController@addNewSubscriberView')->name('add.subscriberView');
     Route::post('add.subscriber', 'SubscriberController@addNewSubscriber')->name('add.subscriber');
     Route::get('subscriber/edit/{id}', 'AdminController@subscriberEdit')->name('subscriber.edit');
     Route::post('subscriber/edit/{id}', 'AdminController@subscriberUpdate')->name('subscriber.update');
+    Route::get('subscriber/delete/{id}', 'AdminController@deleteSubscriber')->name('subscriber.delete');
     Route::get('subscriber-profile{id}', 'SubscriberController@subscriberProfile')->name('subscriber.profile');
+    //users
     Route::get('view.users', 'AdminController@viewUsers')->name('view.users');
     Route::delete('delete.user/{id}', 'AdminController@deleteUser')->name('delete.user');
     Route::get('withdrawn.users', 'AdminController@withdrawnUsers')->name('withdrawn.users');

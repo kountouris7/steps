@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
     public function subscription()
     {
-        return $this->hasOne(Subscriber::class, 'email', 'email');
+        return $this->hasOne(Subscriber::class, 'id', 'subscription_id');
     }
 
     public function invite()

@@ -76,7 +76,6 @@
                 <div class="form-group">
                     <button type="submit" class="waves-effect pink accent-3 btn-small">Update Client</button>
                 </div>
-
             </form>
 
         </div>

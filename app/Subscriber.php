@@ -49,7 +49,7 @@ class Subscriber extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'subscriber_id');
+        return $this->belongsTo(User::class, 'id', 'subscription_id' ,'');
     }
 
     public function invitations()
