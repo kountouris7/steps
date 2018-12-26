@@ -23,7 +23,15 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
+
+            /*$table->foreign('subscription_id')
+                  ->references('id')
+                  ->on('subscribers')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');*/
         });
+
+
     }
 
     /**

@@ -21,11 +21,11 @@ class CreateGroupsTable extends Migration
             $table->unsignedInteger('level_id')->required();
             $table->timestamps();
 
-            ////$table->foreign('lesson_id')
-                //  ->references('id')
-                //  ->on('lessons')
-                //  ->onDelete('cascade')
-                //  ->onUpdate('cascade');
+           /*$table->foreign('lesson_id')
+                  ->references('id')
+                  ->on('lessons')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');*/
         });
     }
 

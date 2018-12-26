@@ -32,7 +32,7 @@
                 <td>{{$subscriber->price}}</td>
                 <td>{{Carbon\Carbon::parse($subscriber->month)->format('F Y')}}</td>
                 <td><a href="{{route('subscriber.edit', [$subscriber->id])}}">Edit</a></td>
-                <td><a href="{{route('subscriber.delete', [$subscriber->id])}}">Delete</a></td>
+                <td><a href="{{route('subscriber.delete', [$subscriber->id])}}" onclick="return confirm('Are you sure?')">Delete</a></td>
             </tr>
         @endforeach
         </tbody>

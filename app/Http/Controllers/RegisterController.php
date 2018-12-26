@@ -32,12 +32,12 @@ class RegisterController extends Controller
         if ( ! $invitation = Invite::where('email', $request->email)->first()) {
             return back()->with('flash', 'Please use the email you received the invitation to sign in');
         }
-        $subscription = Subscriber::where('email', $request->email)->first();
+       // $subscription = Subscriber::where('email', $request->email)->first();
 
         User::create([
             'name'            => request('name'),
             'email'           => request('email'),
-            'subscription_id' => $subscription->id,
+            //'subscription_id' => $subscription->id,
             'password'        => Hash::make(request('password')),
             'type'            => User::DEFAULT_TYPE,
         ]);
