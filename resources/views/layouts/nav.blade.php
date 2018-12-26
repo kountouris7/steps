@@ -8,8 +8,8 @@
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if(auth()->user())
-                <li><a class="btn tooltipped pink accent-3" id="articles" data-position="bottom" data-tooltip="Available Soon">Articles</a>
-                </li>
+                {{--<li><a class="btn tooltipped pink accent-3" id="articles" data-position="bottom" data-tooltip="Available Soon">Articles</a>
+                </li>--}}
                 <li><a href="{{route('home')}}">Home</a></li>
                 <li><a href="{{route('show.groups')}}">Classes</a></li>
                 <!-- Dropdown Trigger -->

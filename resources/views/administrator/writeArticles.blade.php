@@ -1,7 +1,6 @@
 @extends('administrator.layouts.app')
 
 @section('content')
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -12,7 +11,6 @@
         </div>
 
     @endif
-
 
     <div class="row">
         <form method="POST" action="{{route('articles.post')}}" class="col s12">
