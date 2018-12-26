@@ -24,7 +24,7 @@ class ProfilesController extends Controller
         $currentMonth = Carbon::now()->format('F');
         //doesn't show past bookings...
         $groups       = $user->groups()->with('lesson')
-                             ->where('day_time', '>', today())
+                             ->where('day_time', '>', now()->toDateTimeString())
                              ->get();
 
         return view('profiles.showBookings', compact('user', 'groups', 'currentMonth'));
@@ -37,7 +37,7 @@ class ProfilesController extends Controller
         $groupDateMonthStart = Carbon::now()->firstOfMonth()->toDateTimeString();
         //shows past bookings of this Month only...
         $groups = $user->groups()->with('lesson')
-                       ->whereBetween('day_time', [$groupDateMonthStart, today()])
+                       ->whereBetween('day_time', [$groupDateMonthStart, now()->toDateTimeString()])
                        ->get();
 
         return view('profiles.past_bookings', compact('user', 'groups', 'currentMonth'));

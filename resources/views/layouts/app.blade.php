@@ -43,10 +43,6 @@
         $('.tabs').tabs();
         $('.tooltipped').tooltip();
 
-        $(".delete").on("submit", function(){
-            return confirm("Are you sure?");
-        });
-
     });
 </script>
 

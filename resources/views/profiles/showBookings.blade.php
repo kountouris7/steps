@@ -10,10 +10,9 @@
               </h4>
                 </div>
                 @forelse ($groups as $group)
-                    <delete-group :group="{{$group}}"></delete-group>
+                   {{-- <delete-group :group="{{$group}}"></delete-group>--}}
 
 
-                    {{--
                          <ul class="collection">
                                <li class="collection-item avatar center-align">
                                    <strong>{{ $group->created_at->diffForHumans()}} you booked:</strong><br>
@@ -32,7 +31,7 @@
 
 
                             </li>
-                        </ul> --}}
+                        </ul>
 
 
                 @empty
