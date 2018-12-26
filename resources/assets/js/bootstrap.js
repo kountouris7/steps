@@ -12,7 +12,6 @@ try {
 
     // require('bootstrap');
     require('./materialize.min.js');
-    //require('summernote');
 } catch (e) {
 }
 
