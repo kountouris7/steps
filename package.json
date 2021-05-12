@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "codemirror": "^5.42.0",
+        "codemirror": "^5.58.2",
         "laravel-echo": "^1.4.0",
         "materialize-css": "^1.0.0-rc.2",
         "materialnote": "^1.2.1",
